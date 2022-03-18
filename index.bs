@@ -86,18 +86,41 @@ urlPrefix: https://tc39.es/ecma262/; spec: ECMAScript
 
 
 urlPrefix: https://html.spec.whatwg.org/C/; spec: html
-  text: Cross-Origin-Opener-Policy; type: dfn; url: cross-origin-opener-policies
+  text: BroadcastChannel; type:dfn; url:broadcasting-to-other-browsing-contexts
+  text: COEP; type: dfn; url: coep
   text: COOP; type: dfn; url: cross-origin-opener-policies
   text: Cross-Origin-Embedder-Policy; type: dfn; url: coep
-  text: COEP; type: dfn; url: coep
-  text: crossOriginIsolated; type:dfn; url:concept-settings-object-cross-origin-isolated-capability
-  text: BroadcastChannel; type:dfn; url:broadcasting-to-other-browsing-contexts
-  text: SharedWorker; type:dfn; url:sharedworker
-  text: ServiceWorker; type:dfn; url:service-worker-obj
-  text: iframe; type:dfn; url:the-iframe-element
+  text: Cross-Origin-Opener-Policy; type: dfn; url: cross-origin-opener-policies
   text: HTMLIframeElement; type:dfn; url:HTMLIframeElement
-  text: concept-document-bc; type:dfn; url:concept-document-bc
+  text: ServiceWorker; type:dfn; url:service-worker-obj
+  text: SharedWorker; type:dfn; url:sharedworer
+  text: about:blank; type:dfn; url:about:blank
+  text: bc-container-document; type: dfn; url: bc-container-document
   text: bc-container; type:dfn; url:bc-container
+  text: check a navigation response's adherence to its embedder policy; type:dfn; url:check-a-navigation-response's-adherence-to-its-embedder-policy
+  text: compatible with cross-origin isolation; type: dfn; url:compatible-with-cross-origin-isolation
+  text: concept-document-bc; type:dfn; url:concept-document-bc
+  text: concept-document-origin; type:dfn; url:concept-document-origin
+  text: concept-document-policy-container; type: dfn; url: concept-document-policy-container
+  text: creating a new browsing context; type:dfn; url:creating-a-new-browsing-context
+  text: crossOriginIsolated; type:dfn; url:concept-settings-object-cross-origin-isolated-capability
+  text: embedder-policy-report-only-reporting-endpoint; type: dfn; url: embedder-policy-report-only-reporting-endpoint
+  text: embedder-policy-report-only-value; type: dfn; url: embedder-policy-report-only-value
+  text: embedder-policy-reporting-endpoint; type: dfn; url: embedder-policy-reporting-endpoint
+  text: embedder-policy-value; type:dfn; url:embedder-policy-value
+  text: entry global object; type:dfn; url:entry-global-object
+  text: hh-replace; type:dfn; url:hh-replace
+  text: iframe; type:dfn; url:the-iframe-element
+  text: initialize the document object; type:dfn; url:initialise-the-document-object
+  text: is initial about:blank; type:dfn; url:is-initial-about:blank
+  text: navigation params; type:dfn; url:navigation-params
+  text: navigation-params-hh; type:dfn; url:navigation-params-hh
+  text: navigation-params-origin; type:dfn; url:navigation-params-origin
+  text: policy-container-embedder-policy; type: dfn; url: policy-container-embedder-policy
+  text: queue a cross-origin embedder policy inheritance violation; type:dfn; url: queue-a-cross-origin-embedder-policy-inheritance-violation
+  text: still on its initial about:blank document; type:dfn; url:still-on-its-initial-about:blank-document
+  text: window open steps; type:dfn; url:window-open-steps
+  <!--text: A; type:dfn; url:A-->
 
 urlPrefix: https://dom.spec.whatwg.org/
   text: EventTarget; type:dfn; url:interface-eventtarget
@@ -111,6 +134,12 @@ urlPrefix: https://www.w3.org/TR/hr-time/
 urlPrefix: https://webidl.spec.whatwg.org/#LegacyUnenumerableNamedProperties
   text: LegacyUnenumerableNamedProperties; type:dfn; url:LegacyUnenumerableNamedProperties
 
+</pre>
+
+<pre class="link-defaults">
+  spec:html; type:dfn; for:Window; text:browsing context
+  spec:fetch; type:dfn; for:/; text:response
+  spec:html; type:dfn; for:policy container; text:embedder policy
 </pre>
 
 <style>
@@ -128,11 +157,13 @@ urlPrefix: https://webidl.spec.whatwg.org/#LegacyUnenumerableNamedProperties
 .brief {
   line-height: 10%;
 }
-</style>
 
-<script>
-  setTimeout(() => location.reload(), 5000);
-</script>
+.customHighlight {
+  background-color: rgba(255, 255, 0, 0.3);
+  padding:9px;
+  margin:1px;
+}
+</style>
 
 Introduction { #introduction }
 ============
@@ -142,7 +173,7 @@ Introduction { #introduction }
 Recommended readings {#recommended-readings}
 --------------------
 - The [[Spectre]] vulnerability.
-- The [[!COEP-require-corp]] and [[!COEP-credentialless]] headers.
+- The [[COEP-require-corp]] and [[COEP-credentialless]] headers.
 - How and why [=Cross-Origin-Opener-Policy=] ([=COOP=]) and
   [=Cross-Origin-Embedder-Policy=] ([=COEP=]) are granting the
   [crossOriginIsolated](concept-settings-object-cross-origin-isolated-capability)
@@ -306,8 +337,21 @@ The proposal is backed by the following tests:
 Status:
 [https://wpt.fyi/results/html/cross-origin-embedder-policy/anonymous-iframe/](https://wpt.fyi/results/html/cross-origin-embedder-policy/anonymous-iframe/)
 
-<!--<wpt-rest>-->
-<!--</wpt-rest>-->
+<!--<wpt>-->
+<!--anonymous-iframe-popup.tentative.https.window.js-->
+<!--[>anonymous-window.tentative.https.js<]-->
+<!--cookie-store.tentative.https.window.js-->
+<!--cookie.tentative.https.window.js-->
+<!--fenced-frame-bypass.tentative.https.window.js-->
+<!--fenced-frame.tentative.https.window.js-->
+<!--local-storage.tentative.https.window.js-->
+<!--require-corp-embed-anonymous-iframe.tentative.https.window.js-->
+<!--serviceworker-partitioning.tentative.https.window.js-->
+<!--session-storage.tentative.https.window.js-->
+<!--sharedworker-partitioning.tentative.https.window.js-->
+<!--web-lock.tentative.https.window.js-->
+<!--</wpt>-->
+
 
 Specification {#specification}
 =============
@@ -316,7 +360,8 @@ Integration with HTML {#spec-html}
 ---------------------
 
 Note: This corresponds to the following HTML specification change:
-[whatwg/html/pull/7695](https://github.com/whatwg/html/pull/7695).
+[whatwg/html/pull/7695](https://github.com/whatwg/html/pull/7695). <br/>
+When merged this section will become obsolete.
 
 ### The Iframe attribute ### {#spec-iframe-attribute}
 
@@ -366,6 +411,118 @@ interface <a>Window</a> : <a>EventTarget</a> {
   // ...
 };
 </pre>
+</div>
+
+### Creating new browsing context ### {#spec-new-browsing-context}
+
+In the <a>creating a new browsing context</a> section:
+Add step 5:
+<div class="monkey-patch">
+
+5. Let |anonymous| be the result of determining the <a
+  lt="initial-window-anonymous">initial window anonymous</a> flag, given
+  |browsingContext|.
+
+</div>
+
+Then later, use it for creating a new [=Window=].
+<div class="monkey-patch">
+
+- For the global object, create a new [=Window=] object<span
+  class="customHighlight">, with <a lt="attr-iframe-anonymous">anonymous</a> set
+  to |anonymous|.</span>
+
+</div>
+
+### Navigating a browsing context ### {#spec-navigating-browsing-context}
+
+In the <a>navigation params</a> <a>struct</a>, adds the anonymous parameter:
+
+<div class="monkey-patch">
+  <dl>
+    <dt><dfn lt="navigation-params-anonymous">anonymous</dfn></dt>
+    <dd>The anonymous flag to impose on the new [=Window=]</dd>
+  </dl>
+</div>
+
+------
+
+In the <a>navigate</a> algorithm, adds step 18:
+
+<div class="monkey-patch">
+
+18. Let |anonymous| be the result of computing the <a
+  lt="navigation-anonymous">navigation's anonymous flag</a>, given
+  |browsingContext|.</p></li>
+
+</div>
+
+Then later in the same algorithm, use this variable to build the <a>navigation
+params</a>.
+
+It is also passed as a new argument to the <a>process a navigate fetch</a>
+algorithm, which is also used to create a new <a>navigation params</a>.
+
+------
+
+Then, in the <a>initialize the document object</a> algorithm:
+
+When creating a new [=Window=] in the <a>browsing context</a>, pass the
+|anonymous| value.
+
+<div class="monkey-patch">
+
+- For the global object, create a new [=Window=] object<span
+  class="customHighlight">, with |anonymous| to |navigationParams|'s <a
+  lt="navigation-params-anonymous">anonymous</a>.</span>
+
+</div>
+
+---
+
+The [=Window=] object must not be reused, when it would lead to keeping an
+anonymous flag different from what is in the navigation params.
+
+Example: This is useful in this case:
+```js
+const iframe = document.body.createElement("iframe");
+iframe.anonymous = true;
+document.body.appendChild(iframe);
+iframe.anonymous = false;
+iframe.src = "https://example.test";
+// Window for about:blank and for https://example.test must be different.
+```
+
+<div class="monkey-patch">
+
+- If |browsingContext| is <a>still on its initial about:blank Document</a>, and
+  |navigationParams|'s <a lt="navigation-params-hh">history handling</a> is "<a
+  lt="hh-replace">replace</a>", and |browsingContext|'s <a>active document</a>'s
+  <a lt="concept-document-origin">origin</a> is <a>same origin-domain</a> with
+  |navigationParams|'s <a lt="navigation-params-origin">origin</a>, <span
+  class="customHighlight">and |browsingContext|'s <a>active window</a>'s
+  {{Window/anonymous}} flag matches |navigationParams|'s <a
+  lt="navigation-params-anonymous">anonymous</a> flag</span>, then do
+  nothing.</p>
+
+  Note: This means that both the <a lt="is initial about:blank">initial
+  about:blank</a> [=Document=], and the new [=Document=] that is
+  about to be created, will share the same [=Window=] object.</p>
+
+</div>
+
+<div>
+</div>
+
+### Open popup with noopener ### {#spec-popup-noopener}
+
+In the <a>window open steps</a>, adds step 5:
+
+<div class="monkey-patch">
+
+5. If <a>entry global object</a>'s {{Window/anonymous}} flag is true, then set
+   |noopener| to true.
+
 </div>
 
 ### General section ### {#spec-section}
@@ -437,14 +594,75 @@ Note: Top-level <a>anonymous Window</a> do not exist.
 
 </div>
 
-Defining the [=page anonymous nonce=].
+### COEP embedder checks ### {#spec-coep-embedder-check}
+
+The [=COEP=] embedding checks can be lifted.
+
+Add a new parameters |anonymous| parameter to the <a>check a navigation
+response's adherence to its embedder policy</a> and pass |navigationParams|'s <a
+lt="navigation-params-anonymous">anonymous</a>.
+
+<div class="monkey-patch">
+  <p>To <a>check a navigation response's adherence to its embedder policy</a>
+  given a <a data-x="concept-response">response</a> <var>response</var>, a
+  <a>browsing context</a> <var>target</var>, an <a>embedder policy</a>
+  <var>responsePolicy</var>, <span class="customHighlight">and a boolean
+  <var>anonymous</var></span>:</p>
+
+  <ol>
+   <li><p>If <var>target</var> is not a <a>child browsing context</a>, then
+   return true.</p></li>
+
+   <li><p>Let <var>parentPolicy</var> be <var>target</var>'s <a
+   lt="bc-container-document">container document</a>'s <a
+   lt="concept-document-policy-container">policy container</a>'s <a
+   lt="policy-container-embedder-policy">embedder policy</a>.</p></li>
+
+   <li><p>If <var>parentPolicy</var>'s <a
+   lt="embedder-policy-report-only-value">report-only value</a> is <a>compatible
+   with cross-origin isolation</a> and <var>responsePolicy</var>'s <a
+   lt="embedder-policy-value">value</a> is not, <span
+   class="customHighlight">and <var>anonymous</var> is false</span>, then
+   <a>queue a cross-origin embedder policy inheritance violation</a> with
+   <var>response</var>, "<code lt="">navigation</code>",
+   <var>parentPolicy</var>'s <a
+   lt="embedder-policy-report-only-reporting-endpoint">report only reporting
+   endpoint</a>, "<code lt="">reporting</code>", and <var>target</var>'s <a
+   lt="bc-container-document">container document</a>'s <a>relevant settings
+   object</a>.</p></li>
+
+   <li><p>If <var>parentPolicy</var>'s <a lt="embedder-policy-value">value</a>
+   is not <a>compatible with cross-origin isolation</a> or
+   <var>responsePolicy</var>'s <a lt="embedder-policy-value">value</a> is
+   <a>compatible with cross-origin isolation</a>, <span
+   class="customHighlight">or <var>anonymous</var> is true, </span>then return
+   true.</p></li>
+
+   <li><p><a>Queue a cross-origin embedder policy inheritance violation</a> with
+   <var>response</var>, "<code lt="">navigation</code>",
+   <var>parentPolicy</var>'s <a
+   lt="embedder-policy-reporting-endpoint">reporting endpoint</a>, "<code
+   lt="">enforce</code>", and <var>target</var>'s <a
+   lt="bc-container-document">container document</a>'s <a>relevant settings
+   object</a>.</p></li>
+
+   <li><p>Return false.</p></li>
+  </ol>
+</div>
+
+### Page's anonymous nonce ### {#spec-page-anonymous-nonce}
+
+In the "Anonymous iframe" section. Defining the [=page anonymous nonce=].
 
 <div class="monkey-patch">
   <p>Each top-level {{Window}} has an associated <dfn export>page anonymous nonce</dfn>. It
   is an immutable nonce ("number used once").</p>
 </div>
 
-Define how browsers should handle their autofill features.
+### Autofill ### {#spec-autofill}
+
+In the "Anonymous iframe" section. Defining the how web browser should configure
+their autofilling features.
 
 <div class="monkey-patch">
   <p><dfn export>Autofill and anonymous iframe</dfn>: User agents sometimes have features for helping users
