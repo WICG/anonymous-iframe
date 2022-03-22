@@ -886,10 +886,10 @@ This section defines a monkey-patch over: [[!CHIPS]], which is itself a
 monkey-patch over [[!COOKIES]].
 
 <div class="note">
-  Note/Summary: [Cookies Having Independent Partitioned State](https://github.com/WICG/CHIPS)
-  (CHIPS) introduce the cookie's partition key. To
-  implement anonymous iframe, when the [=environment/partition nonce=] is
-  defined:
+  Note / Summary: [Cookies Having Independent Partitioned
+  State](https://github.com/WICG/CHIPS) (CHIPS) introduce the cookie's partition
+  key. To implement anonymous iframe, when the [=environment=]'s
+  [=environment/partition nonce=] is defined:
 
   1. Even in the absence of the "Partitioned" cookie attribute, the
      "partition-key" is defined and contains: (top-level-site, partition-nonce).
@@ -897,12 +897,13 @@ monkey-patch over [[!COOKIES]].
   2. The __Host- prefix is not required.
 
   3. The [=environment=] only have access to cookies whose "partition-key" is
-     defined and match the environment.
+     defined.
 
 </div>
 
-This modify this section:
+Modify the [[!CHIPS]] section:
 <a href="https://github.com/WICG/CHIPS/blob/main/README.md#algorithm">https://github.com/WICG/CHIPS/blob/main/README.md#algorithm</a>
+
 
 <div class="monkey-patch">
 
