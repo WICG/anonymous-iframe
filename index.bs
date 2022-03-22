@@ -50,6 +50,24 @@ WPT Path Prefix: html/cross-origin-embedder-policy/anonymous-iframe/
     "title": "Spectre Attacks: Exploiting Speculative Execution"
   },
 
+  "Cookies": {
+    "authors": [
+      "Mike West",
+      "John Wilander"
+    ],
+    "title": "Cookies: HTTP State Management Mechanism",
+    "href": "https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-07"
+  },
+
+  "CHIPS": {
+    "authors": [
+      "Dylan Cutler",
+      "Kaustubha Govind"
+    ],
+    "title": "CHIPS (Cookies Having Independent Partitioned State)",
+    "href": "https://github.com/WICG/CHIPS"
+  },
+
   "COEP-require-corp": {
     "authors": [
       "Mike West"
@@ -361,7 +379,7 @@ Status:
 
 <!--<wpt>-->
 <!--anonymous-iframe-popup.tentative.https.window.js-->
-<!--[>anonymous-window.tentative.https.js<]-->
+<!--anonymous-window.tentative.https.js-->
 <!--cookie-store.tentative.https.window.js-->
 <!--cookie.tentative.https.window.js-->
 <!--fenced-frame-bypass.tentative.https.window.js-->
@@ -858,6 +876,123 @@ A <a>network partition key</a> is a tuple consisting of:
 
 Integration with CHIPS {#spec-chips}
 ----------------------
+
+This section defines a monkey-patch over: [[!CHIPS]], which is itself a
+monkey-patch over [[!COOKIES]].
+
+<div class="note">
+  Note/Summary: [Cookies Having Independent Partitioned State](https://github.com/WICG/CHIPS)
+  (CHIPS) introduce the cookie's partition key. To
+  implement anonymous iframe:
+
+  1. When the [=environment/partition nonce=] is defined, even in the absence of
+     the "Partitioned" cookie attribute, the "partition-key" is defined and
+     contains: (top-level-site, partition-nonce).
+
+  2. When the [=environment/partition nonce=] is defined, the [=environment=]
+     only have access to cookies whose "partition-key" is defined and match the
+     environment.
+
+</div>
+
+This modify this section:
+<a href="https://github.com/WICG/CHIPS/blob/main/README.md#algorithm">https://github.com/WICG/CHIPS/blob/main/README.md#algorithm</a>
+
+<div class="monkey-patch">
+
+Below is the algorithm that browsers can use to parse cookie lines. This
+algorithm could be added to [section 5.3 of
+RFC6265bis](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-07#section-5.3).
+
+1. Let "partition-key" be null.
+
+2. If <span class="customHighlight">If the [=environment=]'s
+   [=environment/partition nonce=] is defined</span> or an attribute-name
+   case-insensitively matches the string `"Partitioned"`, then:
+
+   1. Let |site| be the [=environment=]'s <a>top-level origin</a>'s
+      [site](https://html.spec.whatwg.org/#sites).
+
+   2. If |site| is in a [First-Party
+      Set](https://github.com/privacycg/first-party-sets), then set |site| be
+      the concatenation of "https://" and the "owner domain" of the site's set.
+
+   3. <span class="customHighlight">Let |nonce| be the [=environment=]'s
+     [=environment/partition nonce=].</span>
+
+   4. <span class="customHighlight">Set |partition-key| be the <a>tuple</a>
+     (|site|, |nonce|)</span>
+
+3. Append an attribute to the cookie-attribute-list with an attribute-name of
+   "PartitionKey" and an attribute-value of |partition-key|.
+
+</div>
+
+<div class="monkey-patch">
+
+Below is the algorithm for storing `Partitioned` cookies. These steps could be
+added to [section 5.4 of
+RFC6265bis](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-07#section-5.4)
+after the user agent processes the cookie's __Host- prefix.
+
+1. If the cookie-attribute-list contains an attribute with an attribute-name of
+   "PartitionKey", and the attribute-value is <span class="customHighlight">not
+   a <a>tuple</a>(|site|, |nonce|) with non null |nonce|</span>, then  skip
+   the following steps and insert the cookie into the cookie store.
+
+2. If the cookie-name does not start with a case-sensitive match for the string
+   "__Host-", then abort the following steps and ignore the cookie entirely.
+
+3. If the cookie line also contains the [`SameParty`
+   attribute](https://github.com/cfredric/sameparty) (the exact semantics of how
+   the `SameParty` attribute is loaded into the cookie-attribute-list is TBD)
+   then abort the following steps and ignore the cookie entirely.
+
+4. Set the cookie's partition-key to the attribute-value of the element in the
+   attribute-list whose attribute-name is "PartitionKey".
+
+</div>
+
+<div class="monkey-patch">
+
+Below is an algorithm for attaching `Partitioned` cookies to a request. These
+steps could be added to the algorithm described in [section 5.5 of
+RFC6265bis](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-07#section-5.5)
+after the first step.
+
+For each cookie in the cookie-list do the following:
+
+1. Let |environment| be the [=environment=] that initiated the request.
+
+2. If the cookie's partition-key is null, <span class="customHighlight">and
+   [=environment=]'s [=environment/partition nonce=] is null</span>, skip the
+   following parts of this step.
+
+3. Let |request-top-site| be the [=environment=]'s <a>top-level
+   origin</a>'s [site](https://html.spec.whatwg.org/#sites).
+
+4. <span class="customHighlight">Let |request-partition-nonce| be the
+   |environment|'s [=environment/partition nonce=].
+
+5. If |request-top-site| is in a [First-Party
+   Set](https://github.com/privacycg/first-party-sets), then set
+   |request-top-site| be the concatenation of "https://" and the "owner domain"
+   of the |request-top-site|'s set.
+
+6. Let |request-partition-key| be the tuple (|request-top-site|,
+  |request-partition-nonce|).
+
+7. If the cookie's partition-key is not an exact match of
+   |request-partition-key|, then remove that cookie from the cookie-list.
+
+</div>
+
+<!--an [=Anonymous Window=] must have a cookie's-->
+<!--partition key, even in the absence of the-->
+<!--`partitioned` attribute.-->
+<!--Secondly, an [=Anonymous Window=] must have access to cookies with a-->
+<!--partition-key, matching.-->
+
 
 Security considerations {#security}
 =======================

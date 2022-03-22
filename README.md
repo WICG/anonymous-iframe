@@ -11,5 +11,4 @@ This way, developers using COEP can now embed third party iframes that do not.
 - [Problem](https://arthursonzogni.github.io/anonymous-iframe/#problem)
 - [Explainer](https://arthursonzogni.github.io/anonymous-iframe/#explainer)
 - [Tests](https://arthursonzogni.github.io/anonymous-iframe/#tests)
-- [Specification](https://arthursonzogni.github.io/anonymous-iframe/#implementation)
-- [Implementations](./implementations.md)
+- [Specification](https://arthursonzogni.github.io/anonymous-iframe/#specification)
