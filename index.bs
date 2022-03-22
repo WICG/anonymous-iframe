@@ -94,6 +94,11 @@ WPT Path Prefix: html/cross-origin-embedder-policy/anonymous-iframe/
     ],
     "href": "https://web.dev/why-coop-coep/",
     "title": "Why you need \"cross-origin isolated\" for powerful features"
+  },
+
+  "StoragePartition": {
+    "title": "Client-Side Storage Partitioning",
+    "href": "https://privacycg.github.io/storage-partitioning/"
   }
 }
 </pre>
@@ -883,15 +888,16 @@ monkey-patch over [[!COOKIES]].
 <div class="note">
   Note/Summary: [Cookies Having Independent Partitioned State](https://github.com/WICG/CHIPS)
   (CHIPS) introduce the cookie's partition key. To
-  implement anonymous iframe:
+  implement anonymous iframe, when the [=environment/partition nonce=] is
+  defined:
 
-  1. When the [=environment/partition nonce=] is defined, even in the absence of
-     the "Partitioned" cookie attribute, the "partition-key" is defined and
-     contains: (top-level-site, partition-nonce).
+  1. Even in the absence of the "Partitioned" cookie attribute, the
+     "partition-key" is defined and contains: (top-level-site, partition-nonce).
 
-  2. When the [=environment/partition nonce=] is defined, the [=environment=]
-     only have access to cookies whose "partition-key" is defined and match the
-     environment.
+  2. The __Host- prefix is not required.
+
+  3. The [=environment=] only have access to cookies whose "partition-key" is
+     defined and match the environment.
 
 </div>
 
@@ -987,13 +993,22 @@ For each cookie in the cookie-list do the following:
 
 </div>
 
-<!--an [=Anonymous Window=] must have a cookie's-->
-<!--partition key, even in the absence of the-->
-<!--`partitioned` attribute.-->
-<!--Secondly, an [=Anonymous Window=] must have access to cookies with a-->
-<!--partition-key, matching.-->
+Integration with storage-partitioning {#spec-storage-partitioning}
+-------------------------------------
 
+In the [[!StoragePartition]]
+([link](https://privacycg.github.io/storage-partitioning/)) Work Item. Most
+storage APIs will be keyed by an additional key: the top-level site.
 
+To implement anonymous iframe, another key should be added and defined as the
+[=environment=]'s [=environment/partition nonce=].
+<div class="monkey-patch">
+  <dl>
+    <dt><dfn lt="storage-key-nonce" export>nonce</dfn></dt>
+    <dd>The [=environment=]'s [=environment/partition nonce=]</dd>
+  </dl>
+</div>
+  
 Security considerations {#security}
 =======================
 
