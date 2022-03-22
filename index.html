@@ -6,7 +6,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
   <meta content="Bikeshed version fb1e763a4, updated Tue Mar 1 13:13:50 2022 -0800" name="generator">
   <link href="https://wicg.github.io/anonymous-iframe/" rel="canonical">
-  <meta content="924bf0ee366bbdd9a2f0acc1696ac05d2f187b5e" name="document-revision">
+  <meta content="ade6096257f7ddd57a765cf83c31c788c14c9974" name="document-revision">
 <style>
 .monkey-patch {
     padding: .5em;
@@ -821,6 +821,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
        </ol>
       <li><a href="#spec-chips"><span class="secno">3.3</span> <span class="content">Integration with CHIPS</span></a>
       <li><a href="#spec-storage-partitioning"><span class="secno">3.4</span> <span class="content">Integration with storage-partitioning</span></a>
+      <li><a href="#spec-storage"><span class="secno">3.5</span> <span class="content">Integration with storage</span></a>
      </ol>
     <li>
      <a href="#security"><span class="secno">4</span> <span class="content">Security considerations</span></a>
@@ -1387,6 +1388,29 @@ storage APIs will be keyed by an additional key: the top-level site.</p>
      <dd>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment①⑤">environment</a>'s <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce①④">partition nonce</a>
     </dl>
    </div>
+   <h3 class="heading settled" data-level="3.5" id="spec-storage"><span class="secno">3.5. </span><span class="content">Integration with storage</span><a class="self-link" href="#spec-storage"></a></h3>
+   <p>Modify the <a data-link-type="biblio" href="#biblio-storage">[STORAGE]</a> specification. Add the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment①⑥">environment</a>'s <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce①⑤">partition nonce</a> as an additional key in the <a data-link-type="dfn" href="https://storage.spec.whatwg.org/#storage-key" id="ref-for-storage-key">storage key</a>.</p>
+   <div class="monkey-patch">
+    <p>A <a data-link-type="dfn" href="https://storage.spec.whatwg.org/#storage-key" id="ref-for-storage-key①">storage key</a> is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#tuple" id="ref-for-tuple②">tuple</a> consisting of:</p>
+    <ul>
+     <li data-md>
+      <p>An <dfn data-dfn-for="storage key" data-dfn-type="dfn" data-export data-lt="storage-key-origin" id="storage-key-storage-key-origin">origin<a class="self-link" href="#storage-key-storage-key-origin"></a></dfn> (an <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-origin" id="ref-for-concept-origin②">origin</a>). <a data-link-type="biblio" href="#biblio-html">[HTML]</a></p>
+     <li data-md>
+      <div class="customHighlight">A <dfn data-dfn-for="storage key" data-dfn-type="dfn" data-export data-lt="storage-key-nonce" id="storage-key-storage-key-nonce">nonce<a class="self-link" href="#storage-key-storage-key-nonce"></a></dfn> (an identifier or null). <a data-link-type="biblio" href="#biblio-html">[HTML]</a> </div>
+    </ul>
+   </div>
+   <div class="monkey-patch">
+    <p>To <a data-link-type="dfn" href="https://storage.spec.whatwg.org/#obtain-a-storage-key-for-non-storage-purposes" id="ref-for-obtain-a-storage-key-for-non-storage-purposes">obtain a storage key for non-storage purposes</a>, given an <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment①⑦">environment</a> <var>environment</var>, run these steps:</p>
+    <ul>
+     <li data-md>
+      <p>Let <var>origin</var> be <var>environment</var>’s origin <var>environment</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin" id="ref-for-concept-settings-object-origin">origin</a> if <var>environment</var> is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object">environment settings
+object</a>; otherwise <var>environment</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-creation-url" id="ref-for-concept-environment-creation-url③">creation URL</a>'s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin①">origin</a>.</p>
+     <li data-md>
+      <p><span class="customHighlight">Let <var>nonce</var> be <var>environment</var>’s <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce①⑥">partition nonce</a>.</span></p>
+     <li data-md>
+      <p>Return a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#tuple" id="ref-for-tuple③">tuple</a> consisting of <var>origin</var> <span class="customHighlight">and <var>nonce</var></span>.</p>
+    </ul>
+   </div>
    <h2 class="heading settled" data-level="4" id="security"><span class="secno">4. </span><span class="content">Security considerations</span><a class="self-link" href="#security"></a></h2>
    <p>Because anonymous iframes can be embedded in <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-settings-object-cross-origin-isolated-capability" id="ref-for-concept-settings-object-cross-origin-isolated-capability②">crossOriginIsolated</a> contexts,
 in browsers without Out-of-Process-Iframes, we have to consider that their
@@ -1510,7 +1534,13 @@ does not pose a privacy risk.</p>
    <li><a href="#navigation-params-anonymous">navigation-params-anonymous</a><span>, in § 3.1.4</span>
    <li><a href="#page-anonymous-nonce">page anonymous nonce</a><span>, in § 3.1.9</span>
    <li><a href="#environment-partition-nonce">partition nonce</a><span>, in § 3.1.9</span>
-   <li><a href="#storage-key-nonce">storage-key-nonce</a><span>, in § 3.4</span>
+   <li>
+    storage-key-nonce
+    <ul>
+     <li><a href="#storage-key-nonce">definition of</a><span>, in § 3.4</span>
+     <li><a href="#storage-key-storage-key-nonce">dfn for storage key</a><span>, in § 3.5</span>
+    </ul>
+   <li><a href="#storage-key-storage-key-origin">storage-key-origin</a><span>, in § 3.5</span>
    <li><a href="#window">Window</a><span>, in § 3.1.2</span>
   </ul>
   <aside class="dfn-panel" data-for="term-for-eventtarget">
@@ -1699,6 +1729,12 @@ does not pose a privacy risk.</p>
     <li><a href="#ref-for-creating-a-new-browsing-context">3.1.3. Creating new browsing context</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-environment-creation-url">
+   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-creation-url">https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-creation-url</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-environment-creation-url③">3.5. Integration with storage</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-coep">
    <a href="https://html.spec.whatwg.org/C/#coep">https://html.spec.whatwg.org/C/#coep</a><b>Referenced in:</b>
    <ul>
@@ -1767,6 +1803,13 @@ does not pose a privacy risk.</p>
     <li><a href="#ref-for-environment⑤">3.2.1. Plumb the partition-nonce</a>
     <li><a href="#ref-for-environment⑥">3.3. Integration with CHIPS</a> <a href="#ref-for-environment⑦">(2)</a> <a href="#ref-for-environment⑧">(3)</a> <a href="#ref-for-environment⑨">(4)</a> <a href="#ref-for-environment①⓪">(5)</a> <a href="#ref-for-environment①①">(6)</a> <a href="#ref-for-environment①②">(7)</a> <a href="#ref-for-environment①③">(8)</a>
     <li><a href="#ref-for-environment①④">3.4. Integration with storage-partitioning</a> <a href="#ref-for-environment①⑤">(2)</a>
+    <li><a href="#ref-for-environment①⑥">3.5. Integration with storage</a> <a href="#ref-for-environment①⑦">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-environment-settings-object">
+   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-environment-settings-object">3.5. Integration with storage</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-hh-replace">
@@ -1837,11 +1880,10 @@ does not pose a privacy risk.</p>
     <li><a href="#ref-for-obtain-a-site">3.2.1. Plumb the partition-nonce</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-origin">
-   <a href="https://html.spec.whatwg.org/C/#concept-origin">https://html.spec.whatwg.org/C/#concept-origin</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-concept-settings-object-origin">
+   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin">https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-origin">3.1.9.2. For Window</a>
-    <li><a href="#ref-for-concept-origin①">3.2.1. Plumb the partition-nonce</a>
+    <li><a href="#ref-for-concept-settings-object-origin">3.5. Integration with storage</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-policy-container-embedder-policy">
@@ -1977,12 +2019,20 @@ does not pose a privacy risk.</p>
    <a href="https://infra.spec.whatwg.org/#tuple">https://infra.spec.whatwg.org/#tuple</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-tuple">3.3. Integration with CHIPS</a> <a href="#ref-for-tuple①">(2)</a>
+    <li><a href="#ref-for-tuple②">3.5. Integration with storage</a> <a href="#ref-for-tuple③">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-obtain-a-storage-key-for-non-storage-purposes">
+   <a href="https://storage.spec.whatwg.org/#obtain-a-storage-key-for-non-storage-purposes">https://storage.spec.whatwg.org/#obtain-a-storage-key-for-non-storage-purposes</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-obtain-a-storage-key-for-non-storage-purposes">3.5. Integration with storage</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-url-origin">
    <a href="https://url.spec.whatwg.org/#concept-url-origin">https://url.spec.whatwg.org/#concept-url-origin</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-url-origin">3.2.1. Plumb the partition-nonce</a>
+    <li><a href="#ref-for-concept-url-origin①">3.5. Integration with storage</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-url">
@@ -2063,6 +2113,7 @@ does not pose a privacy risk.</p>
      <li><span class="dfn-paneled" id="term-for-concept-request-reserved-client">concept-request-reserved-client</span>
      <li><span class="dfn-paneled" id="term-for-cross-origin-opener-policies">coop</span>
      <li><span class="dfn-paneled" id="term-for-creating-a-new-browsing-context">creating a new browsing context</span>
+     <li><span class="dfn-paneled" id="term-for-concept-environment-creation-url①">creation url</span>
      <li><span class="dfn-paneled" id="term-for-coep①">cross-origin-embedder-policy</span>
      <li><span class="dfn-paneled" id="term-for-cross-origin-opener-policies①">cross-origin-opener-policy</span>
      <li><span class="dfn-paneled" id="term-for-concept-settings-object-cross-origin-isolated-capability">crossoriginisolated</span>
@@ -2073,6 +2124,7 @@ does not pose a privacy risk.</p>
      <li><span class="dfn-paneled" id="term-for-embedder-policy-value">embedder-policy-value</span>
      <li><span class="dfn-paneled" id="term-for-entry-global-object">entry global object</span>
      <li><span class="dfn-paneled" id="term-for-environment">environment</span>
+     <li><span class="dfn-paneled" id="term-for-environment-settings-object">environment settings object</span>
      <li><span class="dfn-paneled" id="term-for-hh-replace">hh-replace</span>
      <li><span class="dfn-paneled" id="term-for-HTMLIframeElement">htmliframeelement</span>
      <li><span class="dfn-paneled" id="term-for-the-iframe-element">iframe</span>
@@ -2084,7 +2136,7 @@ does not pose a privacy risk.</p>
      <li><span class="dfn-paneled" id="term-for-navigation-params-origin">navigation-params-origin</span>
      <li><span class="dfn-paneled" id="term-for-navigation-params-reserved-environment">navigation-params-reserved-environment</span>
      <li><span class="dfn-paneled" id="term-for-obtain-a-site">obtain a site</span>
-     <li><span class="dfn-paneled" id="term-for-concept-origin">origin</span>
+     <li><span class="dfn-paneled" id="term-for-concept-settings-object-origin">origin <small>(for environment settings object)</small></span>
      <li><span class="dfn-paneled" id="term-for-policy-container-embedder-policy①">policy-container-embedder-policy</span>
      <li><span class="dfn-paneled" id="term-for-process-a-navigate-fetch">process a navigate fetch</span>
      <li><span class="dfn-paneled" id="term-for-queue-a-cross-origin-embedder-policy-inheritance-violation">queue a cross-origin embedder policy inheritance violation</span>
@@ -2110,6 +2162,11 @@ does not pose a privacy risk.</p>
      <li><span class="dfn-paneled" id="term-for-implementation-defined">implementation-defined</span>
      <li><span class="dfn-paneled" id="term-for-struct">struct</span>
      <li><span class="dfn-paneled" id="term-for-tuple">tuple</span>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[STORAGE]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-obtain-a-storage-key-for-non-storage-purposes">obtain a storage key for non-storage purposes</span>
     </ul>
    <li>
     <a data-link-type="biblio">[URL]</a> defines the following terms:
@@ -2143,6 +2200,8 @@ does not pose a privacy risk.</p>
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-infra">[INFRA]
    <dd>Anne van Kesteren; Domenic Denicola. <a href="https://infra.spec.whatwg.org/"><cite>Infra Standard</cite></a>. Living Standard. URL: <a href="https://infra.spec.whatwg.org/">https://infra.spec.whatwg.org/</a>
+   <dt id="biblio-storage">[STORAGE]
+   <dd><a href="https://storage.spec.whatwg.org/"><cite>Storage</cite></a>. URL: <a href="https://storage.spec.whatwg.org/">https://storage.spec.whatwg.org/</a>
    <dt id="biblio-storagepartition">[StoragePartition]
    <dd><a href="https://privacycg.github.io/storage-partitioning/"><cite>Client-Side Storage Partitioning</cite></a>. URL: <a href="https://privacycg.github.io/storage-partitioning/">https://privacycg.github.io/storage-partitioning/</a>
    <dt id="biblio-url">[URL]
@@ -2260,6 +2319,7 @@ does not pose a privacy risk.</p>
     <li><a href="#ref-for-environment-partition-nonce⑦">3.2.1. Plumb the partition-nonce</a>
     <li><a href="#ref-for-environment-partition-nonce⑧">3.3. Integration with CHIPS</a> <a href="#ref-for-environment-partition-nonce⑨">(2)</a> <a href="#ref-for-environment-partition-nonce①⓪">(3)</a> <a href="#ref-for-environment-partition-nonce①①">(4)</a> <a href="#ref-for-environment-partition-nonce①②">(5)</a>
     <li><a href="#ref-for-environment-partition-nonce①③">3.4. Integration with storage-partitioning</a> <a href="#ref-for-environment-partition-nonce①④">(2)</a>
+    <li><a href="#ref-for-environment-partition-nonce①⑤">3.5. Integration with storage</a> <a href="#ref-for-environment-partition-nonce①⑥">(2)</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
