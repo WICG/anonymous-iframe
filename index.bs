@@ -1022,8 +1022,14 @@ To implement anonymous iframe, another key should be added and defined as the
 Integration with storage {#spec-storage}
 ------------------------
 
-Modify the [[!STORAGE]] specification. Add the [=environment=]'s
-[=environment/partition nonce=] as an additional key in the [=storage key=].
+Note: This corresponds to the following [[!STORAGE]] specification change:
+[whatwg/storage/pull/139](https://github.com/whatwg/storage/pull/139). <br/>
+When merged this section will become obsolete.
+
+### storage-key ### {#spec-storage-key}
+
+Add the [=environment=]'s [=environment/partition nonce=] as an additional key
+in the [=storage key=].
 
 <div class="monkey-patch">
 
