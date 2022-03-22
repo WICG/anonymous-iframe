@@ -936,9 +936,9 @@ RFC6265bis](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-
 after the user agent processes the cookie's __Host- prefix.
 
 1. If the cookie-attribute-list contains an attribute with an attribute-name of
-   "PartitionKey", and the attribute-value is <span class="customHighlight">not
-   a <a>tuple</a>(|site|, |nonce|) with non null |nonce|</span>, then  skip
-   the following steps and insert the cookie into the cookie store.
+   "PartitionKey", and attribute-value is null <span class="customHighlight"> or
+   a <a>tuple</a> (|site|, |nonce|), with a non-null |nonce|</span>, then
+   skip the following steps and insert the cookie into the cookie store.
 
 2. If the cookie-name does not start with a case-sensitive match for the string
    "__Host-", then abort the following steps and ignore the cookie entirely.
