@@ -6,7 +6,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
   <meta content="Bikeshed version fb1e763a4, updated Tue Mar 1 13:13:50 2022 -0800" name="generator">
   <link href="https://wicg.github.io/anonymous-iframe/" rel="canonical">
-  <meta content="f60db6ea53f19fdb352ea328b2eeb8157e0571f5" name="document-revision">
+  <meta content="89cd4fd408727380e7bb41036be9b07574b42ac9" name="document-revision">
 <style>
 .monkey-patch {
     padding: .5em;
@@ -1333,9 +1333,9 @@ RFC6265bis</a> after the user agent processes the cookie’s __Host- prefix.</p>
     <ol>
      <li data-md>
       <p>If the cookie-attribute-list contains an attribute with an attribute-name of
- "PartitionKey", and the attribute-value is <span class="customHighlight">not
- a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#tuple" id="ref-for-tuple①">tuple</a>(<var>site</var>, <var>nonce</var>) with non null <var>nonce</var></span>, then  skip
- the following steps and insert the cookie into the cookie store.</p>
+ "PartitionKey", and attribute-value is null <span class="customHighlight"> or
+ a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#tuple" id="ref-for-tuple①">tuple</a> (<var>site</var>, <var>nonce</var>), with a non-null <var>nonce</var></span>, then
+ skip the following steps and insert the cookie into the cookie store.</p>
      <li data-md>
       <p>If the cookie-name does not start with a case-sensitive match for the string
  "__Host-", then abort the following steps and ignore the cookie entirely.</p>
