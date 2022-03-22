@@ -6,7 +6,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
   <meta content="Bikeshed version fb1e763a4, updated Tue Mar 1 13:13:50 2022 -0800" name="generator">
   <link href="https://wicg.github.io/anonymous-iframe/" rel="canonical">
-  <meta content="2cbc210481615cd7a9970c251858e32977b28f8a" name="document-revision">
+  <meta content="f60db6ea53f19fdb352ea328b2eeb8157e0571f5" name="document-revision">
 <style>
 .monkey-patch {
     padding: .5em;
@@ -1283,6 +1283,97 @@ Proceed the following changes:</p>
     </ol>
    </div>
    <h3 class="heading settled" data-level="3.3" id="spec-chips"><span class="secno">3.3. </span><span class="content">Integration with CHIPS</span><a class="self-link" href="#spec-chips"></a></h3>
+   <p>This section defines a monkey-patch over: <a data-link-type="biblio" href="#biblio-chips">[CHIPS]</a>, which is itself a
+monkey-patch over <a data-link-type="biblio" href="#biblio-cookies">[COOKIES]</a>.</p>
+   <div class="note" role="note">
+     Note/Summary: <a href="https://github.com/WICG/CHIPS">Cookies Having Independent Partitioned State</a> (CHIPS) introduce the cookie’s partition key. To
+  implement anonymous iframe: 
+    <ol>
+     <li data-md>
+      <p>When the <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce⑧">partition nonce</a> is defined, even in the absence of
+ the "Partitioned" cookie attribute, the "partition-key" is defined and
+ contains: (top-level-site, partition-nonce).</p>
+     <li data-md>
+      <p>When the <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce⑨">partition nonce</a> is defined, the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment⑥">environment</a> only have access to cookies whose "partition-key" is defined and match the
+ environment.</p>
+    </ol>
+   </div>
+   <p>This modify this section: <a href="https://github.com/WICG/CHIPS/blob/main/README.md#algorithm">https://github.com/WICG/CHIPS/blob/main/README.md#algorithm</a></p>
+   <div class="monkey-patch">
+    <p>Below is the algorithm that browsers can use to parse cookie lines. This
+algorithm could be added to <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-07#section-5.3">section 5.3 of
+RFC6265bis</a>.</p>
+    <ol>
+     <li data-md>
+      <p>Let "partition-key" be null.</p>
+     <li data-md>
+      <p>If <span class="customHighlight">If the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment⑦">environment</a>'s <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce①⓪">partition nonce</a> is defined</span> or an attribute-name
+ case-insensitively matches the string <code>"Partitioned"</code>, then:</p>
+      <ol>
+       <li data-md>
+        <p>Let <var>site</var> be the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment⑧">environment</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-origin" id="ref-for-concept-environment-top-level-origin⑤">top-level origin</a>’s <a href="https://html.spec.whatwg.org/#sites">site</a>.</p>
+       <li data-md>
+        <p>If <var>site</var> is in a <a href="https://github.com/privacycg/first-party-sets">First-Party
+  Set</a>, then set <var>site</var> be
+  the concatenation of "https://" and the "owner domain" of the site’s set.</p>
+       <li data-md>
+        <p><span class="customHighlight">Let <var>nonce</var> be the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment⑨">environment</a>'s <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce①①">partition nonce</a>.</span></p>
+       <li data-md>
+        <p><span class="customHighlight">Set <var>partition-key</var> be the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#tuple" id="ref-for-tuple">tuple</a> (<var>site</var>, <var>nonce</var>)</span></p>
+      </ol>
+     <li data-md>
+      <p>Append an attribute to the cookie-attribute-list with an attribute-name of
+ "PartitionKey" and an attribute-value of <var>partition-key</var>.</p>
+    </ol>
+   </div>
+   <div class="monkey-patch">
+    <p>Below is the algorithm for storing <code>Partitioned</code> cookies. These steps could be
+added to <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-07#section-5.4">section 5.4 of
+RFC6265bis</a> after the user agent processes the cookie’s __Host- prefix.</p>
+    <ol>
+     <li data-md>
+      <p>If the cookie-attribute-list contains an attribute with an attribute-name of
+ "PartitionKey", and the attribute-value is <span class="customHighlight">not
+ a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#tuple" id="ref-for-tuple①">tuple</a>(<var>site</var>, <var>nonce</var>) with non null <var>nonce</var></span>, then  skip
+ the following steps and insert the cookie into the cookie store.</p>
+     <li data-md>
+      <p>If the cookie-name does not start with a case-sensitive match for the string
+ "__Host-", then abort the following steps and ignore the cookie entirely.</p>
+     <li data-md>
+      <p>If the cookie line also contains the [<code>SameParty</code> attribute](https://github.com/cfredric/sameparty) (the exact semantics of how
+ the <code>SameParty</code> attribute is loaded into the cookie-attribute-list is TBD)
+ then abort the following steps and ignore the cookie entirely.</p>
+     <li data-md>
+      <p>Set the cookie’s partition-key to the attribute-value of the element in the
+ attribute-list whose attribute-name is "PartitionKey".</p>
+    </ol>
+   </div>
+   <div class="monkey-patch">
+    <p>Below is an algorithm for attaching <code>Partitioned</code> cookies to a request. These
+steps could be added to the algorithm described in <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-07#section-5.5">section 5.5 of
+RFC6265bis</a> after the first step.</p>
+    <p>For each cookie in the cookie-list do the following:</p>
+    <ol>
+     <li data-md>
+      <p>Let <var>environment</var> be the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment①⓪">environment</a> that initiated the request.</p>
+     <li data-md>
+      <p>If the cookie’s partition-key is null, <span class="customHighlight">and <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment①①">environment</a>'s <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce①②">partition nonce</a> is null</span>, skip the
+ following parts of this step.</p>
+     <li data-md>
+      <p>Let <var>request-top-site</var> be the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment①②">environment</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-origin" id="ref-for-concept-environment-top-level-origin⑥">top-level
+ origin</a>’s <a href="https://html.spec.whatwg.org/#sites">site</a>.</p>
+     <li data-md>
+      <p><span class="customHighlight">Let <var>request-partition-nonce</var> be the <var>environment</var>’s <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce①③">partition nonce</a>.</span></p>
+     <li data-md>
+      <p>If <var>request-top-site</var> is in a <a href="https://github.com/privacycg/first-party-sets">First-Party
+ Set</a>, then set <var>request-top-site</var> be the concatenation of "https://" and the "owner domain"
+ of the <var>request-top-site</var>’s set.</p>
+     <li data-md>
+      <p>Let <var>request-partition-key</var> be the tuple (<var>request-top-site</var>, <var>request-partition-nonce</var>).</p>
+     <li data-md>
+      <p>If the cookie’s partition-key is not an exact match of <var>request-partition-key</var>, then remove that cookie from the cookie-list.</p>
+    </ol>
+   </div>
    <h2 class="heading settled" data-level="4" id="security"><span class="secno">4. </span><span class="content">Security considerations</span><a class="self-link" href="#security"></a></h2>
    <p>Because anonymous iframes can be embedded in <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-settings-object-cross-origin-isolated-capability" id="ref-for-concept-settings-object-cross-origin-isolated-capability②">crossOriginIsolated</a> contexts,
 in browsers without Out-of-Process-Iframes, we have to consider that their
@@ -1660,6 +1751,7 @@ does not pose a privacy risk.</p>
     <li><a href="#ref-for-environment①">3.1.9.1. For Navigation</a> <a href="#ref-for-environment②">(2)</a>
     <li><a href="#ref-for-environment③">3.1.9.2. For Window</a> <a href="#ref-for-environment④">(2)</a>
     <li><a href="#ref-for-environment⑤">3.2.1. Plumb the partition-nonce</a>
+    <li><a href="#ref-for-environment⑥">3.3. Integration with CHIPS</a> <a href="#ref-for-environment⑦">(2)</a> <a href="#ref-for-environment⑧">(3)</a> <a href="#ref-for-environment⑨">(4)</a> <a href="#ref-for-environment①⓪">(5)</a> <a href="#ref-for-environment①①">(6)</a> <a href="#ref-for-environment①②">(7)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-hh-replace">
@@ -1845,6 +1937,7 @@ does not pose a privacy risk.</p>
     <li><a href="#ref-for-concept-environment-top-level-origin①">3.1.9.2. For Window</a>
     <li><a href="#ref-for-concept-environment-top-level-origin②">3.1.9.4. For Worklet</a> <a href="#ref-for-concept-environment-top-level-origin③">(2)</a>
     <li><a href="#ref-for-concept-environment-top-level-origin④">3.2.1. Plumb the partition-nonce</a>
+    <li><a href="#ref-for-concept-environment-top-level-origin⑤">3.3. Integration with CHIPS</a> <a href="#ref-for-concept-environment-top-level-origin⑥">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-window-open-steps">
@@ -1863,6 +1956,12 @@ does not pose a privacy risk.</p>
    <a href="https://infra.spec.whatwg.org/#struct">https://infra.spec.whatwg.org/#struct</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-struct">3.1.4. Navigating a browsing context</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-tuple">
+   <a href="https://infra.spec.whatwg.org/#tuple">https://infra.spec.whatwg.org/#tuple</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-tuple">3.3. Integration with CHIPS</a> <a href="#ref-for-tuple①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-url-origin">
@@ -1995,6 +2094,7 @@ does not pose a privacy risk.</p>
     <ul>
      <li><span class="dfn-paneled" id="term-for-implementation-defined">implementation-defined</span>
      <li><span class="dfn-paneled" id="term-for-struct">struct</span>
+     <li><span class="dfn-paneled" id="term-for-tuple">tuple</span>
     </ul>
    <li>
     <a data-link-type="biblio">[URL]</a> defines the following terms:
@@ -2014,6 +2114,10 @@ does not pose a privacy risk.</p>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
+   <dt id="biblio-chips">[CHIPS]
+   <dd>Dylan Cutler; Kaustubha Govind. <a href="https://github.com/WICG/CHIPS"><cite>CHIPS (Cookies Having Independent Partitioned State)</cite></a>. URL: <a href="https://github.com/WICG/CHIPS">https://github.com/WICG/CHIPS</a>
+   <dt id="biblio-cookies">[COOKIES]
+   <dd>Mike West; John Wilander. <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-07"><cite>Cookies: HTTP State Management Mechanism</cite></a>. URL: <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-07">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-07</a>
    <dt id="biblio-dom">[DOM]
    <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/"><cite>DOM Standard</cite></a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
    <dt id="biblio-ecmascript">[ECMASCRIPT]
@@ -2137,6 +2241,7 @@ does not pose a privacy risk.</p>
     <li><a href="#ref-for-environment-partition-nonce③">3.1.9.3. For Worker</a> <a href="#ref-for-environment-partition-nonce④">(2)</a>
     <li><a href="#ref-for-environment-partition-nonce⑤">3.1.9.4. For Worklet</a> <a href="#ref-for-environment-partition-nonce⑥">(2)</a>
     <li><a href="#ref-for-environment-partition-nonce⑦">3.2.1. Plumb the partition-nonce</a>
+    <li><a href="#ref-for-environment-partition-nonce⑧">3.3. Integration with CHIPS</a> <a href="#ref-for-environment-partition-nonce⑨">(2)</a> <a href="#ref-for-environment-partition-nonce①⓪">(3)</a> <a href="#ref-for-environment-partition-nonce①①">(4)</a> <a href="#ref-for-environment-partition-nonce①②">(5)</a> <a href="#ref-for-environment-partition-nonce①③">(6)</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
