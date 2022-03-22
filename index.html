@@ -6,7 +6,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
   <meta content="Bikeshed version fb1e763a4, updated Tue Mar 1 13:13:50 2022 -0800" name="generator">
   <link href="https://wicg.github.io/anonymous-iframe/" rel="canonical">
-  <meta content="3dbd066d0a45c86a5324e1b9cf2713a85b4a64be" name="document-revision">
+  <meta content="2cbc210481615cd7a9970c251858e32977b28f8a" name="document-revision">
 <style>
 .monkey-patch {
     padding: .5em;
@@ -24,10 +24,11 @@
 }
 
 .customHighlight {
-  background-color: rgba(255, 255, 0, 0.3);
-  padding:9px;
-  margin:1px;
+  padding-top:9px ;
+  padding-bottom:9px ;
+  background-color: rgba(255,255,0,0.3)
 }
+
 </style>
 <style>/* style-autolinks */
 
@@ -737,7 +738,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Anonymous iframe</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2022-03-18">18 March 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2022-03-22">22 March 2022</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -803,10 +804,22 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
         <li><a href="#spec-popup-noopener"><span class="secno">3.1.5</span> <span class="content">Open popup with noopener</span></a>
         <li><a href="#spec-section"><span class="secno">3.1.6</span> <span class="content">General section</span></a>
         <li><a href="#spec-coep-embedder-check"><span class="secno">3.1.7</span> <span class="content">COEP embedder checks</span></a>
-        <li><a href="#spec-page-anonymous-nonce"><span class="secno">3.1.8</span> <span class="content">Page’s anonymous nonce</span></a>
-        <li><a href="#spec-autofill"><span class="secno">3.1.9</span> <span class="content">Autofill</span></a>
+        <li><a href="#spec-autofill"><span class="secno">3.1.8</span> <span class="content">Autofill</span></a>
+        <li>
+         <a href="#spec-environment-partition-nonce"><span class="secno">3.1.9</span> <span class="content">Environment’s partition nonce</span></a>
+         <ol class="toc">
+          <li><a href="#spec-navigation-partition-nonce"><span class="secno">3.1.9.1</span> <span class="content">For Navigation</span></a>
+          <li><a href="#spec-window-partition-nonce"><span class="secno">3.1.9.2</span> <span class="content">For Window</span></a>
+          <li><a href="#spec-worker-partition-nonce"><span class="secno">3.1.9.3</span> <span class="content">For Worker</span></a>
+          <li><a href="#spec-worklet-partition-nonce"><span class="secno">3.1.9.4</span> <span class="content">For Worklet</span></a>
+         </ol>
        </ol>
-      <li><a href="#spec-fetch"><span class="secno">3.2</span> <span class="content">Integration with Fetch</span></a>
+      <li>
+       <a href="#spec-fetch"><span class="secno">3.2</span> <span class="content">Integration with Fetch</span></a>
+       <ol class="toc">
+        <li><a href="#spec-network-partition-key"><span class="secno">3.2.1</span> <span class="content">Plumb the partition-nonce</span></a>
+       </ol>
+      <li><a href="#spec-chips"><span class="secno">3.3</span> <span class="content">Integration with CHIPS</span></a>
      </ol>
     <li>
      <a href="#security"><span class="secno">4</span> <span class="content">Security considerations</span></a>
@@ -1123,7 +1136,7 @@ when the navigation started, for navigations inside pre-existing <a data-link-ty
    <p>Add a new parameters <var>anonymous</var> parameter to the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#check-a-navigation-response&apos;s-adherence-to-its-embedder-policy" id="ref-for-check-a-navigation-response&apos;s-adherence-to-its-embedder-policy">check a navigation
 response’s adherence to its embedder policy</a> and pass <var>navigationParams</var>’s <a data-link-type="dfn" href="#navigation-params-anonymous" id="ref-for-navigation-params-anonymous②">anonymous</a>.</p>
    <div class="monkey-patch">
-    <p>To <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#check-a-navigation-response&apos;s-adherence-to-its-embedder-policy" id="ref-for-check-a-navigation-response&apos;s-adherence-to-its-embedder-policy①">check a navigation response’s adherence to its embedder policy</a> given a <a data-link-type="dfn" data-x="concept-response" href="https://fetch.spec.whatwg.org/#concept-response" id="ref-for-concept-response">response</a> <var>response</var>, a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/window-object.html#window-bc" id="ref-for-window-bc①">browsing context</a> <var>target</var>, an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#policy-container-embedder-policy" id="ref-for-policy-container-embedder-policy">embedder policy</a> <var>responsePolicy</var>, <span class="customHighlight">and a boolean <var>anonymous</var></span>:</p>
+    <p>To <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#check-a-navigation-response&apos;s-adherence-to-its-embedder-policy" id="ref-for-check-a-navigation-response&apos;s-adherence-to-its-embedder-policy①">check a navigation response’s adherence to its embedder policy</a> given a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response" id="ref-for-concept-response">response</a> <var>response</var>, a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/window-object.html#window-bc" id="ref-for-window-bc①">browsing context</a> <var>target</var>, an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#policy-container-embedder-policy" id="ref-for-policy-container-embedder-policy">embedder policy</a> <var>responsePolicy</var>, <span class="customHighlight">and a boolean <var>anonymous</var></span>:</p>
     <ol>
      <li>
       <p>If <var>target</var> is not a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#child-browsing-context" id="ref-for-child-browsing-context">child browsing context</a>, then
@@ -1145,13 +1158,7 @@ response’s adherence to its embedder policy</a> and pass <var>navigationParams
       <p>Return false.</p>
     </ol>
    </div>
-   <h4 class="heading settled" data-level="3.1.8" id="spec-page-anonymous-nonce"><span class="secno">3.1.8. </span><span class="content">Page’s anonymous nonce</span><a class="self-link" href="#spec-page-anonymous-nonce"></a></h4>
-   <p>In the "Anonymous iframe" section. Defining the <a data-link-type="dfn" href="#page-anonymous-nonce" id="ref-for-page-anonymous-nonce">page anonymous nonce</a>.</p>
-   <div class="monkey-patch">
-    <p>Each top-level <code class="idl"><a data-link-type="idl" href="#window" id="ref-for-window③">Window</a></code> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="page-anonymous-nonce">page anonymous nonce</dfn>. It
-  is an immutable nonce ("number used once").</p>
-   </div>
-   <h4 class="heading settled" data-level="3.1.9" id="spec-autofill"><span class="secno">3.1.9. </span><span class="content">Autofill</span><a class="self-link" href="#spec-autofill"></a></h4>
+   <h4 class="heading settled" data-level="3.1.8" id="spec-autofill"><span class="secno">3.1.8. </span><span class="content">Autofill</span><a class="self-link" href="#spec-autofill"></a></h4>
    <p>In the "Anonymous iframe" section. Defining the how web browser should configure
 their autofilling features.</p>
    <div class="monkey-patch">
@@ -1159,7 +1166,123 @@ their autofilling features.</p>
   fill forms in: for example prefilling the user’s address, password, or payment informations. User
   agents must disable those features when the data is both specific to the user and to the website. </p>
    </div>
+   <h4 class="heading settled" data-level="3.1.9" id="spec-environment-partition-nonce"><span class="secno">3.1.9. </span><span class="content">Environment’s partition nonce</span><a class="self-link" href="#spec-environment-partition-nonce"></a></h4>
+   <p>In the "Anonymous iframe" section. Defining the <a data-link-type="dfn" href="#page-anonymous-nonce" id="ref-for-page-anonymous-nonce">page anonymous nonce</a>.</p>
+   <div class="monkey-patch">
+    <p>Each top-level <code class="idl"><a data-link-type="idl" href="#window" id="ref-for-window③">Window</a></code> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="page-anonymous-nonce">page anonymous nonce</dfn>. It
+  is an immutable nonce ("number used once").</p>
+   </div>
+   <p>Add the <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce">partition nonce</a> attribute to the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment">environment</a> object.</p>
+   <div class="monkey-patch">
+    <dl>
+     <dt>A <dfn class="dfn-paneled" data-dfn-for="environment" data-dfn-type="dfn" data-export id="environment-partition-nonce">partition nonce</dfn>
+     <dd>
+      <p>An identifier or null. This is used to discriminate and isolate
+  environments further. Among others, it is non null for <a data-link-type="dfn" href="#anonymous-window" id="ref-for-anonymous-window②">anonymous
+  Window</a></p>
+    </dl>
+   </div>
+   <h5 class="heading settled" data-level="3.1.9.1" id="spec-navigation-partition-nonce"><span class="secno">3.1.9.1. </span><span class="content">For Navigation</span><a class="self-link" href="#spec-navigation-partition-nonce"></a></h5>
+   <p>In the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#process-a-navigate-fetch" id="ref-for-process-a-navigate-fetch①">process a navigate fetch</a>, add step:</p>
+   <div class="monkey-patch">
+    <ol start="13">
+     <li data-md>
+      <p>If <var>anonymous</var> is true, let <var>partitionNonce</var> be <var>browsingContext</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context">top-level browsing context</a>’s <a data-link-type="dfn" href="#page-anonymous-nonce" id="ref-for-page-anonymous-nonce①">page
+  anonymous nonce</a>, null otherwise.</p>
+    </ol>
+   </div>
+   <p><var>partitionNonce</var> is used later to create the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment①">Environment</a>. Modify step
+13.3.4:</p>
+   <div class="monkey-patch"> 13.3.4. Set <var>request</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-request-reserved-client" id="ref-for-concept-request-reserved-client">reserved client</a> to a new <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment②">environment</a> whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-environment-id" id="ref-for-concept-environment-id">id</a> is a unique
+  opaque string, <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-environment-target-browsing-context" id="ref-for-concept-environment-target-browsing-context">target
+  browsing context</a> is <var>browsingContext</var>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-environment-creation-url" id="ref-for-concept-environment-creation-url">creation URL</a> is <var>currentURL</var>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-creation-url" id="ref-for-concept-environment-top-level-creation-url">top-level creation URL</a> is <var>topLevelCreationURL</var>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-origin" id="ref-for-concept-environment-top-level-origin">top-level origin</a> is <var>topLevelOrigin</var>, <span class="customHighlight">and <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce①">partition nonce</a> is <var>partitionNonce</var></span></div>
+   . 
+   <h5 class="heading settled" data-level="3.1.9.2" id="spec-window-partition-nonce"><span class="secno">3.1.9.2. </span><span class="content">For Window</span><a class="self-link" href="#spec-window-partition-nonce"></a></h5>
+   <p>In the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#initialise-the-document-object" id="ref-for-initialise-the-document-object①">initialize the document object</a>, add step 6.9:</p>
+   <div class="monkey-patch"> 6.9. If <var>navigationParams</var>’s <a data-link-type="dfn" href="#navigation-params-anonymous" id="ref-for-navigation-params-anonymous③">anonymous</a> is true, let <var>partitionNonce</var> be <var>browsingContext</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context①">top-level browsing
+  context</a>’s <a data-link-type="dfn" href="#page-anonymous-nonce" id="ref-for-page-anonymous-nonce②">page anonymous nonce</a>, null otherwise. </div>
+   <p>Then, plumb it to create the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment③">Environment</a> in step 6.10:</p>
+   <div class="monkey-patch">
+    <p>6.10 <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#set-up-a-window-environment-settings-object" id="ref-for-set-up-a-window-environment-settings-object">Set up a window environment settings object</a> with <var>creationURL</var>, <var>realm execution context</var>, <var>navigationParams</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#navigation-params-reserved-environment" id="ref-for-navigation-params-reserved-environment">reserved environment</a>, <var>topLevelCreationURL</var>, <var>topLevelOrigin</var>, <span class="customHighlight">and <var>partitionNonce</var>.</span></p>
+   </div>
+   <p><var>partitionNonce</var> is passed to the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#set-up-a-window-environment-settings-object" id="ref-for-set-up-a-window-environment-settings-object①">set up a window environment settings
+object</a> this way:</p>
+   <div class="monkey-patch">
+     To <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#set-up-a-window-environment-settings-object" id="ref-for-set-up-a-window-environment-settings-object②">set up a window environment settings object</a>, given a <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url" id="ref-for-concept-url">URL</a> <var>creationURL</var>, a <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-execution-contextssec-execution-contexts" id="ref-for-sec-execution-contextssec-execution-contexts">JavaScript execution context</a> <var>execution
+context</var>, null or an <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment④">environment</a> <var>reservedEnvironment</var>, a <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url" id="ref-for-concept-url①">URL</a> <var>topLevelCreationURL</var>, an <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-origin" id="ref-for-concept-origin">origin</a> <var>topLevelOrigin</var>, and <span class="customHighlight">an identifier <var>partitionNonce</var></span> run these steps:
+    <p></p>
+   </div>
+   <p>It is used in step 6.</p>
+   <div class="monkey-patch">
+    <ol start="6">
+     <li data-md>
+      <p>Set <var>settings object</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-environment-creation-url" id="ref-for-concept-environment-creation-url①">creation
+URL</a> to <var>creationURL</var>, <var>settings object</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-creation-url" id="ref-for-concept-environment-top-level-creation-url①">top-level creation URL</a> to <var>topLevelCreationURL</var>, <var>settings object</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-origin" id="ref-for-concept-environment-top-level-origin①">top-level origin</a> to <var>topLevelOrigin</var>, <span class="customHighlight">and <var>settings object</var>’s <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce②">partition nonce</a> to <var>partitionNonce</var>.</span></p>
+    </ol>
+   </div>
+   <h5 class="heading settled" data-level="3.1.9.3" id="spec-worker-partition-nonce"><span class="secno">3.1.9.3. </span><span class="content">For Worker</span><a class="self-link" href="#spec-worker-partition-nonce"></a></h5>
+   <p>In the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#script-:settings-for-workers" id="ref-for-script-:settings-for-workers">script settings for workers</a> algorithm, add step 8:</p>
+   <div class="monkey-patch">
+    <ol start="8">
+     <li data-md>
+      <p>Set <var>settings object</var>’s <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce③">partition nonce</a> to <var>outside settings</var>’s <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce④">partition nonce</a>.</p>
+    </ol>
+   </div>
+   <h5 class="heading settled" data-level="3.1.9.4" id="spec-worklet-partition-nonce"><span class="secno">3.1.9.4. </span><span class="content">For Worklet</span><a class="self-link" href="#spec-worklet-partition-nonce"></a></h5>
+   <p>In the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#set-up-a-worklet-environment-settings-object" id="ref-for-set-up-a-worklet-environment-settings-object">set up a worklet environment settings object</a> algorithm, modify
+step 7:</p>
+   <div class="monkey-patch">
+    <ol start="7">
+     <li data-md>
+      <p>Set <var>settingsObject</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-environment-id" id="ref-for-concept-environment-id①">id</a> to a new
+ unique opaque string, <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-environment-creation-url" id="ref-for-concept-environment-creation-url②">creation URL</a> to <var>inheritedAPIBaseURL</var>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-creation-url" id="ref-for-concept-environment-top-level-creation-url②">top-level creation URL</a> to null, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-origin" id="ref-for-concept-environment-top-level-origin②">top-level
+ origin</a> to <var>outsideSettings</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-origin" id="ref-for-concept-environment-top-level-origin③">top-level origin</a>, <span class="customHighlight"><a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce⑤">partition nonce</a> to <var>outsideSettings</var>’s <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce⑥">partition
+ nonce</a></span>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-target-browsing-context" id="ref-for-concept-environment-target-browsing-context①">target browsing context</a> to null,
+ and <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-environment-active-service-worker" id="ref-for-concept-environment-active-service-worker">active service
+ worker</a> to null.</p>
+    </ol>
+   </div>
    <h3 class="heading settled" data-level="3.2" id="spec-fetch"><span class="secno">3.2. </span><span class="content">Integration with Fetch</span><a class="self-link" href="#spec-fetch"></a></h3>
+   <p class="note" role="note"><span>Note:</span> This corresponds to the following HTML specification change: <a href="https://github.com/whatwg/html/pull/7695">whatwg/html/pull/7695</a>. <br> When merged this section will become obsolete.</p>
+   <h4 class="heading settled" data-level="3.2.1" id="spec-network-partition-key"><span class="secno">3.2.1. </span><span class="content">Plumb the partition-nonce</span><a class="self-link" href="#spec-network-partition-key"></a></h4>
+   <p>Add the <code>environment</code>'s <code>partition nonce</code> into the network partition key.
+Proceed the following changes:</p>
+   <div class="monkey-patch">
+    <p>A <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#network-partition-key" id="ref-for-network-partition-key">network partition key</a> is a tuple consisting of:</p>
+    <ul>
+     <li data-md>
+      <p>A <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#site" id="ref-for-site">site</a>.</p>
+     <li data-md>
+      <p>null or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#implementation-defined" id="ref-for-implementation-defined">implementation-defined</a> value.</p>
+     <li data-md>
+      <p><span class="customHighlight">null or a nonce.</span></p>
+    </ul>
+   </div>
+   <div class="monkey-patch">
+    <p>To <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#determine-the-network-partition-key" id="ref-for-determine-the-network-partition-key">determine the network
+  partition key, given an </a><a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment⑤">environment</a> <var>environment</var>,
+  run these steps: </p>
+    <ol>
+     <li>
+      <p>Let <var>topLevelOrigin</var> be <var>environment</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-origin" id="ref-for-concept-environment-top-level-origin④">top-level origin</a>. </p>
+     <li>
+      <p>If <var>topLevelOrigin</var> is null, then set <var>topLevelOrigin</var> to <var>environment</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-creation-url" id="ref-for-concept-environment-top-level-creation-url③">top-level creation URL</a>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin">origin</a>. </p>
+     <li>
+      <p>Assert: <var>topLevelOrigin</var> is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-origin" id="ref-for-concept-origin①">origin</a>. </p>
+     <li>
+      <p>Let <var>topLevelSite</var> be the result of <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#obtain-a-site" id="ref-for-obtain-a-site">obtaining a site</a>,
+   given <var>topLevelOrigin</var>. </p>
+     <li>
+      <p>Let <var>secondKey</var> be null or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#implementation-defined" id="ref-for-implementation-defined①">implementation-defined</a> value. </p>
+      <p class="XXX">The second key is intentionally a little vague as the finer points are still
+   evolving. See <a href="https://github.com/whatwg/fetch/issues/1035">issue #1035</a>. </p>
+     <li>
+      <p class="customHighlight">Let <var>nonce</var> be <var>environment</var>’s <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce⑦">partition nonce</a></p>
+     <li>
+      <p>Return (<var>topLevelSite</var>, <var>secondKey</var>, <var class="customHighlight">nonce</var>). </p>
+    </ol>
+   </div>
+   <h3 class="heading settled" data-level="3.3" id="spec-chips"><span class="secno">3.3. </span><span class="content">Integration with CHIPS</span><a class="self-link" href="#spec-chips"></a></h3>
    <h2 class="heading settled" data-level="4" id="security"><span class="secno">4. </span><span class="content">Security considerations</span><a class="self-link" href="#security"></a></h2>
    <p>Because anonymous iframes can be embedded in <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-settings-object-cross-origin-isolated-capability" id="ref-for-concept-settings-object-cross-origin-isolated-capability②">crossOriginIsolated</a> contexts,
 in browsers without Out-of-Process-Iframes, we have to consider that their
@@ -1275,13 +1398,14 @@ does not pose a privacy risk.</p>
     </ul>
    <li><a href="#anonymous-window">anonymous Window</a><span>, in § 3.1.6</span>
    <li><a href="#attr-iframe-anonymous">attr-iframe-anonymous</a><span>, in § 3.1.1</span>
-   <li><a href="#autofill-and-anonymous-iframe">Autofill and anonymous iframe</a><span>, in § 3.1.9</span>
+   <li><a href="#autofill-and-anonymous-iframe">Autofill and anonymous iframe</a><span>, in § 3.1.8</span>
    <li><a href="#dom-iframe-anonymous">dom-iframe-anonymous</a><span>, in § 3.1.1</span>
    <li><a href="#htmliframeelement">HTMLIFrameElement</a><span>, in § 3.1.1</span>
    <li><a href="#initial-window-anonymous">initial-window-anonymous</a><span>, in § 3.1.6</span>
    <li><a href="#navigation-anonymous">navigation-anonymous</a><span>, in § 3.1.6</span>
    <li><a href="#navigation-params-anonymous">navigation-params-anonymous</a><span>, in § 3.1.4</span>
-   <li><a href="#page-anonymous-nonce">page anonymous nonce</a><span>, in § 3.1.8</span>
+   <li><a href="#page-anonymous-nonce">page anonymous nonce</a><span>, in § 3.1.9</span>
+   <li><a href="#environment-partition-nonce">partition nonce</a><span>, in § 3.1.9</span>
    <li><a href="#window">Window</a><span>, in § 3.1.2</span>
   </ul>
   <aside class="dfn-panel" data-for="term-for-eventtarget">
@@ -1320,10 +1444,10 @@ does not pose a privacy risk.</p>
     <li><a href="#ref-for-dom-requestdestination-iframe">3.1.6. General section</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-response">
-   <a href="https://fetch.spec.whatwg.org/#concept-response">https://fetch.spec.whatwg.org/#concept-response</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-determine-the-network-partition-key">
+   <a href="https://fetch.spec.whatwg.org/#determine-the-network-partition-key">https://fetch.spec.whatwg.org/#determine-the-network-partition-key</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-response">3.1.7. COEP embedder checks</a>
+    <li><a href="#ref-for-determine-the-network-partition-key">3.2.1. Plumb the partition-nonce</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-request-window">
@@ -1423,6 +1547,39 @@ does not pose a privacy risk.</p>
     <li><a href="#ref-for-concept-document-policy-container">3.1.7. COEP embedder checks</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-environment-active-service-worker">
+   <a href="https://html.spec.whatwg.org/C/#concept-environment-active-service-worker">https://html.spec.whatwg.org/C/#concept-environment-active-service-worker</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-environment-active-service-worker">3.1.9.4. For Worklet</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-environment-creation-url">
+   <a href="https://html.spec.whatwg.org/C/#concept-environment-creation-url">https://html.spec.whatwg.org/C/#concept-environment-creation-url</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-environment-creation-url">3.1.9.1. For Navigation</a>
+    <li><a href="#ref-for-concept-environment-creation-url①">3.1.9.2. For Window</a>
+    <li><a href="#ref-for-concept-environment-creation-url②">3.1.9.4. For Worklet</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-environment-id">
+   <a href="https://html.spec.whatwg.org/C/#concept-environment-id">https://html.spec.whatwg.org/C/#concept-environment-id</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-environment-id">3.1.9.1. For Navigation</a>
+    <li><a href="#ref-for-concept-environment-id①">3.1.9.4. For Worklet</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-environment-target-browsing-context">
+   <a href="https://html.spec.whatwg.org/C/#concept-environment-target-browsing-context">https://html.spec.whatwg.org/C/#concept-environment-target-browsing-context</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-environment-target-browsing-context">3.1.9.1. For Navigation</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-request-reserved-client">
+   <a href="https://html.spec.whatwg.org/C/#concept-request-reserved-client">https://html.spec.whatwg.org/C/#concept-request-reserved-client</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-request-reserved-client">3.1.9.1. For Navigation</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-cross-origin-opener-policies">
    <a href="https://html.spec.whatwg.org/C/#cross-origin-opener-policies">https://html.spec.whatwg.org/C/#cross-origin-opener-policies</a><b>Referenced in:</b>
    <ul>
@@ -1496,6 +1653,15 @@ does not pose a privacy risk.</p>
     <li><a href="#ref-for-entry-global-object">3.1.5. Open popup with noopener</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-environment">
+   <a href="https://html.spec.whatwg.org/C/#environment">https://html.spec.whatwg.org/C/#environment</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-environment">3.1.9. Environment’s partition nonce</a>
+    <li><a href="#ref-for-environment①">3.1.9.1. For Navigation</a> <a href="#ref-for-environment②">(2)</a>
+    <li><a href="#ref-for-environment③">3.1.9.2. For Window</a> <a href="#ref-for-environment④">(2)</a>
+    <li><a href="#ref-for-environment⑤">3.2.1. Plumb the partition-nonce</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-hh-replace">
    <a href="https://html.spec.whatwg.org/C/#hh-replace">https://html.spec.whatwg.org/C/#hh-replace</a><b>Referenced in:</b>
    <ul>
@@ -1519,6 +1685,7 @@ does not pose a privacy risk.</p>
    <a href="https://html.spec.whatwg.org/C/#initialise-the-document-object">https://html.spec.whatwg.org/C/#initialise-the-document-object</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-initialise-the-document-object">3.1.4. Navigating a browsing context</a>
+    <li><a href="#ref-for-initialise-the-document-object①">3.1.9.2. For Window</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-is-initial-about:blank">
@@ -1551,6 +1718,25 @@ does not pose a privacy risk.</p>
     <li><a href="#ref-for-navigation-params-origin">3.1.4. Navigating a browsing context</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-navigation-params-reserved-environment">
+   <a href="https://html.spec.whatwg.org/C/#navigation-params-reserved-environment">https://html.spec.whatwg.org/C/#navigation-params-reserved-environment</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-navigation-params-reserved-environment">3.1.9.2. For Window</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-obtain-a-site">
+   <a href="https://html.spec.whatwg.org/multipage/origin.html#obtain-a-site">https://html.spec.whatwg.org/multipage/origin.html#obtain-a-site</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-obtain-a-site">3.2.1. Plumb the partition-nonce</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-origin">
+   <a href="https://html.spec.whatwg.org/C/#concept-origin">https://html.spec.whatwg.org/C/#concept-origin</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-origin">3.1.9.2. For Window</a>
+    <li><a href="#ref-for-concept-origin①">3.2.1. Plumb the partition-nonce</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-policy-container-embedder-policy">
    <a href="https://html.spec.whatwg.org/C/#policy-container-embedder-policy">https://html.spec.whatwg.org/C/#policy-container-embedder-policy</a><b>Referenced in:</b>
    <ul>
@@ -1561,6 +1747,7 @@ does not pose a privacy risk.</p>
    <a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#process-a-navigate-fetch">https://html.spec.whatwg.org/multipage/browsing-the-web.html#process-a-navigate-fetch</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-process-a-navigate-fetch">3.1.4. Navigating a browsing context</a>
+    <li><a href="#ref-for-process-a-navigate-fetch①">3.1.9.1. For Navigation</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-queue-a-cross-origin-embedder-policy-inheritance-violation">
@@ -1587,10 +1774,28 @@ does not pose a privacy risk.</p>
     <li><a href="#ref-for-same-origin-domain">3.1.4. Navigating a browsing context</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-script-:settings-for-workers">
+   <a href="https://html.spec.whatwg.org/C/#script-:settings-for-workers">https://html.spec.whatwg.org/C/#script-:settings-for-workers</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-script-:settings-for-workers">3.1.9.3. For Worker</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-service-worker-obj">
    <a href="https://html.spec.whatwg.org/C/#service-worker-obj">https://html.spec.whatwg.org/C/#service-worker-obj</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-service-worker-obj">1.3. Explainer</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-set-up-a-window-environment-settings-object">
+   <a href="https://html.spec.whatwg.org/C/#set-up-a-window-environment-settings-object">https://html.spec.whatwg.org/C/#set-up-a-window-environment-settings-object</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-set-up-a-window-environment-settings-object">3.1.9.2. For Window</a> <a href="#ref-for-set-up-a-window-environment-settings-object①">(2)</a> <a href="#ref-for-set-up-a-window-environment-settings-object②">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-set-up-a-worklet-environment-settings-object">
+   <a href="https://html.spec.whatwg.org/C/#set-up-a-worklet-environment-settings-object">https://html.spec.whatwg.org/C/#set-up-a-worklet-environment-settings-object</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-set-up-a-worklet-environment-settings-object">3.1.9.4. For Worklet</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-sharedworer">
@@ -1599,10 +1804,47 @@ does not pose a privacy risk.</p>
     <li><a href="#ref-for-sharedworer">1.3. Explainer</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-site">
+   <a href="https://html.spec.whatwg.org/multipage/origin.html#site">https://html.spec.whatwg.org/multipage/origin.html#site</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-site">3.2.1. Plumb the partition-nonce</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-still-on-its-initial-about:blank-document">
    <a href="https://html.spec.whatwg.org/C/#still-on-its-initial-about:blank-document">https://html.spec.whatwg.org/C/#still-on-its-initial-about:blank-document</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-still-on-its-initial-about:blank-document">3.1.4. Navigating a browsing context</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-environment-target-browsing-context">
+   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-target-browsing-context">https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-target-browsing-context</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-environment-target-browsing-context①">3.1.9.4. For Worklet</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-top-level-browsing-context">
+   <a href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-top-level-browsing-context">3.1.9.1. For Navigation</a>
+    <li><a href="#ref-for-top-level-browsing-context①">3.1.9.2. For Window</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-environment-top-level-creation-url">
+   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-creation-url">https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-creation-url</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-environment-top-level-creation-url">3.1.9.1. For Navigation</a>
+    <li><a href="#ref-for-concept-environment-top-level-creation-url①">3.1.9.2. For Window</a>
+    <li><a href="#ref-for-concept-environment-top-level-creation-url②">3.1.9.4. For Worklet</a>
+    <li><a href="#ref-for-concept-environment-top-level-creation-url③">3.2.1. Plumb the partition-nonce</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-environment-top-level-origin">
+   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-origin">https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-origin</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-environment-top-level-origin">3.1.9.1. For Navigation</a>
+    <li><a href="#ref-for-concept-environment-top-level-origin①">3.1.9.2. For Window</a>
+    <li><a href="#ref-for-concept-environment-top-level-origin②">3.1.9.4. For Worklet</a> <a href="#ref-for-concept-environment-top-level-origin③">(2)</a>
+    <li><a href="#ref-for-concept-environment-top-level-origin④">3.2.1. Plumb the partition-nonce</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-window-open-steps">
@@ -1611,10 +1853,28 @@ does not pose a privacy risk.</p>
     <li><a href="#ref-for-window-open-steps">3.1.5. Open popup with noopener</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-implementation-defined">
+   <a href="https://infra.spec.whatwg.org/#implementation-defined">https://infra.spec.whatwg.org/#implementation-defined</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-implementation-defined">3.2.1. Plumb the partition-nonce</a> <a href="#ref-for-implementation-defined①">(2)</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-struct">
    <a href="https://infra.spec.whatwg.org/#struct">https://infra.spec.whatwg.org/#struct</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-struct">3.1.4. Navigating a browsing context</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-url-origin">
+   <a href="https://url.spec.whatwg.org/#concept-url-origin">https://url.spec.whatwg.org/#concept-url-origin</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-url-origin">3.2.1. Plumb the partition-nonce</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-url">
+   <a href="https://url.spec.whatwg.org/#concept-url">https://url.spec.whatwg.org/#concept-url</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-url">3.1.9.2. For Window</a> <a href="#ref-for-concept-url①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-Exposed">
@@ -1662,7 +1922,7 @@ does not pose a privacy risk.</p>
     <a data-link-type="biblio">[FETCH]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-dom-requestdestination-iframe">"iframe"</span>
-     <li><span class="dfn-paneled" id="term-for-concept-response">response</span>
+     <li><span class="dfn-paneled" id="term-for-determine-the-network-partition-key">determine the network partition key</span>
      <li><span class="dfn-paneled" id="term-for-concept-request-window">window</span>
     </ul>
    <li>
@@ -1682,6 +1942,11 @@ does not pose a privacy risk.</p>
      <li><span class="dfn-paneled" id="term-for-concept-document-bc">concept-document-bc</span>
      <li><span class="dfn-paneled" id="term-for-concept-document-origin">concept-document-origin</span>
      <li><span class="dfn-paneled" id="term-for-concept-document-policy-container">concept-document-policy-container</span>
+     <li><span class="dfn-paneled" id="term-for-concept-environment-active-service-worker">concept-environment-active-service-worker</span>
+     <li><span class="dfn-paneled" id="term-for-concept-environment-creation-url">concept-environment-creation-url</span>
+     <li><span class="dfn-paneled" id="term-for-concept-environment-id">concept-environment-id</span>
+     <li><span class="dfn-paneled" id="term-for-concept-environment-target-browsing-context">concept-environment-target-browsing-context</span>
+     <li><span class="dfn-paneled" id="term-for-concept-request-reserved-client">concept-request-reserved-client</span>
      <li><span class="dfn-paneled" id="term-for-cross-origin-opener-policies">coop</span>
      <li><span class="dfn-paneled" id="term-for-creating-a-new-browsing-context">creating a new browsing context</span>
      <li><span class="dfn-paneled" id="term-for-coep①">cross-origin-embedder-policy</span>
@@ -1693,6 +1958,7 @@ does not pose a privacy risk.</p>
      <li><span class="dfn-paneled" id="term-for-embedder-policy-reporting-endpoint">embedder-policy-reporting-endpoint</span>
      <li><span class="dfn-paneled" id="term-for-embedder-policy-value">embedder-policy-value</span>
      <li><span class="dfn-paneled" id="term-for-entry-global-object">entry global object</span>
+     <li><span class="dfn-paneled" id="term-for-environment">environment</span>
      <li><span class="dfn-paneled" id="term-for-hh-replace">hh-replace</span>
      <li><span class="dfn-paneled" id="term-for-HTMLIframeElement">htmliframeelement</span>
      <li><span class="dfn-paneled" id="term-for-the-iframe-element">iframe</span>
@@ -1702,21 +1968,39 @@ does not pose a privacy risk.</p>
      <li><span class="dfn-paneled" id="term-for-navigation-params">navigation params</span>
      <li><span class="dfn-paneled" id="term-for-navigation-params-hh">navigation-params-hh</span>
      <li><span class="dfn-paneled" id="term-for-navigation-params-origin">navigation-params-origin</span>
+     <li><span class="dfn-paneled" id="term-for-navigation-params-reserved-environment">navigation-params-reserved-environment</span>
+     <li><span class="dfn-paneled" id="term-for-obtain-a-site">obtain a site</span>
+     <li><span class="dfn-paneled" id="term-for-concept-origin">origin</span>
      <li><span class="dfn-paneled" id="term-for-policy-container-embedder-policy①">policy-container-embedder-policy</span>
      <li><span class="dfn-paneled" id="term-for-process-a-navigate-fetch">process a navigate fetch</span>
      <li><span class="dfn-paneled" id="term-for-queue-a-cross-origin-embedder-policy-inheritance-violation">queue a cross-origin embedder policy inheritance violation</span>
      <li><span class="dfn-paneled" id="term-for-concept-relevant-global">relevant global object</span>
      <li><span class="dfn-paneled" id="term-for-relevant-settings-object">relevant settings object</span>
      <li><span class="dfn-paneled" id="term-for-same-origin-domain">same origin-domain</span>
+     <li><span class="dfn-paneled" id="term-for-script-:settings-for-workers">script settings for workers</span>
      <li><span class="dfn-paneled" id="term-for-service-worker-obj">serviceworker</span>
+     <li><span class="dfn-paneled" id="term-for-set-up-a-window-environment-settings-object">set up a window environment settings object</span>
+     <li><span class="dfn-paneled" id="term-for-set-up-a-worklet-environment-settings-object">set up a worklet environment settings object</span>
      <li><span class="dfn-paneled" id="term-for-sharedworer">sharedworker</span>
+     <li><span class="dfn-paneled" id="term-for-site">site</span>
      <li><span class="dfn-paneled" id="term-for-still-on-its-initial-about:blank-document">still on its initial about:blank document</span>
+     <li><span class="dfn-paneled" id="term-for-concept-environment-target-browsing-context①">target browsing context</span>
+     <li><span class="dfn-paneled" id="term-for-top-level-browsing-context">top-level browsing context</span>
+     <li><span class="dfn-paneled" id="term-for-concept-environment-top-level-creation-url">top-level creation url</span>
+     <li><span class="dfn-paneled" id="term-for-concept-environment-top-level-origin">top-level origin</span>
      <li><span class="dfn-paneled" id="term-for-window-open-steps">window open steps</span>
     </ul>
    <li>
     <a data-link-type="biblio">[INFRA]</a> defines the following terms:
     <ul>
+     <li><span class="dfn-paneled" id="term-for-implementation-defined">implementation-defined</span>
      <li><span class="dfn-paneled" id="term-for-struct">struct</span>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[URL]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-concept-url-origin">origin</span>
+     <li><span class="dfn-paneled" id="term-for-concept-url">url</span>
     </ul>
    <li>
     <a data-link-type="biblio">[WEBIDL]</a> defines the following terms:
@@ -1740,6 +2024,8 @@ does not pose a privacy risk.</p>
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-infra">[INFRA]
    <dd>Anne van Kesteren; Domenic Denicola. <a href="https://infra.spec.whatwg.org/"><cite>Infra Standard</cite></a>. Living Standard. URL: <a href="https://infra.spec.whatwg.org/">https://infra.spec.whatwg.org/</a>
+   <dt id="biblio-url">[URL]
+   <dd>Anne van Kesteren. <a href="https://url.spec.whatwg.org/"><cite>URL Standard</cite></a>. Living Standard. URL: <a href="https://url.spec.whatwg.org/">https://url.spec.whatwg.org/</a>
    <dt id="biblio-webidl">[WEBIDL]
    <dd>Edgar Chen; Timothy Gu. <a href="https://webidl.spec.whatwg.org/"><cite>Web IDL Standard</cite></a>. Living Standard. URL: <a href="https://webidl.spec.whatwg.org/">https://webidl.spec.whatwg.org/</a>
   </dl>
@@ -1793,7 +2079,7 @@ does not pose a privacy risk.</p>
    <ul>
     <li><a href="#ref-for-window">3.1.2. The Window attribute</a>
     <li><a href="#ref-for-window①">3.1.6. General section</a> <a href="#ref-for-window②">(2)</a>
-    <li><a href="#ref-for-window③">3.1.8. Page’s anonymous nonce</a>
+    <li><a href="#ref-for-window③">3.1.9. Environment’s partition nonce</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-window-anonymous">
@@ -1810,12 +2096,14 @@ does not pose a privacy risk.</p>
    <ul>
     <li><a href="#ref-for-navigation-params-anonymous">3.1.4. Navigating a browsing context</a> <a href="#ref-for-navigation-params-anonymous①">(2)</a>
     <li><a href="#ref-for-navigation-params-anonymous②">3.1.7. COEP embedder checks</a>
+    <li><a href="#ref-for-navigation-params-anonymous③">3.1.9.2. For Window</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="anonymous-window">
    <b><a href="#anonymous-window">#anonymous-window</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-anonymous-window">3.1.6. General section</a> <a href="#ref-for-anonymous-window①">(2)</a>
+    <li><a href="#ref-for-anonymous-window②">3.1.9. Environment’s partition nonce</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="initial-window-anonymous">
@@ -1835,7 +2123,20 @@ does not pose a privacy risk.</p>
   <aside class="dfn-panel" data-for="page-anonymous-nonce">
    <b><a href="#page-anonymous-nonce">#page-anonymous-nonce</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-page-anonymous-nonce">3.1.8. Page’s anonymous nonce</a>
+    <li><a href="#ref-for-page-anonymous-nonce">3.1.9. Environment’s partition nonce</a>
+    <li><a href="#ref-for-page-anonymous-nonce①">3.1.9.1. For Navigation</a>
+    <li><a href="#ref-for-page-anonymous-nonce②">3.1.9.2. For Window</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="environment-partition-nonce">
+   <b><a href="#environment-partition-nonce">#environment-partition-nonce</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-environment-partition-nonce">3.1.9. Environment’s partition nonce</a>
+    <li><a href="#ref-for-environment-partition-nonce①">3.1.9.1. For Navigation</a>
+    <li><a href="#ref-for-environment-partition-nonce②">3.1.9.2. For Window</a>
+    <li><a href="#ref-for-environment-partition-nonce③">3.1.9.3. For Worker</a> <a href="#ref-for-environment-partition-nonce④">(2)</a>
+    <li><a href="#ref-for-environment-partition-nonce⑤">3.1.9.4. For Worklet</a> <a href="#ref-for-environment-partition-nonce⑥">(2)</a>
+    <li><a href="#ref-for-environment-partition-nonce⑦">3.2.1. Plumb the partition-nonce</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
