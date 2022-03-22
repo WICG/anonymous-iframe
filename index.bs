@@ -99,6 +99,11 @@ WPT Path Prefix: html/cross-origin-embedder-policy/anonymous-iframe/
   "StoragePartition": {
     "title": "Client-Side Storage Partitioning",
     "href": "https://privacycg.github.io/storage-partitioning/"
+  },
+
+  "STORAGE": {
+    "title": "Storage",
+    "href": "https://storage.spec.whatwg.org/"
   }
 }
 </pre>
@@ -161,6 +166,9 @@ urlPrefix: https://fetch.spec.whatwg.org/
   text: network partition key; type:dfn; url:network-partition-key
   text: concept-response; type:dfn; url:concept-response
 
+urlPrefix: https://storage.spec.whatwg.org/
+  text: storage key; type:dfn; url:storage-key
+
 urlPrefix: https://dom.spec.whatwg.org/
   text: EventTarget; type:dfn; url:interface-eventtarget
 
@@ -180,6 +188,7 @@ urlPrefix: https://tc39.es/ecma262/#sec-execution-contexts
 
 <pre class="link-defaults">
   spec:fetch; type:dfn; for:/; text:response
+  spec:html; type:dfn; for:/; text:origin
   spec:html; type:dfn; for:Window; text:browsing context
   spec:html; type:dfn; for:policy container; text:embedder policy
   spec:html; type:dfn; text:environment
@@ -1008,6 +1017,37 @@ To implement anonymous iframe, another key should be added and defined as the
     <dt><dfn lt="storage-key-nonce" export>nonce</dfn></dt>
     <dd>The [=environment=]'s [=environment/partition nonce=]</dd>
   </dl>
+</div>
+
+Integration with storage {#spec-storage}
+------------------------
+
+Modify the [[!STORAGE]] specification. Add the [=environment=]'s
+[=environment/partition nonce=] as an additional key in the [=storage key=].
+
+<div class="monkey-patch">
+
+A <a>storage key</a> is a <a>tuple</a> consisting of:
+- An <dfn export for="storage key" lt="storage-key-origin">origin</dfn> (an <a>origin</a>). [[!HTML]]
+- <div class="customHighlight">A <dfn export for="storage key" lt="storage-key-nonce">nonce</dfn> (an identifier or null). [[!HTML]]</span>
+
+</div>
+
+<div class="monkey-patch">
+
+To <a>obtain a storage key for non-storage purposes</a>, given an
+[=environment=] |environment|, run these steps:
+
+- Let |origin| be |environment|'s origin <var>environment</var>'s [=environment
+  settings object/origin=] if |environment| is an [=environment settings
+  object=]; otherwise |environment|'s [=environment/creation URL=]'s [=url/origin=].
+
+- <span class="customHighlight">Let |nonce| be |environment|'s
+  [=environment/partition nonce=].</span>
+
+- Return a [=tuple=] consisting of |origin| <span class="customHighlight">and
+  |nonce|</span>.
+
 </div>
   
 Security considerations {#security}
