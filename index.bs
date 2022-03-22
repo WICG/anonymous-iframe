@@ -84,7 +84,6 @@ WPT Path Prefix: html/cross-origin-embedder-policy/anonymous-iframe/
 urlPrefix: https://tc39.es/ecma262/; spec: ECMAScript
   text: SharedArrayBuffer; type: interface; url: sec-sharedarraybuffer-objects
 
-
 urlPrefix: https://html.spec.whatwg.org/C/; spec: html
   text: BroadcastChannel; type:dfn; url:broadcasting-to-other-browsing-contexts
   text: COEP; type: dfn; url: coep
@@ -120,7 +119,24 @@ urlPrefix: https://html.spec.whatwg.org/C/; spec: html
   text: queue a cross-origin embedder policy inheritance violation; type:dfn; url: queue-a-cross-origin-embedder-policy-inheritance-violation
   text: still on its initial about:blank document; type:dfn; url:still-on-its-initial-about:blank-document
   text: window open steps; type:dfn; url:window-open-steps
+  text: concept-environment-id; type:dfn; url:concept-environment-id
+  text: concept-environment-targetting-id; type:dfn; url:concept-environment-targetting-id
+  text: concept-environment-creation-url; type:dfn; url:concept-environment-creation-url
+  text: concept-environment-target-browsing-context; type:dfn; url:concept-environment-target-browsing-context
+  text: navigation-params-reserved-environment; type:dfn; url:navigation-params-reserved-environment
+  text: environment; type:dfn; url:environment
+  text: concept-request-reserved-client; type:dfn; url:concept-request-reserved-client
+  text: concept-environment-active-service-worker; type:dfn; url:concept-environment-active-service-worker
+  text: origin; type:dfn; url:concept-origin
+  text: set up a window environment settings object; type:dfn; url:set-up-a-window-environment-settings-object
+  text: script settings for workers; type:dfn; url:script-:settings-for-workers
+  text: set up a worklet environment settings object; type:dfn; url:set-up-a-worklet-environment-settings-object
   <!--text: A; type:dfn; url:A-->
+  <!--text: A; type:dfn; url:A-->
+
+urlPrefix: https://fetch.spec.whatwg.org/
+  text: network partition key; type:dfn; url:network-partition-key
+  text: concept-response; type:dfn; url:concept-response
 
 urlPrefix: https://dom.spec.whatwg.org/
   text: EventTarget; type:dfn; url:interface-eventtarget
@@ -134,12 +150,17 @@ urlPrefix: https://www.w3.org/TR/hr-time/
 urlPrefix: https://webidl.spec.whatwg.org/#LegacyUnenumerableNamedProperties
   text: LegacyUnenumerableNamedProperties; type:dfn; url:LegacyUnenumerableNamedProperties
 
+urlPrefix: https://tc39.es/ecma262/#sec-execution-contexts
+  text: javascript execution context; type:dfn; url:sec-execution-contexts
+
 </pre>
 
 <pre class="link-defaults">
-  spec:html; type:dfn; for:Window; text:browsing context
   spec:fetch; type:dfn; for:/; text:response
+  spec:html; type:dfn; for:Window; text:browsing context
   spec:html; type:dfn; for:policy container; text:embedder policy
+  spec:html; type:dfn; text:environment
+  spec:url; type:dfn; for:/; text:url
 </pre>
 
 <style>
@@ -159,10 +180,11 @@ urlPrefix: https://webidl.spec.whatwg.org/#LegacyUnenumerableNamedProperties
 }
 
 .customHighlight {
-  background-color: rgba(255, 255, 0, 0.3);
-  padding:9px;
-  margin:1px;
+  padding-top:9px ;
+  padding-bottom:9px ;
+  background-color: rgba(255,255,0,0.3)
 }
+
 </style>
 
 Introduction { #introduction }
@@ -521,7 +543,7 @@ In the <a>window open steps</a>, adds step 5:
 <div class="monkey-patch">
 
 5. If <a>entry global object</a>'s {{Window/anonymous}} flag is true, then set
-   |noopener| to true.
+  <var ignore>noopener</var> to true.
 
 </div>
 
@@ -604,59 +626,50 @@ lt="navigation-params-anonymous">anonymous</a>.
 
 <div class="monkey-patch">
   <p>To <a>check a navigation response's adherence to its embedder policy</a>
-  given a <a data-x="concept-response">response</a> <var>response</var>, a
-  <a>browsing context</a> <var>target</var>, an <a>embedder policy</a>
-  <var>responsePolicy</var>, <span class="customHighlight">and a boolean
-  <var>anonymous</var></span>:</p>
+  given a <a lt="concept-response">response</a> |response|, a
+  <a>browsing context</a> |target|, an <a>embedder policy</a>
+  |responsePolicy|, <span class="customHighlight">and a boolean
+  |anonymous|</span>:</p>
 
   <ol>
-   <li><p>If <var>target</var> is not a <a>child browsing context</a>, then
+   <li><p>If |target| is not a <a>child browsing context</a>, then
    return true.</p></li>
 
-   <li><p>Let <var>parentPolicy</var> be <var>target</var>'s <a
+   <li><p>Let |parentPolicy| be |target|'s <a
    lt="bc-container-document">container document</a>'s <a
    lt="concept-document-policy-container">policy container</a>'s <a
    lt="policy-container-embedder-policy">embedder policy</a>.</p></li>
 
-   <li><p>If <var>parentPolicy</var>'s <a
+   <li><p>If |parentPolicy|'s <a
    lt="embedder-policy-report-only-value">report-only value</a> is <a>compatible
-   with cross-origin isolation</a> and <var>responsePolicy</var>'s <a
+   with cross-origin isolation</a> and |responsePolicy|'s <a
    lt="embedder-policy-value">value</a> is not, <span
-   class="customHighlight">and <var>anonymous</var> is false</span>, then
+   class="customHighlight">and |anonymous| is false</span>, then
    <a>queue a cross-origin embedder policy inheritance violation</a> with
-   <var>response</var>, "<code lt="">navigation</code>",
-   <var>parentPolicy</var>'s <a
+   |response|, "<code lt="">navigation</code>",
+   |parentPolicy|'s <a
    lt="embedder-policy-report-only-reporting-endpoint">report only reporting
-   endpoint</a>, "<code lt="">reporting</code>", and <var>target</var>'s <a
+   endpoint</a>, "<code lt="">reporting</code>", and |target|'s <a
    lt="bc-container-document">container document</a>'s <a>relevant settings
    object</a>.</p></li>
 
-   <li><p>If <var>parentPolicy</var>'s <a lt="embedder-policy-value">value</a>
+   <li><p>If |parentPolicy|'s <a lt="embedder-policy-value">value</a>
    is not <a>compatible with cross-origin isolation</a> or
-   <var>responsePolicy</var>'s <a lt="embedder-policy-value">value</a> is
+   |responsePolicy|'s <a lt="embedder-policy-value">value</a> is
    <a>compatible with cross-origin isolation</a>, <span
-   class="customHighlight">or <var>anonymous</var> is true, </span>then return
+   class="customHighlight">or |anonymous| is true, </span>then return
    true.</p></li>
 
    <li><p><a>Queue a cross-origin embedder policy inheritance violation</a> with
-   <var>response</var>, "<code lt="">navigation</code>",
-   <var>parentPolicy</var>'s <a
+   |response|, "<code lt="">navigation</code>",
+   |parentPolicy|'s <a
    lt="embedder-policy-reporting-endpoint">reporting endpoint</a>, "<code
-   lt="">enforce</code>", and <var>target</var>'s <a
+   lt="">enforce</code>", and |target|'s <a
    lt="bc-container-document">container document</a>'s <a>relevant settings
    object</a>.</p></li>
 
    <li><p>Return false.</p></li>
   </ol>
-</div>
-
-### Page's anonymous nonce ### {#spec-page-anonymous-nonce}
-
-In the "Anonymous iframe" section. Defining the [=page anonymous nonce=].
-
-<div class="monkey-patch">
-  <p>Each top-level {{Window}} has an associated <dfn export>page anonymous nonce</dfn>. It
-  is an immutable nonce ("number used once").</p>
 </div>
 
 ### Autofill ### {#spec-autofill}
@@ -671,9 +684,180 @@ their autofilling features.
   </p>
 </div>
 
+### Environment's partition nonce ### {#spec-environment-partition-nonce}
+
+In the "Anonymous iframe" section. Defining the [=page anonymous nonce=].
+
+<div class="monkey-patch">
+  <p>Each top-level {{Window}} has an associated <dfn export>page anonymous nonce</dfn>. It
+  is an immutable nonce ("number used once").</p>
+</div>
+
+Add the <a for="environment">partition nonce</a> attribute to the
+<a>environment</a> object.
+
+<div class="monkey-patch">
+<dl>
+  <dt>A <dfn export for="environment">partition nonce</dfn></dt>
+  <dd><p>An identifier or null. This is used to discriminate and isolate
+  environments further. Among others, it is non null for <a>anonymous
+  Window</a></p></dd>
+</dl>
+</div>
+
+#### For Navigation #### {#spec-navigation-partition-nonce}
+
+In the <a>process a navigate fetch</a>, add step:
+<div class="monkey-patch">
+
+13. If |anonymous| is true, let |partitionNonce| be
+    |browsingContext|'s <a>top-level browsing context</a>'s <a>page
+    anonymous nonce</a>, null otherwise.
+
+</div>
+
+|partitionNonce| is used later to create the [=Environment=]. Modify step
+13.3.4:
+<div class="monkey-patch">
+13.3.4. Set <var ignore>request</var>'s <a
+  lt="concept-request-reserved-client">reserved client</a> to a new
+  <a>environment</a> whose <a lt="concept-environment-id">id</a> is a unique
+  opaque string, <a lt="concept-environment-target-browsing-context">target
+  browsing context</a> is |browsingContext|, <a
+  lt="concept-environment-creation-url">creation URL</a> is <var
+  ignore>currentURL</var>, <a>top-level creation URL</a> is
+  |topLevelCreationURL|, <a>top-level origin</a> is
+  |topLevelOrigin|, <span class="customHighlight">and <a
+  for="environment">partition nonce</a> is |partitionNonce|</div>.
+</div>
+
+
+#### For Window #### {#spec-window-partition-nonce}
+
+In the <a>initialize the document object</a>, add step 6.9:
+<div class="monkey-patch">
+6.9. If |navigationParams|'s <a
+  lt="navigation-params-anonymous">anonymous</a> is true, let
+  |partitionNonce| be |browsingContext|'s <a>top-level browsing
+  context</a>'s <a>page anonymous nonce</a>, null otherwise.
+</div>
+
+Then, plumb it to create the [=Environment=] in step 6.10:
+<div class="monkey-patch">
+
+6.10 <a>Set up a window environment settings object</a> with |creationURL|,
+     <var ignore>realm execution context</var>, |navigationParams|'s <a
+     lt="navigation-params-reserved-environment">reserved environment</a>,
+     |topLevelCreationURL|, |topLevelOrigin|, <span class="customHighlight">and
+     |partitionNonce|.</span>
+</div>
+
+|partitionNonce| is passed to the <a>set up a window environment settings
+object</a> this way:
+<div class="monkey-patch">
+To <a>set up a window environment settings object</a>, given a <a>URL</a>
+|creationURL|, a <a>JavaScript execution context</a> <var ignore>execution
+context</var>, null or an <a>environment</a> <var
+ignore>reservedEnvironment</var>, a <a>URL</a> |topLevelCreationURL|, an
+<a>origin</a> |topLevelOrigin|, and <span class="customHighlight">an identifier
+|partitionNonce|</span> run these steps:</p>
+</div>
+
+It is used in step 6.
+<div class="monkey-patch">
+
+6. Set |settings object|'s <a lt="concept-environment-creation-url">creation
+  URL</a> to |creationURL|, |settings object|'s <a>top-level creation URL</a> to
+  |topLevelCreationURL|, |settings object|'s <a>top-level origin</a> to
+  |topLevelOrigin|, <span class="customHighlight">and |settings object|'s <a
+  for="environment">partition nonce</a> to |partitionNonce|.</span>
+
+</div>
+
+
+#### For Worker #### {#spec-worker-partition-nonce}
+
+In the <a>script settings for workers</a> algorithm, add step 8:
+
+<div class="monkey-patch">
+
+8. Set |settings object|'s <a for="environment">partition nonce</a> to <var
+  ignore>outside settings</var>'s <a for="environment">partition nonce</a>.
+
+</div>
+
+#### For Worklet #### {#spec-worklet-partition-nonce}
+
+In the <a>set up a worklet environment settings object</a> algorithm, modify
+step 7:
+
+<div class="monkey-patch">
+7. Set <var ignore>settingsObject</var>'s <a lt="concept-environment-id">id</a> to a new
+   unique opaque string, <a lt="concept-environment-creation-url">creation URL</a> to
+   <var ignore>inheritedAPIBaseURL</var>, <a>top-level creation URL</a> to null, <a>top-level
+   origin</a> to <var ignore>outsideSettings</var>'s <a>top-level origin</a>,
+   <span class="customHighlight"><a for="environment">partition nonce</a> to
+   <var ignore>outsideSettings</var>'s <a for="environment">partition
+   nonce</a></span>, <a for="environment">target browsing context</a> to null,
+   and <a lt="concept-environment-active-service-worker">active service
+   worker</a> to null.
+
+</div>
+
+
 Integration with Fetch {#spec-fetch}
 ----------------------
 
+Note: This corresponds to the following HTML specification change:
+[whatwg/html/pull/7695](https://github.com/whatwg/html/pull/7695). <br/>
+When merged this section will become obsolete.
+
+### Plumb the partition-nonce ### {#spec-network-partition-key}
+
+Add the `environment`'s `partition nonce` into the network partition key.
+Proceed the following changes:
+
+<div class="monkey-patch">
+
+A <a>network partition key</a> is a tuple consisting of:
+-  A <a for=/>site</a>.
+-  null or an <a>implementation-defined</a> value.
+-  <span class="customHighlight">null or a nonce.</span>
+
+</div>
+
+<div class="monkey-patch">
+  <p>To <a lt="determine the network partition key">determine the network
+  partition key</dfn>, given an <a for=/>environment</a> |environment|,
+  run these steps:
+
+  <ol>
+   <li><p>Let |topLevelOrigin| be |environment|'s
+   <a for="environment">top-level origin</a>.
+
+   <li><p>If |topLevelOrigin| is null, then set |topLevelOrigin| to
+   |environment|'s <a for="environment">top-level creation URL</a>'s <a for=url>origin</a>.
+
+   <li><p>Assert: |topLevelOrigin| is an <a for=/>origin</a>.
+
+   <li><p>Let |topLevelSite| be the result of <a lt="obtain a site">obtaining a site</a>,
+   given |topLevelOrigin|.
+
+   <li><p>Let |secondKey| be null or an <a>implementation-defined</a> value.
+
+   <p class=XXX>The second key is intentionally a little vague as the finer points are still
+   evolving. See <a href=https://github.com/whatwg/fetch/issues/1035>issue #1035</a>.
+
+   <li><p class="customHighlight">Let |nonce| be
+   |environment|'s <a for="environment">partition nonce</a></p>
+
+   <li><p>Return (|topLevelSite|, |secondKey|, <var
+   class="customHighlight">nonce</var>).
+  </ol>
+</div>
+
+Integration with CHIPS {#spec-chips}
+----------------------
 
 Security considerations {#security}
 =======================
