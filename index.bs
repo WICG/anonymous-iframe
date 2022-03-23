@@ -7,8 +7,8 @@
 Title: Anonymous iframe
 Status: CG-DRAFT
 Group: WICG
-URL: https://wicg.github.io/anonymous-iframe/
-Repository: WICG/anonymous-iframe
+URL: https://arthursonzogni.github.io/anonymous-iframe/
+Repository: ArthurSonzogni/anonymous-iframe
 Shortname: anonymous-iframe
 Level: 1
 Editor: Arthur Sonzogni, Google, arthursonzogni@google.com
@@ -26,6 +26,8 @@ Boilerplate: omit conformance
 Markup Shorthands: css off, markdown on
 WPT Display: inline
 WPT Path Prefix: html/cross-origin-embedder-policy/anonymous-iframe/
+
+!Tests: <a href=https://github.com/w3c/web-platform-tests/tree/master/html/anonymous-iframe>web-platform-tests html/anonymous-iframe/</a> (<a href=https://github.com/w3c/web-platform-tests/labels/html/anonymous-iframe>ongoing work</a>)
 </pre>
 <pre boilerplate="copyright">&copy;2022, Google, Inc. All rights reserved.</pre>
 
@@ -104,6 +106,18 @@ WPT Path Prefix: html/cross-origin-embedder-policy/anonymous-iframe/
   "STORAGE": {
     "title": "Storage",
     "href": "https://storage.spec.whatwg.org/"
+  },
+
+  "SecurityPrivacyQuestionnaire": {
+    "authors": [
+      "Theresa O’Connor",
+      "Pete Snyder",
+      "Jason Novak",
+      "Lukasz Olejnik",
+      "Mike West"
+    ],
+    "title": "Self-Review Questionnaire: Security and Privacy",
+    "href": "https://www.w3.org/TR/security-privacy-questionnaire/"
   }
 }
 </pre>
@@ -184,6 +198,10 @@ urlPrefix: https://webidl.spec.whatwg.org/#LegacyUnenumerableNamedProperties
 urlPrefix: https://tc39.es/ecma262/#sec-execution-contexts
   text: javascript execution context; type:dfn; url:sec-execution-contexts
 
+text: back/forward cache; type:dfn; url:https://web.dev/bfcache/
+
+text: threat model; type:dfn; url:#threat-model
+
 </pre>
 
 <pre class="link-defaults">
@@ -234,7 +252,9 @@ Recommended readings {#recommended-readings}
   capability. See [[WhyCoopCoep]].
 
 A problem {#problem}
---------------------
+=========
+
+<em>This section is not normative.</em>
 
 Deploying [=COEP=] is difficult for some developers, because of third party
 iframes. Here is the typical scenario:
@@ -260,7 +280,9 @@ it seems somewhat unlikely that they'll be able to ensure that all the ads
 creators will do the work to opt-into being loadable.
 
 Explainer {#explainer}
----------
+=========
+
+<em>This section is not normative.</em>
 
 [[COEP-require-corp]] currently tackles data leak attacks by ensuring that
 cross-origin resources explicitly opt into being loaded in an environment with
@@ -287,7 +309,8 @@ Anonymous iframes is a flag to load documents in iframes, using a new and
 ephemeral context. This ensures only a "public" version of the embedded website
 can be leaked to the attacker.
 
-### What are anonymous iframes? ### {#proposal-whatis}
+What are anonymous iframes? {#proposal-whatis}
+---------------------------
 
 Documents can create anonymous iframes by adding an `anonymous` attribute to the
 iframe tag:
@@ -315,7 +338,8 @@ window.anonymous
 It is true for [=Window=] loaded immediately inside an anonymous iframe, or
 deeper below it.
 
-### Anonymous iframes and credentials ### {#proposal-credentials}
+Anonymous iframes and credentials {#proposal-credentials}
+---------------------------------
 
 Anonymous iframes cannot use existing credentials and shared storage for their
 origin. They are given a blank slate. Unlike sandboxed frames, they can use
@@ -360,9 +384,10 @@ back-forward cache.*
 Popups opened by anonymous iframes are not anonymous. However, we impose that
 popups opened by anonymous iframes are opened with rel = noopener set. This is
 done to prevent OAuth popup flows from being used in anonymous iframes. See the
-threat model part for a discussion on why we impose this restriction.
+<a>threat model</a> part for a discussion on why we impose this restriction.
 
-### How do anonymous iframes interact with COEP? ### {#proposal-interactions}
+How do anonymous iframes interact with COEP {#proposal-interactions}
+-------------------------------------------
 
 Our proposition is that anonymous iframes are safe enough to embed in a COEP
 page, even if they haven’t opted to do so by sending a COEP header. Thus, when
@@ -372,21 +397,79 @@ a COEP and CORP header, even if its parent does not have a COEP of unsafe-none.
 This also means that anonymous iframes can be embedded in cross-origin isolated
 pages without documents in them having to deploy COEP.
 
-### Anonymous iframes and autofill/password managers ### {#proposal-autofill}
+Anonymous iframes and autofill/password managers {#proposal-autofill}
+------------------------------------------------
 
 Browsers that implement autofill or password manager functionalities should make
 them unavailable in anonymous iframes. The goal of anonymous iframes is to
 preserve storage critical to an iframe function, but to avoid users logging into
 anonymous iframes. Autofill and password managers make logging in easier, and so
 should be avoided to prevent users accidentally logging in. This also allows
-anonymous iframes to have a threat model similar to a phishing page (see the
-Threat model part of this explainer below).
+anonymous iframes to have a <a>threat model</a> similar to a phishing page (see
+the <a>Threat model</a> part of this explainer below)
 
+Alternatives considered {#alternatives}
+=======================
+
+<em>This section is not normative.</em>
+
+## Sandboxed iframe ## {#alternatives-sandbox}
+
+Sandboxed iframes without the allow-same-origin flag do not have access to
+storage APIs or cookies for their subresource requests. However, the document of
+a sandbox iframe can still be requested with credentials, which does not fit the
+<a>threat model</a>. We could change sandboxed iframes so that documents are
+also requested without credentials.
+
+So why are we proposing introducing a new attribute instead of just using
+sandboxed iframes with a new sandbox flag?
+
+First, changing the behavior of sandboxed iframes so that their main resource is
+always requested without credentials could break existing websites, as opposed
+to introducing a new concept.
+
+Second, we want to minimize the amount of disruption imposed to the content
+inside the iframe. Using sandboxed iframes means the iframes cannot use cookies
+or storage APIs at all, nor could they access any other frame in the document.
+We are worried that this would limit the deployability of the credentialless
+solution for opting into crossOriginIsolation. We’re looking to provide
+developers with a solution that is as deployable as possible, which is why we’d
+rather introduce a new solution that imposes as few restrictions to the iframes
+as possible.
+
+We could try to codify these restrictions as a sandbox flag, e.g.
+allow-partitioned-storage. This is probably hard to reconcile with the storage
+access sandbox flag shipped by Firefox and Safari, especially since a new
+sandbox flag would be off by default.
+
+This in turn is another issue with relying on sandboxed iframes for COEP
+deployment. Because all flags are off by default, any new flag could impact the
+behavior of sandboxed iframes. Not to mention that the syntax is a bit complex
+due to the need to add every flag but the allow-same-origin to get all
+functionality but access to cookies/storage.
+
+## Opaque origins ## {#alternatives-opaque-origins}
+
+The anonymous iframes model that we propose relies on partitioned storage (see
+explainer), using a nonce in the storage key. We have also considered
+attributing opaque origins to the anonymous iframes, similar to sandboxed
+iframes. This would ensure that the anonymous iframes do not have access to
+existing credentials and shared storage since their origin has been changed to
+an opaque one.
+
+This solution runs into compatibility issues:
+* To allow anonymous iframes to access one another if they are coming from the
+  same origin we must maintain a mapping of original origin to opaque origin for
+  each anonymous iframe subtree, which is complex.
+* We would probably need to standardize what happens when a frame with an opaque
+  origin wants to access a storage API since sandboxed iframes with opaque
+  origins do not have access to storage APIs at all.
+* It is not clear how this would interact with other checks pertaining on origin
+  (e.g. X-Frame-Options, various CSP checks, …) potentially leading to further
+  breakages.
 
 Tests {#tests}
 =====
-
-The proposal is backed by the following tests:
 
 Status:
 [https://wpt.fyi/results/html/cross-origin-embedder-policy/anonymous-iframe/](https://wpt.fyi/results/html/cross-origin-embedder-policy/anonymous-iframe/)
@@ -841,7 +924,7 @@ Integration with Fetch {#spec-fetch}
 ----------------------
 
 Note: This corresponds to the following HTML specification change:
-[whatwg/html/pull/7695](https://github.com/whatwg/html/pull/7695). <br/>
+[whatwg/fetch/pull/1416](https://github.com/whatwg/fetch/pull/1416). <br/>
 When merged this section will become obsolete.
 
 ### Plumb the partition-nonce ### {#spec-network-partition-key}
@@ -1059,12 +1142,18 @@ To <a>obtain a storage key for non-storage purposes</a>, given an
 Security considerations {#security}
 =======================
 
+Threat model {#threat-model}
+------------
+
 Because anonymous iframes can be embedded in [=crossOriginIsolated=] contexts,
 in browsers without Out-of-Process-Iframes, we have to consider that their
 embedder can perform a [[Spectre]] attack to read any of the anonymous iframes
-resources, including the HTML. Our approach to this threat is not to prevent the
-attack from happening, but to avoid loading personalized data so that an
-attacker has only access to publicly available data.
+resources, including the HTML. The victim is the document loaded inside the
+anonymous iframe and the other documents are the attackers.
+
+Our approach to this threat is not to prevent the attack from happening, but to
+avoid loading personalized data so that an attacker has only access to publicly
+available data.
 
 To do so, we consider a variety of possible attacks:
 
@@ -1189,6 +1278,98 @@ Privacy considerations {#privacy}
 ======================
 
 The main privacy threat posed by this API is the risk of a data leak through a
-side channel attack like [[Spectre]]. As detailed in the threat model above, we
-believe the API provides a meaningful defense against [[Spectre]] attacks, and thus
-does not pose a privacy risk.
+side channel attack like [[Spectre]]. As detailed in the <a>threat model</a>
+above, we believe the API provides a meaningful defense against [[Spectre]]
+attacks, and thus does not pose a privacy risk.
+
+Self-Review Questionnaire {#questionnaire}
+=========================
+
+See [[SecurityPrivacyQuestionnaire]] ([link](https://www.w3.org/TR/security-privacy-questionnaire/))
+
+## What information might this feature expose to Web sites or other parties, and for what purposes is that exposure necessary? ## {#questionnaire-purpose}
+
+The `window.anonymous` method exposes whether a document is loaded in an
+anonymous iframe or not, allowing a document to change its behavior depending on
+the availability of existing credentials or stored resources.
+
+## Do features in your specification expose the minimum amount of information necessary to enable their intended uses? ## {#questionnaire-minimum-data}
+
+Yes. The only thing exposed is whether a document is embedded inside an
+anonymous iframe or not.
+
+## How do the features in your specification deal with personal information, personally-identifiable information (PII), or information derived from them? ## {#questionnaire-personal-data}
+
+The feature does not deal with PII.
+
+## How do the features in your specification deal with sensitive information? ## {#questionnaire-sensitive-data}
+
+The feature does not deal with sensitive information.
+
+## Do the features in your specification introduce new state for an origin that persists across browsing sessions? ## {#questionnaire-persistent-origin-specific-state}
+
+No the feature does not introduce new state for an origin.
+
+## Do the features in your specification expose information about the underlying platform to origins? ## {#questionnaire-underlying-platform-data}
+
+No the feature behaves the same regardless of the underlying platform.
+
+## Does this specification allow an origin to send data to the underlying platform? ## {#questionnaire-send-to-platform}
+
+No this feature does not change what data an origin is allowed to send to the underlying platform.
+
+## Do features in this specification allow an origin access to sensors on a user’s device? ## {#questionnaire-sensor-data}
+
+No the feature has no impacty on sensor access.
+
+## Do features in this specification enable new script execution/loading mechanisms? ## {#questionnaire-string-to-script}
+
+No the feature does not enable new script execution/loading.
+
+## Do features in this specification allow an origin to access other devices? ## {#questionnaire-remote-device}
+
+No the feature is strictly confined to one device.
+
+## Do features in this specification allow an origin some measure of control over a user agent’s native UI? ## {#questionnaire-native-ui}
+
+No the feature has no impact on UI.
+
+## What temporary identifiers do the feautures in this specification create or expose to the web? ## {#questionnaire-temporary-id}
+
+No temporary identifiers are created.
+
+## How does this specification distinguish between behavior in first-party and third-party contexts? ## {#questionnaire-first-third-party}
+
+There is no distinction between first-party and third-party ability to embed
+anonymous iframes. This is due to the recursive nature of COEP. To deploy COEP
+in a frame, all child frames need to deploy COEP first. Since this is a
+mechanism to help with the deployment of COEP, we want to offer third-party
+iframes the option to ease their own COEP deployment by being able to embed
+their own third party content as anonymous iframes.
+
+## How do the features in this specification work in the context of a browser’s Private Browsing or Incognito mode? ## {#questionnaire-private-browsing}
+
+No difference with regular mode.
+
+## Does this specification have both "Security Considerations" and "Privacy Considerations" sections? ## {#questionnaire-considerations}
+
+Yes:
+- [Security considerations](#security)
+- [Privacy considerations](#privacy)
+
+## Do features in your specification enable origins to downgrade default security protections? ## {#questionnaire-relaxed-sop}
+
+This feature has no impact on secure context and same-origin policy. It does
+allow to use features which are right now gated behind having COOP and COEP
+enabled. However, it imposes restrictions on documents to make this safe.
+
+## How does your feature handle non-"fully active" documents? ## {#questionnaire-non-fully-active}
+
+Anonymous iframe only affect documents inside iframes. It is a general
+assumption <a>back/forward cache</a> features are implemented only for main frame
+navigations. With this assumption, there is nothing special to do.
+
+Hypothetical web browsers implementing <a>back/forward cache</a> at the
+sub-frame level must definitively think about what happens when restoring a
+document inside an iframe whose "anonymous" attribute has changed. For instance,
+they could prevent the back/forward cache from restoring the document.

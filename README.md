@@ -8,7 +8,11 @@ iframe using a new and ephemeral context. In return, the
 This way, developers using COEP can now embed third party iframes that do not.
 
 # Documents
-- [Problem](https://arthursonzogni.github.io/anonymous-iframe/#problem)
+- [The problem](https://arthursonzogni.github.io/anonymous-iframe/#problem)
 - [Explainer](https://arthursonzogni.github.io/anonymous-iframe/#explainer)
 - [Tests](https://arthursonzogni.github.io/anonymous-iframe/#tests)
 - [Specification](https://arthursonzogni.github.io/anonymous-iframe/#specification)
+- [Security considerations](https://arthursonzogni.github.io/anonymous-iframe/#security)
+- [Privacy considerations](https://arthursonzogni.github.io/anonymous-iframe/#privacy)
+- [Self-Review Questionnaire: Security and Privacy](./security-questionnaire.md
+- )
