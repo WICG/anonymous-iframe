@@ -35,10 +35,9 @@ Chrome
 
 Under development: [Feature status](https://chromestatus.com/feature/5729461725036544)
 
-The WIP implementation can be tried, by using one of those command line flags:
+The WIP implementation can be tried, using the command line flags:
 ```bash
-google-chrome-beta --enable-blink-features=AnonymousIframe
-google-chrome-beta --enable-experimental-web-platform-features
+google-chrome-beta --enable-blink-features=AnonymousIframe --enable-features=PartitionedCookies
 ```
 
 Implementation tracker: [https://crbug.com/1226469](https://crbug.com/1226469)
