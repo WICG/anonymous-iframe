@@ -14,6 +14,7 @@ Documents
 - [Explainer](https://arthursonzogni.github.io/anonymous-iframe/#explainer)
 - [Alternatives considered](https://arthursonzogni.github.io/anonymous-iframe/#alternatives)
 - [Tests](https://arthursonzogni.github.io/anonymous-iframe/#tests)
+- [Demo](https://anonymous-iframe.glitch.me/)
 - [Specification](https://arthursonzogni.github.io/anonymous-iframe/#specification)
 - [Security considerations](https://arthursonzogni.github.io/anonymous-iframe/#security)
 - [Privacy considerations](https://arthursonzogni.github.io/anonymous-iframe/#privacy)
@@ -39,6 +40,7 @@ The WIP implementation can be tried, using the command line flags:
 ```bash
 google-chrome-beta --enable-blink-features=AnonymousIframe --enable-features=PartitionedCookies
 ```
+Check the [Demo](https://anonymous-iframe.glitch.me/index.html)
 
 Implementation tracker: [https://crbug.com/1226469](https://crbug.com/1226469)
 
