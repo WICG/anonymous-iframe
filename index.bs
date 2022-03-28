@@ -25,7 +25,7 @@ Work Status: exploring
 Boilerplate: omit conformance
 Markup Shorthands: css off, markdown on
 WPT Display: inline
-WPT Path Prefix: html/cross-origin-embedder-policy/anonymous-iframe/
+WPT Path Prefix: html/anonymous-iframe/
 
 !Tests: <a href=https://github.com/w3c/web-platform-tests/tree/master/html/anonymous-iframe>web-platform-tests html/anonymous-iframe/</a> (<a href=https://github.com/w3c/web-platform-tests/labels/html/anonymous-iframe>ongoing work</a>)
 </pre>
@@ -472,7 +472,7 @@ Tests {#tests}
 =====
 
 Status:
-[https://wpt.fyi/results/html/cross-origin-embedder-policy/anonymous-iframe/](https://wpt.fyi/results/html/cross-origin-embedder-policy/anonymous-iframe/)
+[https://wpt.fyi/results/html/anonymous-iframe/](https://wpt.fyi/results/html/anonymous-iframe/)
 
 <!--<wpt>-->
 <!--anonymous-iframe-popup.tentative.https.window.js-->
