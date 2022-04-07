@@ -7,8 +7,8 @@
 Title: Anonymous iframe
 Status: CG-DRAFT
 Group: WICG
-URL: https://arthursonzogni.github.io/anonymous-iframe/
-Repository: ArthurSonzogni/anonymous-iframe
+URL: https://wicg.github.io/anonymous-iframe/
+Repository: WICG/anonymous-iframe
 Shortname: anonymous-iframe
 Level: 1
 Editor: Arthur Sonzogni, Google, arthursonzogni@google.com

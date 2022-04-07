@@ -10,15 +10,15 @@ This way, developers using COEP can now embed third party iframes that do not.
 
 Documents
 =========
-- [The problem](https://arthursonzogni.github.io/anonymous-iframe/#problem)
-- [Explainer](https://arthursonzogni.github.io/anonymous-iframe/#explainer)
-- [Alternatives considered](https://arthursonzogni.github.io/anonymous-iframe/#alternatives)
-- [Tests](https://arthursonzogni.github.io/anonymous-iframe/#tests)
+- [The problem](https://wicg.github.io/anonymous-iframe/#problem)
+- [Explainer](https://wicg.github.io/anonymous-iframe/#explainer)
+- [Alternatives considered](https://wicg.github.io/anonymous-iframe/#alternatives)
+- [Tests](https://wicg.github.io/anonymous-iframe/#tests)
 - [Demo](https://anonymous-iframe.glitch.me/)
-- [Specification](https://arthursonzogni.github.io/anonymous-iframe/#specification)
-- [Security considerations](https://arthursonzogni.github.io/anonymous-iframe/#security)
-- [Privacy considerations](https://arthursonzogni.github.io/anonymous-iframe/#privacy)
-- [Self-Review Questionnaire: Security and Privacy](https://arthursonzogni.github.io/anonymous-iframe/#questionnaire)
+- [Specification](https://wicg.github.io/anonymous-iframe/#specification)
+- [Security considerations](https://wicg.github.io/anonymous-iframe/#security)
+- [Privacy considerations](https://wicg.github.io/anonymous-iframe/#privacy)
+- [Self-Review Questionnaire: Security and Privacy](https://wicg.github.io/anonymous-iframe/#questionnaire)
 
 Contribute
 ==========
