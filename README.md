@@ -50,12 +50,12 @@ Fill [bugs](https://bugs.chromium.org/p/chromium/issues/entry), under the
 Firefox
 -------
 
-- Request for position: TODO.
+- Request for position: https://github.com/WICG/anonymous-iframe  (pending)
 
 Safari:
 -------
 
-- Request for position: TODO.
+- Request for position: https://lists.webkit.org/pipermail/webkit-dev/2022-April/032205.html (pending)
 
 W3C Technical Architecture Group:
 ---------------------------------
