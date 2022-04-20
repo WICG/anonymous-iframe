@@ -50,7 +50,7 @@ Fill [bugs](https://bugs.chromium.org/p/chromium/issues/entry), under the
 Firefox
 -------
 
-- Request for position: https://github.com/WICG/anonymous-iframe  (pending)
+- Request for position: https://github.com/mozilla/standards-positions/issues/628  (pending)
 
 Safari:
 -------
