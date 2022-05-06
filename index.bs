@@ -532,7 +532,7 @@ must <a>reflect</a> the respective content attributes of the same name.</p>
 
 ### The Window attribute ### {#spec-window-attribute}
 
-Add a read-only constant {{Window/anonymous}} attribute
+Add a read-only constant {{Window/isAnonymouslyFramed}} attribute
 to the [=Window=] object.
 
 <div class="monkey-patch">
@@ -544,7 +544,7 @@ to the [=Window=] object.
 ]
 interface <a>Window</a> : <a>EventTarget</a> {
   // ...
-  readonly attribute boolean <a>anonymous</a>;
+  readonly attribute boolean <a>isAnonymouslyFramed</a>;
   // ...
 };
 </pre>
@@ -556,7 +556,7 @@ In the <a>creating a new browsing context</a> section:
 Add step 5:
 <div class="monkey-patch">
 
-5. Let |anonymous| be the result of determining the <a
+5. Let |isAnonymouslyFramed| be the result of determining the <a
   lt="initial-window-anonymous">initial window anonymous</a> flag, given
   |browsingContext|.
 
@@ -567,7 +567,7 @@ Then later, use it for creating a new [=Window=].
 
 - For the global object, create a new [=Window=] object<span
   class="customHighlight">, with <a lt="attr-iframe-anonymous">anonymous</a> set
-  to |anonymous|.</span>
+  to |isAnonymouslyFramed|.</span>
 
 </div>
 
@@ -610,8 +610,8 @@ When creating a new [=Window=] in the <a>browsing context</a>, pass the
 <div class="monkey-patch">
 
 - For the global object, create a new [=Window=] object<span
-  class="customHighlight">, with |anonymous| to |navigationParams|'s <a
-  lt="navigation-params-anonymous">anonymous</a>.</span>
+  class="customHighlight">, with |isAnonymouslyFramed| to |navigationParams|'s
+  <alt="navigation-params-anonymous">anonymous</a>.</span>
 
 </div>
 
@@ -638,7 +638,7 @@ iframe.src = "https://example.test";
   <a lt="concept-document-origin">origin</a> is <a>same origin-domain</a> with
   |navigationParams|'s <a lt="navigation-params-origin">origin</a>, <span
   class="customHighlight">and |browsingContext|'s <a>active window</a>'s
-  {{Window/anonymous}} flag matches |navigationParams|'s <a
+  {{Window/isAnonymouslyFramed}} flag matches |navigationParams|'s <a
   lt="navigation-params-anonymous">anonymous</a> flag</span>, then do
   nothing.</p>
 
@@ -657,7 +657,7 @@ In the <a>window open steps</a>, adds step 5:
 
 <div class="monkey-patch">
 
-5. If <a>entry global object</a>'s {{Window/anonymous}} flag is true, then set
+5. If <a>entry global object</a>'s {{Window/isAnonymouslyFramed}} flag is true, then set
   <var ignore>noopener</var> to true.
 
 </div>
@@ -680,10 +680,10 @@ Each {{iframe}} element has a mutable
 </div>
 
 <div class="monkey-patch">
-  Each {{Window}} has a constant {{Window/anonymous}} flag.
+  Each {{Window}} has a constant {{Window/isAnonymouslyFramed}} flag.
 
 An <dfn export>anonymous Window</dfn> is a {{Window}}, whose
-{{Window/anonymous}} flag is true.
+{{Window/isAnonymouslyFramed}} flag is true.
 </div>
 
 <div class="monkey-patch">
@@ -698,7 +698,7 @@ An <dfn export>anonymous Window</dfn> is a {{Window}}, whose
    document</a>'s <a>relevant global object</a>.</p></li>
    <li><p>Return the union of:</p>
     <ul class="brief">
-     <li><p>|parentWindow|'s {{Window/anonymous}}</p></li>
+     <li><p>|parentWindow|'s {{Window/isAnonymouslyFramed}}</p></li>
      <li><p>|embedder|'s <a>iframe</a>'s <a
      lt="attr-iframe-anonymous">anonymous</a></p></li>
     </ul>
@@ -710,7 +710,7 @@ An <dfn export>anonymous Window</dfn> is a {{Window}}, whose
 To compute the <dfn export lt="navigation-anonymous">navigation's anonymous flag</dfn>,
 given <a lt="concept-document-bc">browsing context</a> |browsing
 context|, follows the same steps as in the <a
-lt="initial-window-anonymous">initial window anonymous flag</a> algorithm.
+lt="initial-window-anonymous">initial window isAnonymouslyFramed flag</a> algorithm.
 </div>
 
 Add several notes in the general section, gathering changes spread elsewhere in
@@ -718,7 +718,7 @@ the other algorithms.
 
 <div class="monkey-patch">
 
-Note: New [=Window=]'s {{Window/anonymous}} flag is computed either from the <a
+Note: New [=Window=]'s {{Window/isAnonymouslyFramed}} flag is computed either from the <a
   lt="initial-window-anonymous">initial window anonymous flag</a> algorithm for
 new <a lt="concept-document-bc">browsing context</a>, or from the <a
   lt="navigation-anonymous">navigation's anonymous flag</a> algorithm, executed
