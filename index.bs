@@ -566,8 +566,8 @@ Then later, use it for creating a new [=Window=].
 <div class="monkey-patch">
 
 - For the global object, create a new [=Window=] object<span
-  class="customHighlight">, with <a lt="attr-iframe-anonymous">anonymous</a> set
-  to |isAnonymouslyFramed|.</span>
+  class="customHighlight">, with {{Window/isAnonymouslyFramed}} <a
+  lt="attr-iframe-anonymous">anonymous</a> set to |isAnonymouslyFramed|.</span>
 
 </div>
 
@@ -578,7 +578,8 @@ In the <a>navigation params</a> <a>struct</a>, adds the anonymous parameter:
 <div class="monkey-patch">
   <dl>
     <dt><dfn lt="navigation-params-anonymous">anonymous</dfn></dt>
-    <dd>The anonymous flag to impose on the new [=Window=]</dd>
+    <dd>The {{Window/isAnonymouslyFramed}} flag to impose on the new
+    [=Window=]</dd>
   </dl>
 </div>
 
@@ -611,7 +612,7 @@ When creating a new [=Window=] in the <a>browsing context</a>, pass the
 
 - For the global object, create a new [=Window=] object<span
   class="customHighlight">, with |isAnonymouslyFramed| to |navigationParams|'s
-  <alt="navigation-params-anonymous">anonymous</a>.</span>
+  <a lt="navigation-params-anonymous">anonymous</a>.</span>
 
 </div>
 
