@@ -4,9 +4,9 @@
   <title>Anonymous iframe</title>
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
-  <meta content="Bikeshed version fb1e763a4, updated Tue Mar 1 13:13:50 2022 -0800" name="generator">
+  <meta content="Bikeshed version fdd5936bf, updated Tue May 24 14:57:39 2022 -0700" name="generator">
   <link href="https://wicg.github.io/anonymous-iframe/" rel="canonical">
-  <meta content="fe4f1462a9c1f0fdfce6967bae2d263a5e66a807" name="document-revision">
+  <meta content="836dde8c2164a5531b8b0721acccadf2a4155f43" name="document-revision">
 <style>
 .monkey-patch {
     padding: .5em;
@@ -738,7 +738,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Anonymous iframe</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2022-04-20">20 April 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2022-05-26">26 May 2022</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1079,7 +1079,7 @@ false. </div>
 must <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-reflect" id="ref-for-concept-reflect">reflect</a> the respective content attributes of the same name.</p>
    </div>
    <h4 class="heading settled" data-level="6.1.2" id="spec-window-attribute"><span class="secno">6.1.2. </span><span class="content">The Window attribute</span><a class="self-link" href="#spec-window-attribute"></a></h4>
-   <p>Add a read-only constant <code class="idl"><a data-link-type="idl" href="#dom-window-anonymous" id="ref-for-dom-window-anonymous">anonymous</a></code> attribute
+   <p>Add a read-only constant <code class="idl"><a data-link-type="idl" href="#dom-window-isanonymouslyframed" id="ref-for-dom-window-isanonymouslyframed">isAnonymouslyFramed</a></code> attribute
 to the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window④">Window</a> object.</p>
    <div class="monkey-patch">
 <pre class="idl highlight def">[
@@ -1089,7 +1089,7 @@ to the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-requ
 ]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="window"><code><c- g>Window</c-></code></dfn> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget"><c- n>EventTarget</c-></a> {
   // ...
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean①"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Window" data-dfn-type="attribute" data-export data-readonly data-type="boolean" id="dom-window-anonymous"><code><c- g>anonymous</c-></code></dfn>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean①"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Window" data-dfn-type="attribute" data-export data-readonly data-type="boolean" id="dom-window-isanonymouslyframed"><code><c- g>isAnonymouslyFramed</c-></code></dfn>;
   // ...
 };
 </pre>
@@ -1100,15 +1100,14 @@ Add step 5:</p>
    <div class="monkey-patch">
     <ol start="5">
      <li data-md>
-      <p>Let <var>anonymous</var> be the result of determining the <a data-link-type="dfn" href="#initial-window-anonymous" id="ref-for-initial-window-anonymous">initial window anonymous</a> flag, given <var>browsingContext</var>.</p>
+      <p>Let <var>isAnonymouslyFramed</var> be the result of determining the <a data-link-type="dfn" href="#initial-window-anonymous" id="ref-for-initial-window-anonymous">initial window anonymous</a> flag, given <var>browsingContext</var>.</p>
     </ol>
    </div>
    <p>Then later, use it for creating a new <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window⑤">Window</a>.</p>
    <div class="monkey-patch">
     <ul>
      <li data-md>
-      <p>For the global object, create a new <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window⑥">Window</a> object<span class="customHighlight">, with <a data-link-type="dfn" href="#attr-iframe-anonymous" id="ref-for-attr-iframe-anonymous①">anonymous</a> set
-to <var>anonymous</var>.</span></p>
+      <p>For the global object, create a new <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window⑥">Window</a> object<span class="customHighlight">, with <code class="idl"><a data-link-type="idl" href="#dom-window-isanonymouslyframed" id="ref-for-dom-window-isanonymouslyframed①">isAnonymouslyFramed</a></code> <a data-link-type="dfn" href="#attr-iframe-anonymous" id="ref-for-attr-iframe-anonymous①">anonymous</a> set to <var>isAnonymouslyFramed</var>.</span></p>
     </ul>
    </div>
    <h4 class="heading settled" data-level="6.1.4" id="spec-navigating-browsing-context"><span class="secno">6.1.4. </span><span class="content">Navigating a browsing context</span><a class="self-link" href="#spec-navigating-browsing-context"></a></h4>
@@ -1116,7 +1115,7 @@ to <var>anonymous</var>.</span></p>
    <div class="monkey-patch">
     <dl>
      <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="navigation-params-anonymous" data-noexport id="navigation-params-anonymous">anonymous</dfn>
-     <dd>The anonymous flag to impose on the new <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window⑦">Window</a>
+     <dd>The <code class="idl"><a data-link-type="idl" href="#dom-window-isanonymouslyframed" id="ref-for-dom-window-isanonymouslyframed②">isAnonymouslyFramed</a></code> flag to impose on the new <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window⑦">Window</a>
     </dl>
    </div>
    <hr>
@@ -1137,7 +1136,7 @@ params</a>.</p>
    <div class="monkey-patch">
     <ul>
      <li data-md>
-      <p>For the global object, create a new <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window⑨">Window</a> object<span class="customHighlight">, with <var>anonymous</var> to <var>navigationParams</var>’s <a data-link-type="dfn" href="#navigation-params-anonymous" id="ref-for-navigation-params-anonymous">anonymous</a>.</span></p>
+      <p>For the global object, create a new <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window⑨">Window</a> object<span class="customHighlight">, with <var>isAnonymouslyFramed</var> to <var>navigationParams</var>’s <a data-link-type="dfn" href="#navigation-params-anonymous" id="ref-for-navigation-params-anonymous">anonymous</a>.</span></p>
     </ul>
    </div>
    <hr>
@@ -1154,7 +1153,7 @@ iframe<c- p>.</c->src <c- o>=</c-> <c- u>"https://example.test"</c-><c- p>;</c->
    <div class="monkey-patch">
     <ul>
      <li data-md>
-      <p>If <var>browsingContext</var> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#still-on-its-initial-about:blank-document" id="ref-for-still-on-its-initial-about:blank-document">still on its initial about:blank Document</a>, and <var>navigationParams</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#navigation-params-hh" id="ref-for-navigation-params-hh">history handling</a> is "<a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#hh-replace" id="ref-for-hh-replace">replace</a>", and <var>browsingContext</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document">active document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-document-origin" id="ref-for-concept-document-origin">origin</a> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain" id="ref-for-same-origin-domain">same origin-domain</a> with <var>navigationParams</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#navigation-params-origin" id="ref-for-navigation-params-origin">origin</a>, <span class="customHighlight">and <var>browsingContext</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-window" id="ref-for-active-window">active window</a>’s <code class="idl"><a data-link-type="idl" href="#dom-window-anonymous" id="ref-for-dom-window-anonymous①">anonymous</a></code> flag matches <var>navigationParams</var>’s <a data-link-type="dfn" href="#navigation-params-anonymous" id="ref-for-navigation-params-anonymous①">anonymous</a> flag</span>, then do
+      <p>If <var>browsingContext</var> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#still-on-its-initial-about:blank-document" id="ref-for-still-on-its-initial-about:blank-document">still on its initial about:blank Document</a>, and <var>navigationParams</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#navigation-params-hh" id="ref-for-navigation-params-hh">history handling</a> is "<a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#hh-replace" id="ref-for-hh-replace">replace</a>", and <var>browsingContext</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document">active document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-document-origin" id="ref-for-concept-document-origin">origin</a> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain" id="ref-for-same-origin-domain">same origin-domain</a> with <var>navigationParams</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#navigation-params-origin" id="ref-for-navigation-params-origin">origin</a>, <span class="customHighlight">and <var>browsingContext</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-window" id="ref-for-active-window">active window</a>’s <code class="idl"><a data-link-type="idl" href="#dom-window-isanonymouslyframed" id="ref-for-dom-window-isanonymouslyframed③">isAnonymouslyFramed</a></code> flag matches <var>navigationParams</var>’s <a data-link-type="dfn" href="#navigation-params-anonymous" id="ref-for-navigation-params-anonymous①">anonymous</a> flag</span>, then do
 nothing.</p>
       <p></p>
       <p class="note" role="note"><span>Note:</span> This means that both the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#is-initial-about:blank" id="ref-for-is-initial-about:blank">initial
@@ -1169,7 +1168,7 @@ about to be created, will share the same <a data-link-type="dfn" href="https://f
    <div class="monkey-patch">
     <ol start="5">
      <li data-md>
-      <p>If <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#entry-global-object" id="ref-for-entry-global-object">entry global object</a>’s <code class="idl"><a data-link-type="idl" href="#dom-window-anonymous" id="ref-for-dom-window-anonymous②">anonymous</a></code> flag is true, then set <var>noopener</var> to true.</p>
+      <p>If <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#entry-global-object" id="ref-for-entry-global-object">entry global object</a>’s <code class="idl"><a data-link-type="idl" href="#dom-window-isanonymouslyframed" id="ref-for-dom-window-isanonymouslyframed④">isAnonymouslyFramed</a></code> flag is true, then set <var>noopener</var> to true.</p>
     </ol>
    </div>
    <h4 class="heading settled" data-level="6.1.6" id="spec-section"><span class="secno">6.1.6. </span><span class="content">General section</span><a class="self-link" href="#spec-section"></a></h4>
@@ -1181,8 +1180,8 @@ policies</a> ones:</p>
    <div class="monkey-patch"> <strong>7.7 Anonymous iframe</strong> </div>
    <div class="monkey-patch"> Each <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#dom-requestdestination-iframe" id="ref-for-dom-requestdestination-iframe">iframe</a></code> element has a mutable <a data-link-type="dfn" href="#attr-iframe-anonymous" id="ref-for-attr-iframe-anonymous②">anonymous</a> flag attribute. </div>
    <div class="monkey-patch">
-     Each <code class="idl"><a data-link-type="idl" href="#window" id="ref-for-window①">Window</a></code> has a constant <code class="idl"><a data-link-type="idl" href="#dom-window-anonymous" id="ref-for-dom-window-anonymous③">anonymous</a></code> flag. 
-    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="anonymous-window">anonymous Window</dfn> is a <code class="idl"><a data-link-type="idl" href="#window" id="ref-for-window②">Window</a></code>, whose <code class="idl"><a data-link-type="idl" href="#dom-window-anonymous" id="ref-for-dom-window-anonymous④">anonymous</a></code> flag is true.</p>
+     Each <code class="idl"><a data-link-type="idl" href="#window" id="ref-for-window①">Window</a></code> has a constant <code class="idl"><a data-link-type="idl" href="#dom-window-isanonymouslyframed" id="ref-for-dom-window-isanonymouslyframed⑤">isAnonymouslyFramed</a></code> flag. 
+    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="anonymous-window">anonymous Window</dfn> is a <code class="idl"><a data-link-type="idl" href="#window" id="ref-for-window②">Window</a></code>, whose <code class="idl"><a data-link-type="idl" href="#dom-window-isanonymouslyframed" id="ref-for-dom-window-isanonymouslyframed⑥">isAnonymouslyFramed</a></code> flag is true.</p>
    </div>
    <div class="monkey-patch">
      To compute the <dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="initial-window-anonymous" id="initial-window-anonymous">initial window
@@ -1200,7 +1199,7 @@ policies</a> ones:</p>
       <p>Return the union of:</p>
       <ul class="brief">
        <li>
-        <p><var>parentWindow</var>’s <code class="idl"><a data-link-type="idl" href="#dom-window-anonymous" id="ref-for-dom-window-anonymous⑤">anonymous</a></code></p>
+        <p><var>parentWindow</var>’s <code class="idl"><a data-link-type="idl" href="#dom-window-isanonymouslyframed" id="ref-for-dom-window-isanonymouslyframed⑦">isAnonymouslyFramed</a></code></p>
        <li>
         <p><var>embedder</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#the-iframe-element" id="ref-for-the-iframe-element②">iframe</a>’s <a data-link-type="dfn" href="#attr-iframe-anonymous" id="ref-for-attr-iframe-anonymous③">anonymous</a></p>
       </ul>
@@ -1208,11 +1207,11 @@ policies</a> ones:</p>
    </div>
    <div class="monkey-patch"> To compute the <dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="navigation-anonymous" id="navigation-anonymous">navigation’s anonymous flag</dfn>,
 given <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-document-bc" id="ref-for-concept-document-bc①">browsing context</a> <var>browsing
-context</var>, follows the same steps as in the <a data-link-type="dfn" href="#initial-window-anonymous" id="ref-for-initial-window-anonymous①">initial window anonymous flag</a> algorithm. </div>
+context</var>, follows the same steps as in the <a data-link-type="dfn" href="#initial-window-anonymous" id="ref-for-initial-window-anonymous①">initial window isAnonymouslyFramed flag</a> algorithm. </div>
    <p>Add several notes in the general section, gathering changes spread elsewhere in
 the other algorithms.</p>
    <div class="monkey-patch">
-    <p class="note" role="note"><span>Note:</span> New <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window①②">Window</a>'s <code class="idl"><a data-link-type="idl" href="#dom-window-anonymous" id="ref-for-dom-window-anonymous⑥">anonymous</a></code> flag is computed either from the <a data-link-type="dfn" href="#initial-window-anonymous" id="ref-for-initial-window-anonymous②">initial window anonymous flag</a> algorithm for
+    <p class="note" role="note"><span>Note:</span> New <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window①②">Window</a>'s <code class="idl"><a data-link-type="idl" href="#dom-window-isanonymouslyframed" id="ref-for-dom-window-isanonymouslyframed⑧">isAnonymouslyFramed</a></code> flag is computed either from the <a data-link-type="dfn" href="#initial-window-anonymous" id="ref-for-initial-window-anonymous②">initial window anonymous flag</a> algorithm for
 new <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-document-bc" id="ref-for-concept-document-bc②">browsing context</a>, or from the <a data-link-type="dfn" href="#navigation-anonymous" id="ref-for-navigation-anonymous①">navigation’s anonymous flag</a> algorithm, executed
 when the navigation started, for navigations inside pre-existing <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-document-bc" id="ref-for-concept-document-bc③">browsing context</a>.</p>
     <p class="note" role="note"><span>Note:</span> Popup opened from <a data-link-type="dfn" href="#anonymous-window" id="ref-for-anonymous-window">anonymous Window</a> are always with <code>noopener</code> set.</p>
@@ -1665,18 +1664,14 @@ they could prevent the back/forward cache from restoring the document.</p>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
-   <li>
-    anonymous
-    <ul>
-     <li><a href="#dom-htmliframeelement-anonymous">attribute for HTMLIFrameElement</a><span>, in § 6.1.1</span>
-     <li><a href="#dom-window-anonymous">attribute for Window</a><span>, in § 6.1.2</span>
-    </ul>
+   <li><a href="#dom-htmliframeelement-anonymous">anonymous</a><span>, in § 6.1.1</span>
    <li><a href="#anonymous-window">anonymous Window</a><span>, in § 6.1.6</span>
    <li><a href="#attr-iframe-anonymous">attr-iframe-anonymous</a><span>, in § 6.1.1</span>
    <li><a href="#autofill-and-anonymous-iframe">Autofill and anonymous iframe</a><span>, in § 6.1.8</span>
    <li><a href="#dom-iframe-anonymous">dom-iframe-anonymous</a><span>, in § 6.1.1</span>
    <li><a href="#htmliframeelement">HTMLIFrameElement</a><span>, in § 6.1.1</span>
    <li><a href="#initial-window-anonymous">initial-window-anonymous</a><span>, in § 6.1.6</span>
+   <li><a href="#dom-window-isanonymouslyframed">isAnonymouslyFramed</a><span>, in § 6.1.2</span>
    <li><a href="#navigation-anonymous">navigation-anonymous</a><span>, in § 6.1.6</span>
    <li><a href="#navigation-params-anonymous">navigation-params-anonymous</a><span>, in § 6.1.4</span>
    <li><a href="#page-anonymous-nonce">page anonymous nonce</a><span>, in § 6.1.9</span>
@@ -2390,7 +2385,7 @@ they could prevent the back/forward cache from restoring the document.</p>
 ]
 <c- b>interface</c-> <a href="#window"><code><c- g>Window</c-></code></a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget"><c- n>EventTarget</c-></a> {
   // ...
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean"><c- b>boolean</c-></a> <a data-readonly data-type="boolean" href="#dom-window-anonymous"><code><c- g>anonymous</c-></code></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean"><c- b>boolean</c-></a> <a data-readonly data-type="boolean" href="#dom-window-isanonymouslyframed"><code><c- g>isAnonymouslyFramed</c-></code></a>;
   // ...
 };
 
@@ -2411,13 +2406,14 @@ they could prevent the back/forward cache from restoring the document.</p>
     <li><a href="#ref-for-window③">6.1.9. Environment’s partition nonce</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-window-anonymous">
-   <b><a href="#dom-window-anonymous">#dom-window-anonymous</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-window-isanonymouslyframed">
+   <b><a href="#dom-window-isanonymouslyframed">#dom-window-isanonymouslyframed</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-window-anonymous">6.1.2. The Window attribute</a>
-    <li><a href="#ref-for-dom-window-anonymous①">6.1.4. Navigating a browsing context</a>
-    <li><a href="#ref-for-dom-window-anonymous②">6.1.5. Open popup with noopener</a>
-    <li><a href="#ref-for-dom-window-anonymous③">6.1.6. General section</a> <a href="#ref-for-dom-window-anonymous④">(2)</a> <a href="#ref-for-dom-window-anonymous⑤">(3)</a> <a href="#ref-for-dom-window-anonymous⑥">(4)</a>
+    <li><a href="#ref-for-dom-window-isanonymouslyframed">6.1.2. The Window attribute</a>
+    <li><a href="#ref-for-dom-window-isanonymouslyframed①">6.1.3. Creating new browsing context</a>
+    <li><a href="#ref-for-dom-window-isanonymouslyframed②">6.1.4. Navigating a browsing context</a> <a href="#ref-for-dom-window-isanonymouslyframed③">(2)</a>
+    <li><a href="#ref-for-dom-window-isanonymouslyframed④">6.1.5. Open popup with noopener</a>
+    <li><a href="#ref-for-dom-window-isanonymouslyframed⑤">6.1.6. General section</a> <a href="#ref-for-dom-window-isanonymouslyframed⑥">(2)</a> <a href="#ref-for-dom-window-isanonymouslyframed⑦">(3)</a> <a href="#ref-for-dom-window-isanonymouslyframed⑧">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="navigation-params-anonymous">
