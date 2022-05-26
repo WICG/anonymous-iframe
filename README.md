@@ -47,6 +47,7 @@ Implementation tracker: [https://crbug.com/1226469](https://crbug.com/1226469)
 Fill [bugs](https://bugs.chromium.org/p/chromium/issues/entry), under the
 `Blink>SecurityFeature>AnonymousIframe` component.
 
+
 Firefox
 -------
 
