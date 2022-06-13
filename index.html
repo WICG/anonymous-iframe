@@ -4,9 +4,9 @@
   <title>Anonymous iframe</title>
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
-  <meta content="Bikeshed version fdd5936bf, updated Tue May 24 14:57:39 2022 -0700" name="generator">
+  <meta content="Bikeshed version 37b7e7e68, updated Fri May 27 15:08:11 2022 -0700" name="generator">
   <link href="https://wicg.github.io/anonymous-iframe/" rel="canonical">
-  <meta content="836dde8c2164a5531b8b0721acccadf2a4155f43" name="document-revision">
+  <meta content="3c40bd77bb612a5340f9052f4a574b559cdd47f7" name="document-revision">
 <style>
 .monkey-patch {
     padding: .5em;
@@ -738,7 +738,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Anonymous iframe</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2022-05-26">26 May 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2022-06-13">13 June 2022</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -797,6 +797,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
      <ol class="toc">
       <li><a href="#alternatives-sandbox"><span class="secno">4.1</span> <span class="content">Sandboxed iframe</span></a>
       <li><a href="#alternatives-opaque-origins"><span class="secno">4.2</span> <span class="content">Opaque origins</span></a>
+      <li><a href="#alternatives-coep-credentialless"><span class="secno">4.3</span> <span class="content">Make COEP:credentialless to affect <code>&lt;iframe></code></span></a>
      </ol>
     <li><a href="#tests"><span class="secno">5</span> <span class="content">Tests</span></a>
     <li>
@@ -1056,6 +1057,31 @@ origins do not have access to storage APIs at all.</p>
 (e.g. X-Frame-Options, various CSP checks, …) potentially leading to further
 breakages.</p>
    </ul>
+   <h3 class="heading settled" data-level="4.3" id="alternatives-coep-credentialless"><span class="secno">4.3. </span><span class="content">Make COEP:credentialless to affect <code>&lt;iframe></code></span><a class="self-link" href="#alternatives-coep-credentialless"></a></h3>
+   <p>Originally, <code>COEP:credentialless</code> scope was meant to include both simple
+subresources like it does today, but also the <code>&lt;iframe></code>. The latter is very
+different in kind, because this is not only about the request’s credentials, but
+also about every storage API usage made later by the document. So it has been
+postponed here.</p>
+   <p>The difficulty is that most of the time, a website will include a mix of:</p>
+   <ul>
+    <li data-md>
+     <p>Cross-origin <code>&lt;iframe></code> where credentials are important. The URL is
+known to the parent, so it can reasonably ask its children website to be
+updated so that COEP and CORP headers will be sent. It can wait for the child
+to opt-in being embedded.</p>
+    <li data-md>
+     <p>Cross-Origin <code>&lt;iframe></code> like ads. The credentials do not really matters, and
+the parent do not really control the website being loaded.</p>
+   </ul>
+   <p>So, it is important for the parent to be able to make the decision on a
+per-iframe basis. Please note that the decision can never be made directly by
+the children, because this affects the navigation’s request’s credentials. It
+would be too late.</p>
+   <p>With <code>COEP:credentialless</code>, site authors can decide to send credentials on a
+per-resource basis, by tweaking the <code>request.mode</code> and decide in between <code>cors</code> and <code>no-cors</code>. One requires the subresource to opt-in being embedded, the other
+omit credentials.</p>
+   <p>We need a similar mechanism for the <code>&lt;iframe></code> element. This became the <code>anonymous</code> attribute as a result.</p>
    <h2 class="heading settled" data-level="5" id="tests"><span class="secno">5. </span><span class="content">Tests</span><a class="self-link" href="#tests"></a></h2>
    <p>Status: <a href="https://wpt.fyi/results/html/anonymous-iframe/">https://wpt.fyi/results/html/anonymous-iframe/</a></p>
    <h2 class="heading settled" data-level="6" id="specification"><span class="secno">6. </span><span class="content">Specification</span><a class="self-link" href="#specification"></a></h2>
