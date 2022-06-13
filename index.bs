@@ -468,6 +468,35 @@ This solution runs into compatibility issues:
   (e.g. X-Frame-Options, various CSP checks, …) potentially leading to further
   breakages.
 
+## Make COEP:credentialless to affect `<iframe>` ## {#alternatives-coep-credentialless}
+
+Originally, `COEP:credentialless` scope was meant to include both simple
+subresources like it does today, but also the `<iframe>`. The latter is very
+different in kind, because this is not only about the request's credentials, but
+also about every storage API usage made later by the document. So it has been
+postponed here.
+
+The difficulty is that most of the time, a website will include a mix of:
+- Cross-origin `<iframe>` where credentials are important. The URL is
+  known to the parent, so it can reasonably ask its children website to be
+  updated so that COEP and CORP headers will be sent. It can wait for the child
+  to opt-in being embedded.
+- Cross-Origin `<iframe>` like ads. The credentials do not really matters, and
+  the parent do not really control the website being loaded.
+
+So, it is important for the parent to be able to make the decision on a
+per-iframe basis. Please note that the decision can never be made directly by
+the children, because this affects the navigation's request's credentials. It
+would be too late.
+
+With `COEP:credentialless`, site authors can decide to send credentials on a
+per-resource basis, by tweaking the `request.mode` and decide in between `cors`
+and `no-cors`. One requires the subresource to opt-in being embedded, the other
+omit credentials.
+
+We need a similar mechanism for the `<iframe>` element. This became the
+`anonymous` attribute as a result.
+
 Tests {#tests}
 =====
 
