@@ -333,7 +333,7 @@ effect will only take place after an additional navigation.
 The state of the anonymous flag is exposed to the [=Window=] through a read-only
 constant attribute:
 ```js
-window.anonymous
+window.anonymouslyFramed
 ```
 It is true for [=Window=] loaded immediately inside an anonymous iframe, or
 deeper below it.
@@ -345,10 +345,11 @@ Anonymous iframes cannot use existing credentials and shared storage for their
 origin. They are given a blank slate. Unlike sandboxed frames, they can use
 storage APIs and register cookies. However, those credentials and storage can
 only be shared by documents in anonymous iframes in the page (provided they meet
-origin restrictions). They will no longer be accessible once the page has
-navigated. Essentially, anonymous iframes are given a temporary [storage
+origin restrictions). They will no longer be accessible once the user has
+navigate toward a different top-level document. Essentially, anonymous
+iframes are given a temporary [storage
 shelf](https://storage.spec.whatwg.org/#storage-shelf) partitioned to anonymous
-iframes in the page.
+iframes in the current top-level document.
 
 To achieve this, we rely on modifying the [storage
 key](https://storage.spec.whatwg.org/#storage-key) used to access shared storage
@@ -362,11 +363,11 @@ state](https://github.com/MattMenke2/Explainer---Partition-Network-State) and
 environment will no longer be its simple origin as currently described in the
 spec. Instead it will be a combination of the origin and the top-level site URL.
 In an anonymous iframe, we will replace the top-level site URL in the partition
-key by a nonce value, determined once per page. This nonce will be recomputed
-every time the top-level frame navigates. This ensures that anonymous iframes
-cannot share storage keys with non-anonymous iframes. Because the nonce is
-changed on every page navigation, anonymous iframes do not share storage across
-different pages, or across navigations.
+key by a nonce value, determined once per top-level document. As a result, the
+nonce is shared for every anonymous iframe that is a descendant of the same top-level document.
+Because the nonce is different every time the user navigate to a different
+document, anonymous iframes do not share storage across different pages, or
+across cross-document navigations.
 
 <img alt="nonce in partition-key" src="./resources/partition-key.png"></img>
 
@@ -375,11 +376,15 @@ different pages, or across navigations.
 <img alt="page's nonce" src="./resources/page-change-nonce.png"></img>
 
 *Storage and credentials created by anonymous iframes are no longer accessible
-after the top level frame navigated away because the Storage key for anonymous
-iframes will have changed. This applies to top-level history navigations as
-well, meaning that when the page navigates away, anything stored by anonymous
-iframes can be cleared by the browser, unless the page was stored in a
-back-forward cache.*
+after the top level frame navigated away toward a different top-level document,
+because the Storage key for anonymous iframes will be different. It means when
+the top-level document is released after a navigation, the storage used by
+anonymous iframes can be cleared by the browser, because it will never be used
+anymore.
+
+The back-forward cache can keep the top-level document and its anonymous iframe
+alive for longer. The nonce assigned to them continue to be used when the they
+are restored.
 
 Popups opened by anonymous iframes are not anonymous. However, we impose that
 popups opened by anonymous iframes are opened with rel = noopener set. This is
@@ -561,7 +566,7 @@ must <a>reflect</a> the respective content attributes of the same name.</p>
 
 ### The Window attribute ### {#spec-window-attribute}
 
-Add a read-only constant {{Window/isAnonymouslyFramed}} attribute
+Add a read-only constant {{Window/anonymouslyFramed}} attribute
 to the [=Window=] object.
 
 <div class="monkey-patch">
@@ -573,7 +578,7 @@ to the [=Window=] object.
 ]
 interface <a>Window</a> : <a>EventTarget</a> {
   // ...
-  readonly attribute boolean <a>isAnonymouslyFramed</a>;
+  readonly attribute boolean <a>anonymouslyFramed</a>;
   // ...
 };
 </pre>
@@ -585,7 +590,7 @@ In the <a>creating a new browsing context</a> section:
 Add step 5:
 <div class="monkey-patch">
 
-5. Let |isAnonymouslyFramed| be the result of determining the <a
+5. Let |anonymouslyFramed| be the result of determining the <a
   lt="initial-window-anonymous">initial window anonymous</a> flag, given
   |browsingContext|.
 
@@ -595,8 +600,8 @@ Then later, use it for creating a new [=Window=].
 <div class="monkey-patch">
 
 - For the global object, create a new [=Window=] object<span
-  class="customHighlight">, with {{Window/isAnonymouslyFramed}} <a
-  lt="attr-iframe-anonymous">anonymous</a> set to |isAnonymouslyFramed|.</span>
+  class="customHighlight">, with {{Window/anonymouslyFramed}} set to
+  |anonymouslyFramed|.</span>
 
 </div>
 
@@ -607,7 +612,7 @@ In the <a>navigation params</a> <a>struct</a>, adds the anonymous parameter:
 <div class="monkey-patch">
   <dl>
     <dt><dfn lt="navigation-params-anonymous">anonymous</dfn></dt>
-    <dd>The {{Window/isAnonymouslyFramed}} flag to impose on the new
+    <dd>The {{Window/anonymouslyFramed}} flag to impose on the new
     [=Window=]</dd>
   </dl>
 </div>
@@ -640,8 +645,8 @@ When creating a new [=Window=] in the <a>browsing context</a>, pass the
 <div class="monkey-patch">
 
 - For the global object, create a new [=Window=] object<span
-  class="customHighlight">, with |isAnonymouslyFramed| to |navigationParams|'s
-  <a lt="navigation-params-anonymous">anonymous</a>.</span>
+  class="customHighlight">, with {{Window/anonymouslyFramed}} set to
+  |navigationParams|'s <a lt="navigation-params-anonymous">anonymous</a>.</span>
 
 </div>
 
@@ -668,7 +673,7 @@ iframe.src = "https://example.test";
   <a lt="concept-document-origin">origin</a> is <a>same origin-domain</a> with
   |navigationParams|'s <a lt="navigation-params-origin">origin</a>, <span
   class="customHighlight">and |browsingContext|'s <a>active window</a>'s
-  {{Window/isAnonymouslyFramed}} flag matches |navigationParams|'s <a
+  {{Window/anonymouslyFramed}} flag matches |navigationParams|'s <a
   lt="navigation-params-anonymous">anonymous</a> flag</span>, then do
   nothing.</p>
 
@@ -687,7 +692,7 @@ In the <a>window open steps</a>, adds step 5:
 
 <div class="monkey-patch">
 
-5. If <a>entry global object</a>'s {{Window/isAnonymouslyFramed}} flag is true, then set
+5. If <a>entry global object</a>'s {{Window/anonymouslyFramed}} flag is true, then set
   <var ignore>noopener</var> to true.
 
 </div>
@@ -710,10 +715,10 @@ Each {{iframe}} element has a mutable
 </div>
 
 <div class="monkey-patch">
-  Each {{Window}} has a constant {{Window/isAnonymouslyFramed}} flag.
+  Each {{Window}} has a constant {{Window/anonymouslyFramed}} flag.
 
 An <dfn export>anonymous Window</dfn> is a {{Window}}, whose
-{{Window/isAnonymouslyFramed}} flag is true.
+{{Window/anonymouslyFramed}} flag is true.
 </div>
 
 <div class="monkey-patch">
@@ -728,7 +733,7 @@ An <dfn export>anonymous Window</dfn> is a {{Window}}, whose
    document</a>'s <a>relevant global object</a>.</p></li>
    <li><p>Return the union of:</p>
     <ul class="brief">
-     <li><p>|parentWindow|'s {{Window/isAnonymouslyFramed}}</p></li>
+     <li><p>|parentWindow|'s {{Window/anonymouslyFramed}}</p></li>
      <li><p>|embedder|'s <a>iframe</a>'s <a
      lt="attr-iframe-anonymous">anonymous</a></p></li>
     </ul>
@@ -740,7 +745,7 @@ An <dfn export>anonymous Window</dfn> is a {{Window}}, whose
 To compute the <dfn export lt="navigation-anonymous">navigation's anonymous flag</dfn>,
 given <a lt="concept-document-bc">browsing context</a> |browsing
 context|, follows the same steps as in the <a
-lt="initial-window-anonymous">initial window isAnonymouslyFramed flag</a> algorithm.
+lt="initial-window-anonymous">initial window anonymouslyFramed flag</a> algorithm.
 </div>
 
 Add several notes in the general section, gathering changes spread elsewhere in
@@ -748,7 +753,7 @@ the other algorithms.
 
 <div class="monkey-patch">
 
-Note: New [=Window=]'s {{Window/isAnonymouslyFramed}} flag is computed either from the <a
+Note: New [=Window=]'s {{Window/anonymouslyFramed}} flag is computed either from the <a
   lt="initial-window-anonymous">initial window anonymous flag</a> algorithm for
 new <a lt="concept-document-bc">browsing context</a>, or from the <a
   lt="navigation-anonymous">navigation's anonymous flag</a> algorithm, executed
@@ -1319,7 +1324,7 @@ See [[SecurityPrivacyQuestionnaire]] ([link](https://www.w3.org/TR/security-priv
 
 ## What information might this feature expose to Web sites or other parties, and for what purposes is that exposure necessary? ## {#questionnaire-purpose}
 
-The `window.anonymous` method exposes whether a document is loaded in an
+The `window.anonymouslyFramed` method exposes whether a document is loaded in an
 anonymous iframe or not, allowing a document to change its behavior depending on
 the availability of existing credentials or stored resources.
 
