@@ -364,7 +364,7 @@ environment will no longer be its simple origin as currently described in the
 spec. Instead it will be a combination of the origin and the top-level site URL.
 In an anonymous iframe, we will replace the top-level site URL in the partition
 key by a nonce value, determined once per top-level document. As a result, the
-nonce is shared for every anonymous iframe below to the same top-level document.
+nonce is shared for every anonymous iframe that is a descendant of the same top-level document.
 Because the nonce is different every time the user navigate to a different
 document, anonymous iframes do not share storage across different pages, or
 across cross-document navigations.
