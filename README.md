@@ -57,6 +57,7 @@ Safari:
 -------
 
 - Request for position: https://lists.webkit.org/pipermail/webkit-dev/2022-April/032205.html (pending)
+- Request for posiiton: https://github.com/WebKit/standards-positions/issues/45 (pending)
 
 W3C Technical Architecture Group:
 ---------------------------------
