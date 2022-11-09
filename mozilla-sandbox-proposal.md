@@ -40,9 +40,9 @@ With sandbox flags, the closest equivalent is:
 ">
 ```
 
-There was worries developers would find it annoying.
+There was worries developers would find it annoying to use.
 
-It is also difficult to explain to developers this combinaison of sandbox flags represents "anonymous iframe", and allow loading third party iframes without COEP inside COEP context.
+It is also difficult to explain to developers this combinaison of sandbox flags represents "anonymous iframe", and allow loading third party iframes without COEP inside a COEP context.
 
 ### Origin-Trial survey
 
@@ -76,17 +76,17 @@ This makes anonymous iframe unusable for some document, the ones using sandboxed
 Currently, Chrome does not allow developers to block autofill:
 See: https://crbug.com/914451
 
-Adding the `disable-autofill` to the the web-platform would give a trivial way to bypass it.
+Adding the `disable-autofill` to the the web-platform would give a trivial way to bypass it. Moreover, it can be used in the top-level document using CSP or sandbox inheritance.
 
-With a single `anonymous` attribute, the 3 features are tied together, and can only be set inside iframe. It prevents abuse.
+On the contrary, the `anonymous` attribute mitigate this, becaues it can only be used in iframe, and the 3 features are tied together.
 
 ## disallow-XXX syntax?
 
-It would be the first sandbox flag using the `disallow-xxx` syntax. It is possible, but consistent with all the other using `allow-xxx` syntax.
+It would be the first sandbox flag using the `disallow-xxx` syntax. It is possible, but this is inconsistent with every other `allow-xxx` directives.
 
-It also means fully sandboxed iframe: `<iframe sandbox>` doesn’t correspond anymore to a fully sandboxed iframe, because they can be further sandboxed by adding `disallow-autofill`.
+It also means fully sandboxed iframe: `<iframe sandbox>` doesn’t correspond anymore to a fully sandboxed iframe anymore. It can be further sandboxed by adding `disallow-autofill`.
 
-One could argue that the autofill behavior is not specified and we can omit this flag from the anonymous iframe proposal. It can be a note asking the embedder to disable autofill when it matters for security.
+One could argue that the autofill behavior is not specified and we can omit this flag from the anonymous iframe proposal. A note to the implementor can be added asking the them to disable autofill when it matters for security.
 
 ## Popups with partitioned storage
 
