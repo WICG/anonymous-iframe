@@ -4,9 +4,9 @@
   <title>Anonymous iframe</title>
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
-  <meta content="Bikeshed version 44af0bf3e, updated Fri Jul 29 17:05:16 2022 -0700" name="generator">
+  <meta content="Bikeshed version 63e66730b, updated Tue Oct 25 12:35:05 2022 -0700" name="generator">
   <link href="https://wicg.github.io/anonymous-iframe/" rel="canonical">
-  <meta content="9c1bda46913d49a8596406db14a0aafac5b093d7" name="document-revision">
+  <meta content="1a294fc7035507854eca3fb6068f15c1a859af78" name="document-revision">
 <style>
 .monkey-patch {
     padding: .5em;
@@ -317,6 +317,14 @@ a.self-link:hover {
 }
 .heading > a.self-link {
     font-size: 83%;
+}
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
 }
 li > a.self-link {
     left: calc(-1 * (3.5rem - 26px) - 2em);
@@ -738,7 +746,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Anonymous iframe</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2022-08-05">5 August 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2022-11-09">9 November 2022</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -966,7 +974,7 @@ navigate toward a different top-level document. Essentially, anonymous
 iframes are given a temporary <a href="https://storage.spec.whatwg.org/#storage-shelf">storage
 shelf</a> partitioned to anonymous
 iframes in the current top-level document.</p>
-   <p>To achieve this, we rely on modifying the <a href="https://storage.spec.whatwg.org/#storage-key">storage
+   <p>To achieve this, we rely on modifying the <a href="https://storage.spec.whatwg.org/#storage-key" id="termref-for-storage-key">storage
 key</a> used to access shared storage
 by anonymous iframes. As part of the <a href="https://privacycg.github.io/storage-partitioning/">client-side storage partitioning
 effort</a> (declined across <a href="https://github.com/wanderview/quota-storage-partitioning/blob/main/explainer.md">storage
@@ -994,7 +1002,7 @@ alive for longer. The nonce assigned to them continue to be used when the they
 are restored.</p>
    <p>Popups opened by anonymous iframes are not anonymous. However, we impose that
 popups opened by anonymous iframes are opened with rel = noopener set. This is
-done to prevent OAuth popup flows from being used in anonymous iframes. See the <a data-link-type="dfn" href="#threat-model" id="ref-for-threat-model">threat model</a> part for a discussion on why we impose this restriction.</p>
+done to prevent OAuth popup flows from being used in anonymous iframes. See the <a data-link-type="dfn" href="/#threat-model" id="ref-for-threat-model">threat model</a> part for a discussion on why we impose this restriction.</p>
    <h3 class="heading settled" data-level="3.3" id="proposal-interactions"><span class="secno">3.3. </span><span class="content">How do anonymous iframes interact with COEP</span><a class="self-link" href="#proposal-interactions"></a></h3>
    <p>Our proposition is that anonymous iframes are safe enough to embed in a COEP
 page, even if they haven’t opted to do so by sending a COEP header. Thus, when
@@ -1008,14 +1016,14 @@ them unavailable in anonymous iframes. The goal of anonymous iframes is to
 preserve storage critical to an iframe function, but to avoid users logging into
 anonymous iframes. Autofill and password managers make logging in easier, and so
 should be avoided to prevent users accidentally logging in. This also allows
-anonymous iframes to have a <a data-link-type="dfn" href="#threat-model" id="ref-for-threat-model①">threat model</a> similar to a phishing page (see
-the <a data-link-type="dfn" href="#threat-model" id="ref-for-threat-model②">Threat model</a> part of this explainer below)</p>
+anonymous iframes to have a <a data-link-type="dfn" href="/#threat-model" id="ref-for-threat-model①">threat model</a> similar to a phishing page (see
+the <a data-link-type="dfn" href="/#threat-model" id="ref-for-threat-model②">Threat model</a> part of this explainer below)</p>
    <h2 class="heading settled" data-level="4" id="alternatives"><span class="secno">4. </span><span class="content">Alternatives considered</span><a class="self-link" href="#alternatives"></a></h2>
    <p><em>This section is not normative.</em></p>
    <h3 class="heading settled" data-level="4.1" id="alternatives-sandbox"><span class="secno">4.1. </span><span class="content">Sandboxed iframe</span><a class="self-link" href="#alternatives-sandbox"></a></h3>
    <p>Sandboxed iframes without the allow-same-origin flag do not have access to
 storage APIs or cookies for their subresource requests. However, the document of
-a sandbox iframe can still be requested with credentials, which does not fit the <a data-link-type="dfn" href="#threat-model" id="ref-for-threat-model③">threat model</a>. We could change sandboxed iframes so that documents are
+a sandbox iframe can still be requested with credentials, which does not fit the <a data-link-type="dfn" href="/#threat-model" id="ref-for-threat-model③">threat model</a>. We could change sandboxed iframes so that documents are
 also requested without credentials.</p>
    <p>So why are we proposing introducing a new attribute instead of just using
 sandboxed iframes with a new sandbox flag?</p>
@@ -1159,10 +1167,10 @@ Add step 5:</p>
    </div>
    <p>Then later in the same algorithm, use this variable to build the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#navigation-params" id="ref-for-navigation-params①">navigation
 params</a>.</p>
-   <p>It is also passed as a new argument to the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#process-a-navigate-fetch" id="ref-for-process-a-navigate-fetch">process a navigate fetch</a> algorithm, which is also used to create a new <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#navigation-params" id="ref-for-navigation-params②">navigation params</a>.</p>
+   <p>It is also passed as a new argument to the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#process-a-navigate-fetch" id="ref-for-process-a-navigate-fetch">process a navigate fetch</a> algorithm, which is also used to create a new <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#navigation-params" id="ref-for-navigation-params②">navigation params</a>.</p>
    <hr>
    <p>Then, in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#initialise-the-document-object" id="ref-for-initialise-the-document-object">initialize the document object</a> algorithm:</p>
-   <p>When creating a new <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window⑧">Window</a> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/window-object.html#window-bc" id="ref-for-window-bc">browsing context</a>, pass the <var>anonymous</var> value.</p>
+   <p>When creating a new <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window⑧">Window</a> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window-bc" id="ref-for-window-bc">browsing context</a>, pass the <var>anonymous</var> value.</p>
    <div class="monkey-patch">
     <ul>
      <li data-md>
@@ -1183,7 +1191,7 @@ iframe<c- p>.</c->src <c- o>=</c-> <c- u>"https://example.test"</c-><c- p>;</c->
    <div class="monkey-patch">
     <ul>
      <li data-md>
-      <p>If <var>browsingContext</var> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#still-on-its-initial-about:blank-document" id="ref-for-still-on-its-initial-about:blank-document">still on its initial about:blank Document</a>, and <var>navigationParams</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#navigation-params-hh" id="ref-for-navigation-params-hh">history handling</a> is "<a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#hh-replace" id="ref-for-hh-replace">replace</a>", and <var>browsingContext</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document" id="ref-for-active-document">active document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-document-origin" id="ref-for-concept-document-origin">origin</a> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain" id="ref-for-same-origin-domain">same origin-domain</a> with <var>navigationParams</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#navigation-params-origin" id="ref-for-navigation-params-origin">origin</a>, <span class="customHighlight">and <var>browsingContext</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-window" id="ref-for-active-window">active window</a>’s <code class="idl"><a data-link-type="idl" href="#dom-window-anonymouslyframed" id="ref-for-dom-window-anonymouslyframed④">anonymouslyFramed</a></code> flag matches <var>navigationParams</var>’s <a data-link-type="dfn" href="#navigation-params-anonymous" id="ref-for-navigation-params-anonymous①">anonymous</a> flag</span>, then do
+      <p>If <var>browsingContext</var> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#still-on-its-initial-about:blank-document" id="ref-for-still-on-its-initial-about:blank-document">still on its initial about:blank Document</a>, and <var>navigationParams</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#navigation-params-hh" id="ref-for-navigation-params-hh">history handling</a> is "<a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#hh-replace" id="ref-for-hh-replace">replace</a>", and <var>browsingContext</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-document" id="ref-for-nav-document">active document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-document-origin" id="ref-for-concept-document-origin">origin</a> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin-domain" id="ref-for-same-origin-domain">same origin-domain</a> with <var>navigationParams</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#navigation-params-origin" id="ref-for-navigation-params-origin">origin</a>, <span class="customHighlight">and <var>browsingContext</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#active-window" id="ref-for-active-window">active window</a>’s <code class="idl"><a data-link-type="idl" href="#dom-window-anonymouslyframed" id="ref-for-dom-window-anonymouslyframed④">anonymouslyFramed</a></code> flag matches <var>navigationParams</var>’s <a data-link-type="dfn" href="#navigation-params-anonymous" id="ref-for-navigation-params-anonymous①">anonymous</a> flag</span>, then do
 nothing.</p>
       <p></p>
       <p class="note" role="note"><span>Note:</span> This means that both the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#is-initial-about:blank" id="ref-for-is-initial-about:blank">initial
@@ -1252,10 +1260,10 @@ when the navigation started, for navigations inside pre-existing <a data-link-ty
    <p>Add a new parameters <var>anonymous</var> parameter to the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#check-a-navigation-response&apos;s-adherence-to-its-embedder-policy" id="ref-for-check-a-navigation-response&apos;s-adherence-to-its-embedder-policy">check a navigation
 response’s adherence to its embedder policy</a> and pass <var>navigationParams</var>’s <a data-link-type="dfn" href="#navigation-params-anonymous" id="ref-for-navigation-params-anonymous②">anonymous</a>.</p>
    <div class="monkey-patch">
-    <p>To <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#check-a-navigation-response&apos;s-adherence-to-its-embedder-policy" id="ref-for-check-a-navigation-response&apos;s-adherence-to-its-embedder-policy①">check a navigation response’s adherence to its embedder policy</a> given a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response" id="ref-for-concept-response">response</a> <var>response</var>, a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/window-object.html#window-bc" id="ref-for-window-bc①">browsing context</a> <var>target</var>, an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#policy-container-embedder-policy" id="ref-for-policy-container-embedder-policy">embedder policy</a> <var>responsePolicy</var>, <span class="customHighlight">and a boolean <var>anonymous</var></span>:</p>
+    <p>To <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#check-a-navigation-response&apos;s-adherence-to-its-embedder-policy" id="ref-for-check-a-navigation-response&apos;s-adherence-to-its-embedder-policy①">check a navigation response’s adherence to its embedder policy</a> given a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response" id="ref-for-concept-response">response</a> <var>response</var>, a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window-bc" id="ref-for-window-bc①">browsing context</a> <var>target</var>, an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container-embedder-policy" id="ref-for-policy-container-embedder-policy">embedder policy</a> <var>responsePolicy</var>, <span class="customHighlight">and a boolean <var>anonymous</var></span>:</p>
     <ol>
      <li>
-      <p>If <var>target</var> is not a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#child-browsing-context" id="ref-for-child-browsing-context">child browsing context</a>, then
+      <p>If <var>target</var> is not a <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#child-browsing-context" id="ref-for-child-browsing-context">child browsing context</a>, then
    return true.</p>
      <li>
       <p>Let <var>parentPolicy</var> be <var>target</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#bc-container-document" id="ref-for-bc-container-document">container document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-document-policy-container" id="ref-for-concept-document-policy-container">policy container</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#policy-container-embedder-policy" id="ref-for-policy-container-embedder-policy①">embedder policy</a>.</p>
@@ -1299,11 +1307,11 @@ their autofilling features.</p>
     </dl>
    </div>
    <h5 class="heading settled" data-level="6.1.9.1" id="spec-navigation-partition-nonce"><span class="secno">6.1.9.1. </span><span class="content">For Navigation</span><a class="self-link" href="#spec-navigation-partition-nonce"></a></h5>
-   <p>In the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#process-a-navigate-fetch" id="ref-for-process-a-navigate-fetch①">process a navigate fetch</a>, add step:</p>
+   <p>In the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#process-a-navigate-fetch" id="ref-for-process-a-navigate-fetch①">process a navigate fetch</a>, add step:</p>
    <div class="monkey-patch">
     <ol start="13">
      <li data-md>
-      <p>If <var>anonymous</var> is true, let <var>partitionNonce</var> be <var>browsingContext</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context">top-level browsing context</a>’s <a data-link-type="dfn" href="#page-anonymous-nonce" id="ref-for-page-anonymous-nonce①">page
+      <p>If <var>anonymous</var> is true, let <var>partitionNonce</var> be <var>browsingContext</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context" id="ref-for-top-level-browsing-context">top-level browsing context</a>’s <a data-link-type="dfn" href="#page-anonymous-nonce" id="ref-for-page-anonymous-nonce①">page
   anonymous nonce</a>, null otherwise.</p>
     </ol>
    </div>
@@ -1315,7 +1323,7 @@ their autofilling features.</p>
    . 
    <h5 class="heading settled" data-level="6.1.9.2" id="spec-window-partition-nonce"><span class="secno">6.1.9.2. </span><span class="content">For Window</span><a class="self-link" href="#spec-window-partition-nonce"></a></h5>
    <p>In the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#initialise-the-document-object" id="ref-for-initialise-the-document-object①">initialize the document object</a>, add step 6.9:</p>
-   <div class="monkey-patch"> 6.9. If <var>navigationParams</var>’s <a data-link-type="dfn" href="#navigation-params-anonymous" id="ref-for-navigation-params-anonymous③">anonymous</a> is true, let <var>partitionNonce</var> be <var>browsingContext</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context" id="ref-for-top-level-browsing-context①">top-level browsing
+   <div class="monkey-patch"> 6.9. If <var>navigationParams</var>’s <a data-link-type="dfn" href="#navigation-params-anonymous" id="ref-for-navigation-params-anonymous③">anonymous</a> is true, let <var>partitionNonce</var> be <var>browsingContext</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context" id="ref-for-top-level-browsing-context①">top-level browsing
   context</a>’s <a data-link-type="dfn" href="#page-anonymous-nonce" id="ref-for-page-anonymous-nonce②">page anonymous nonce</a>, null otherwise. </div>
    <p>Then, plumb it to create the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment③">Environment</a> in step 6.10:</p>
    <div class="monkey-patch">
@@ -1367,7 +1375,7 @@ Proceed the following changes:</p>
     <p>A <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#network-partition-key" id="ref-for-network-partition-key">network partition key</a> is a tuple consisting of:</p>
     <ul>
      <li data-md>
-      <p>A <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#site" id="ref-for-site">site</a>.</p>
+      <p>A <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#site" id="ref-for-site">site</a>.</p>
      <li data-md>
       <p>null or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#implementation-defined" id="ref-for-implementation-defined">implementation-defined</a> value.</p>
      <li data-md>
@@ -1386,7 +1394,7 @@ Proceed the following changes:</p>
      <li>
       <p>Assert: <var>topLevelOrigin</var> is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-origin" id="ref-for-concept-origin①">origin</a>. </p>
      <li>
-      <p>Let <var>topLevelSite</var> be the result of <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#obtain-a-site" id="ref-for-obtain-a-site">obtaining a site</a>,
+      <p>Let <var>topLevelSite</var> be the result of <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#obtain-a-site" id="ref-for-obtain-a-site">obtaining a site</a>,
    given <var>topLevelOrigin</var>. </p>
      <li>
       <p>Let <var>secondKey</var> be null or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#implementation-defined" id="ref-for-implementation-defined①">implementation-defined</a> value. </p>
@@ -1630,7 +1638,7 @@ unpersonalized, making this equivalent to COEP:credentiallesss from a security
 perspective.</p>
    <h2 class="heading settled" data-level="8" id="privacy"><span class="secno">8. </span><span class="content">Privacy considerations</span><a class="self-link" href="#privacy"></a></h2>
    <p>The main privacy threat posed by this API is the risk of a data leak through a
-side channel attack like <a data-link-type="biblio" href="#biblio-spectre">[Spectre]</a>. As detailed in the <a data-link-type="dfn" href="#threat-model" id="ref-for-threat-model④">threat model</a> above, we believe the API provides a meaningful defense against <a data-link-type="biblio" href="#biblio-spectre">[Spectre]</a> attacks, and thus does not pose a privacy risk.</p>
+side channel attack like <a data-link-type="biblio" href="#biblio-spectre">[Spectre]</a>. As detailed in the <a data-link-type="dfn" href="/#threat-model" id="ref-for-threat-model④">threat model</a> above, we believe the API provides a meaningful defense against <a data-link-type="biblio" href="#biblio-spectre">[Spectre]</a> attacks, and thus does not pose a privacy risk.</p>
    <h2 class="heading settled" data-level="9" id="questionnaire"><span class="secno">9. </span><span class="content">Self-Review Questionnaire</span><a class="self-link" href="#questionnaire"></a></h2>
    <p>See <a data-link-type="biblio" href="#biblio-securityprivacyquestionnaire">[SecurityPrivacyQuestionnaire]</a> (<a href="https://www.w3.org/TR/security-privacy-questionnaire/">link</a>)</p>
    <h3 class="heading settled" data-level="9.1" id="questionnaire-purpose"><span class="secno">9.1. </span><span class="content">What information might this feature expose to Web sites or other parties, and for what purposes is that exposure necessary?</span><a class="self-link" href="#questionnaire-purpose"></a></h3>
@@ -1683,9 +1691,9 @@ allow to use features which are right now gated behind having COOP and COEP
 enabled. However, it imposes restrictions on documents to make this safe.</p>
    <h3 class="heading settled" data-level="9.17" id="questionnaire-non-fully-active"><span class="secno">9.17. </span><span class="content">How does your feature handle non-"fully active" documents?</span><a class="self-link" href="#questionnaire-non-fully-active"></a></h3>
    <p>Anonymous iframe only affect documents inside iframes. It is a general
-assumption <a data-link-type="dfn" href="#https://web.dev/bfcache/" id="ref-for-https://web.dev/bfcache/">back/forward cache</a> features are implemented only for main frame
+assumption <a data-link-type="dfn" href="https://web.dev/bfcache/" id="termref-for-">back/forward cache</a> features are implemented only for main frame
 navigations. With this assumption, there is nothing special to do.</p>
-   <p>Hypothetical web browsers implementing <a data-link-type="dfn" href="#https://web.dev/bfcache/" id="ref-for-https://web.dev/bfcache/①">back/forward cache</a> at the
+   <p>Hypothetical web browsers implementing <a data-link-type="dfn" href="https://web.dev/bfcache/" id="termref-for-①">back/forward cache</a> at the
 sub-frame level must definitively think about what happens when restoring a
 document inside an iframe whose "anonymous" attribute has changed. For instance,
 they could prevent the back/forward cache from restoring the document.</p>
@@ -1715,6 +1723,58 @@ they could prevent the back/forward cache from restoring the document.</p>
    <li><a href="#storage-key-storage-key-origin">storage-key-origin</a><span>, in § 6.5.1</span>
    <li><a href="#window">Window</a><span>, in § 6.1.2</span>
   </ul>
+  <aside class="dfn-panel" data-for="term-for-">
+   <a href="https://web.dev/bfcache/">https://web.dev/bfcache/</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#termref-for-">9.17. How does your feature handle non-"fully active" documents?</a> <a href="#termref-for-">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-response">
+   <a href="https://fetch.spec.whatwg.org/#concept-response">https://fetch.spec.whatwg.org/#concept-response</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-response">6.1.7. COEP embedder checks</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-/issues/1">
+   <a href="https://github.com/w3c/mediacapture-viewport#/issues/1">https://github.com/w3c/mediacapture-viewport#/issues/1</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-/issues/1">2. A problem</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-issuecomment-812">
+   <a href="https://www.w3.org/TR/hr-time//issues/1#issuecomment-812">https://www.w3.org/TR/hr-time//issues/1#issuecomment-812</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-issuecomment-812">2. A problem</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-sec-execution-contextssec-execution-contexts">
+   <a href="https://tc39.es/ecma262/#sec-execution-contextssec-execution-contexts">https://tc39.es/ecma262/#sec-execution-contextssec-execution-contexts</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-sec-execution-contextssec-execution-contexts">6.1.9.2. For Window</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-network-partition-key">
+   <a href="https://fetch.spec.whatwg.org/#network-partition-key">https://fetch.spec.whatwg.org/#network-partition-key</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-network-partition-key">6.2.1. Plumb the partition-nonce</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-storage-key">
+   <a href="https://storage.spec.whatwg.org/#storage-key">https://storage.spec.whatwg.org/#storage-key</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#termref-for-storage-key">3.2. Anonymous iframes and credentials</a>
+    <li><a href="#ref-for-storage-key">6.5.1. storage-key</a> <a href="#ref-for-storage-key①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-threat-model">
+   <a href="/#threat-model">/#threat-model</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-threat-model">3.2. Anonymous iframes and credentials</a>
+    <li><a href="#ref-for-threat-model①">3.4. Anonymous iframes and autofill/password managers</a> <a href="#ref-for-threat-model②">(2)</a>
+    <li><a href="#ref-for-threat-model③">4.1. Sandboxed iframe</a>
+    <li><a href="#ref-for-threat-model④">8. Privacy considerations</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-eventtarget">
    <a href="https://dom.spec.whatwg.org/#eventtarget">https://dom.spec.whatwg.org/#eventtarget</a><b>Referenced in:</b>
    <ul>
@@ -1773,14 +1833,14 @@ they could prevent the back/forward cache from restoring the document.</p>
     <li><a href="#ref-for-htmlelement">6.1.1. The Iframe attribute</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-active-document">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#active-document">https://html.spec.whatwg.org/multipage/browsers.html#active-document</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-nav-document">
+   <a href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-document">https://html.spec.whatwg.org/multipage/document-sequences.html#nav-document</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-active-document">6.1.4. Navigating a browsing context</a>
+    <li><a href="#ref-for-nav-document">6.1.4. Navigating a browsing context</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-active-window">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#active-window">https://html.spec.whatwg.org/multipage/browsers.html#active-window</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/C/#active-window">https://html.spec.whatwg.org/C/#active-window</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-active-window">6.1.4. Navigating a browsing context</a>
    </ul>
@@ -1804,7 +1864,7 @@ they could prevent the back/forward cache from restoring the document.</p>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-window-bc">
-   <a href="https://html.spec.whatwg.org/multipage/window-object.html#window-bc">https://html.spec.whatwg.org/multipage/window-object.html#window-bc</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window-bc">https://html.spec.whatwg.org/multipage/nav-history-apis.html#window-bc</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-window-bc">6.1.4. Navigating a browsing context</a>
     <li><a href="#ref-for-window-bc①">6.1.7. COEP embedder checks</a>
@@ -1817,7 +1877,7 @@ they could prevent the back/forward cache from restoring the document.</p>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-child-browsing-context">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#child-browsing-context">https://html.spec.whatwg.org/multipage/browsers.html#child-browsing-context</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/C/#child-browsing-context">https://html.spec.whatwg.org/C/#child-browsing-context</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-child-browsing-context">6.1.7. COEP embedder checks</a>
    </ul>
@@ -1931,7 +1991,7 @@ they could prevent the back/forward cache from restoring the document.</p>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-policy-container-embedder-policy">
-   <a href="https://html.spec.whatwg.org/multipage/origin.html#policy-container-embedder-policy">https://html.spec.whatwg.org/multipage/origin.html#policy-container-embedder-policy</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container-embedder-policy">https://html.spec.whatwg.org/multipage/browsers.html#policy-container-embedder-policy</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-policy-container-embedder-policy">6.1.7. COEP embedder checks</a>
    </ul>
@@ -2047,9 +2107,17 @@ they could prevent the back/forward cache from restoring the document.</p>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-obtain-a-site">
-   <a href="https://html.spec.whatwg.org/multipage/origin.html#obtain-a-site">https://html.spec.whatwg.org/multipage/origin.html#obtain-a-site</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/multipage/browsers.html#obtain-a-site">https://html.spec.whatwg.org/multipage/browsers.html#obtain-a-site</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-obtain-a-site">6.2.1. Plumb the partition-nonce</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-concept-origin">
+   <a href="https://html.spec.whatwg.org/C/#concept-origin">https://html.spec.whatwg.org/C/#concept-origin</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-origin">6.1.9.2. For Window</a>
+    <li><a href="#ref-for-concept-origin①">6.2.1. Plumb the partition-nonce</a>
+    <li><a href="#ref-for-concept-origin②">6.5.1. storage-key</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-settings-object-origin">
@@ -2065,7 +2133,7 @@ they could prevent the back/forward cache from restoring the document.</p>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-process-a-navigate-fetch">
-   <a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#process-a-navigate-fetch">https://html.spec.whatwg.org/multipage/browsing-the-web.html#process-a-navigate-fetch</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/C/#process-a-navigate-fetch">https://html.spec.whatwg.org/C/#process-a-navigate-fetch</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-process-a-navigate-fetch">6.1.4. Navigating a browsing context</a>
     <li><a href="#ref-for-process-a-navigate-fetch①">6.1.9.1. For Navigation</a>
@@ -2090,7 +2158,7 @@ they could prevent the back/forward cache from restoring the document.</p>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-same-origin-domain">
-   <a href="https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain">https://html.spec.whatwg.org/multipage/origin.html#same-origin-domain</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin-domain">https://html.spec.whatwg.org/multipage/browsers.html#same-origin-domain</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-same-origin-domain">6.1.4. Navigating a browsing context</a>
    </ul>
@@ -2126,7 +2194,7 @@ they could prevent the back/forward cache from restoring the document.</p>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-site">
-   <a href="https://html.spec.whatwg.org/multipage/origin.html#site">https://html.spec.whatwg.org/multipage/origin.html#site</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/multipage/browsers.html#site">https://html.spec.whatwg.org/multipage/browsers.html#site</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-site">6.2.1. Plumb the partition-nonce</a>
    </ul>
@@ -2144,7 +2212,7 @@ they could prevent the back/forward cache from restoring the document.</p>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-top-level-browsing-context">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context</a><b>Referenced in:</b>
+   <a href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context">https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-top-level-browsing-context">6.1.9.1. For Navigation</a>
     <li><a href="#ref-for-top-level-browsing-context①">6.1.9.2. For Window</a>
@@ -2242,6 +2310,18 @@ they could prevent the back/forward cache from restoring the document.</p>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
+    <a data-link-type="biblio">[]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-">back/forward cache</span>
+     <li><span class="dfn-paneled" id="term-for-concept-response">concept-response</span>
+     <li><span class="dfn-paneled" id="term-for-/issues/1">getviewportmedia</span>
+     <li><span class="dfn-paneled" id="term-for-issuecomment-812">high resolution timers</span>
+     <li><span class="dfn-paneled" id="term-for-sec-execution-contextssec-execution-contexts">javascript execution context</span>
+     <li><span class="dfn-paneled" id="term-for-network-partition-key">network partition key</span>
+     <li><span class="dfn-paneled" id="term-for-storage-key">storage key</span>
+     <li><span class="dfn-paneled" id="term-for-threat-model">threat model</span>
+    </ul>
+   <li>
     <a data-link-type="biblio">[DOM]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-eventtarget">EventTarget</span>
@@ -2265,7 +2345,7 @@ they could prevent the back/forward cache from restoring the document.</p>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-htmlelement">HTMLElement</span>
-     <li><span class="dfn-paneled" id="term-for-active-document">active document</span>
+     <li><span class="dfn-paneled" id="term-for-nav-document">active document</span>
      <li><span class="dfn-paneled" id="term-for-active-window">active window</span>
      <li><span class="dfn-paneled" id="term-for-bc-container">bc-container</span>
      <li><span class="dfn-paneled" id="term-for-bc-container-document">bc-container-document</span>
@@ -2308,6 +2388,7 @@ they could prevent the back/forward cache from restoring the document.</p>
      <li><span class="dfn-paneled" id="term-for-navigation-params-origin">navigation-params-origin</span>
      <li><span class="dfn-paneled" id="term-for-navigation-params-reserved-environment">navigation-params-reserved-environment</span>
      <li><span class="dfn-paneled" id="term-for-obtain-a-site">obtain a site</span>
+     <li><span class="dfn-paneled" id="term-for-concept-origin">origin</span>
      <li><span class="dfn-paneled" id="term-for-concept-settings-object-origin">origin <small>(for environment settings object)</small></span>
      <li><span class="dfn-paneled" id="term-for-policy-container-embedder-policy①">policy-container-embedder-policy</span>
      <li><span class="dfn-paneled" id="term-for-process-a-navigate-fetch">process a navigate fetch</span>
