@@ -173,6 +173,9 @@ urlPrefix: https://html.spec.whatwg.org/C/; spec: html
   text: set up a window environment settings object; type:dfn; url:set-up-a-window-environment-settings-object
   text: script settings for workers; type:dfn; url:script-:settings-for-workers
   text: set up a worklet environment settings object; type:dfn; url:set-up-a-worklet-environment-settings-object
+  text: process a navigate fetch; type:dfn; url:process-a-navigate-fetch
+  text: active window; type:dfn; url:active-window
+  text: child browsing context; type:dfn; url:child-browsing-context
   <!--text: A; type:dfn; url:A-->
   <!--text: A; type:dfn; url:A-->
 
@@ -200,7 +203,7 @@ urlPrefix: https://tc39.es/ecma262/#sec-execution-contexts
 
 text: back/forward cache; type:dfn; url:https://web.dev/bfcache/
 
-text: threat model; type:dfn; url:#threat-model
+text: threat model; type:dfn; url:/#threat-model
 
 </pre>
 
