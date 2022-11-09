@@ -57,7 +57,7 @@ Always with sandbox           | 3
 Both with and without sandbox | 4
 Always without sandbox        | 0
 
-This validates rather well @smaug---- hypothesis that they will be mainly used conjointly.
+At least 50% of responders will have cases where they will use anonymous iframes without sandbox flags, and will need to rely on the more complex setup outlined above.
 
 ## Supporting sandboxed iframe inside anonymous iframe.
 
