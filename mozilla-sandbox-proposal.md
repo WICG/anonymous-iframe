@@ -10,6 +10,8 @@ The 3 sandbox flags could be for instance:
   - allow-popups-no-opener
   - disallow-autofill
 
+We believe this is less desirable compared to the solution we implemented using an iframe property. It has poorer developer ergonomics, there are tricky points of integration with sandbox flags, it introduces the first disallow-xxx flag and it is harder to explain to developers what they need to do to deploy COEP on their website. Overall, we think that this is less desirable compared to introducing a new iframe property, as outlined in more details below.
+
 ## Ergonomic for developers?
 
 Main scenario: Developers want to start using COEP. One of their third party iframe do not have deployed COEP yet, so they want to use anonymous iframe.
