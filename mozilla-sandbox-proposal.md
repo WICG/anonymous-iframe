@@ -86,7 +86,7 @@ It would be the first sandbox flag using the `disallow-xxx` syntax. It is possib
 
 It also means fully sandboxed iframe: `<iframe sandbox>` doesn’t correspond anymore to a fully sandboxed iframe anymore. It can be further sandboxed by adding `disallow-autofill`.
 
-One could argue that the autofill behavior is not specified and we can omit this flag from the anonymous iframe proposal. A note to the implementor can be added asking the them to disable autofill when it matters for security.
+One could argue the autofill behavior is not specified and we can omit this flag from the anonymous iframe proposal. A note to the implementor can be added about disabling autofill only when it matters for security.
 
 ## Popups with partitioned storage
 
