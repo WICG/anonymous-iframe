@@ -30,7 +30,6 @@ With sandbox flags, the closest equivalent is:
   allow-modals
   allow-orientation-lock
   allow-pointer-lock
-  allow-popups
   allow-presentation
   allow-scripts
   allow-top-navigation
@@ -40,9 +39,7 @@ With sandbox flags, the closest equivalent is:
 ">
 ```
 
-There was worries developers would find it annoying to use.
-
-It is also difficult to explain to developers this combinaison of sandbox flags represents "anonymous iframe", and allow loading third party iframes without COEP inside a COEP context.
+There was worries developers would find it annoying to use.  It is also difficult to explain to developers this combinaison of sandbox flags represents "anonymous iframe", and allow loading third party iframes without COEP inside a COEP context.
 
 ### Origin-Trial survey
 
