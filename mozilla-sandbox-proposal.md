@@ -78,7 +78,7 @@ See: https://crbug.com/914451
 
 Adding the `disable-autofill` to the the web-platform would give a trivial way to bypass it. Moreover, it can be used in the top-level document using CSP or sandbox inheritance.
 
-On the contrary, the `anonymous` attribute mitigate this, becaues it can only be used in iframe, and the 3 features are tied together.
+On the contrary, the `anonymous` attribute mitigates this, because it can only be used in iframe, and the 3 features are tied together.
 
 ## disallow-XXX syntax?
 
