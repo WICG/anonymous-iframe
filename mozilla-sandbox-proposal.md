@@ -104,4 +104,4 @@ Anonymous iframe was designed to be used in iframe. Sandbox flags can also be in
 
 Sandbox flags can be set using the iframe attribute, but they can also be set from the HTTP response, via a CSP header.
 
-It is too late to enforce `allow-same-origin-partitioned`, because a credentialled request has already been mode. This flag must be ignored in CSP. This is similar to a few other sandbox flags.
+It is too late to enforce `allow-same-origin-partitioned`, because a credentialled navigation request has already been made. It means this flag has to be ignored in this case.
