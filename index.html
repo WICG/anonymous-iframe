@@ -6,7 +6,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
   <meta content="Bikeshed version 63e66730b, updated Tue Oct 25 12:35:05 2022 -0700" name="generator">
   <link href="https://wicg.github.io/anonymous-iframe/" rel="canonical">
-  <meta content="efe279e958cca7a8a91c1d171a4d1c6e59840b62" name="document-revision">
+  <meta content="22098d8c521c72df759bde0d889ef66506f7699b" name="document-revision">
 <style>
 .monkey-patch {
     padding: .5em;
@@ -746,7 +746,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Iframe credentialless</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2022-11-15">15 November 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2022-11-22">22 November 2022</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1025,12 +1025,13 @@ a phishing page (see the <a data-link-type="dfn" href="/#threat-model" id="ref-f
    <h3 class="heading settled" data-level="3.5" id="proposal-coep-credentialless"><span class="secno">3.5. </span><span class="content">Comparison with COEP:credentialless</span><a class="self-link" href="#proposal-coep-credentialless"></a></h3>
    <p><code>COEP:credentialless</code> and <code>iframe credentialless</code> are two proposals sharing the
 same goal: helping developers to deploy COEP. Both are based on the idea
-public resources are worthless to an attacker. The public data can be stored in
-a process safely with an explicit opt-in from the server. The attacker do not
-gain additional knowledge by reading it back using the Spectre vulnerability.</p>
-   <p>The comparison do not extend further than that. One is for simple subresources,
-the other for <code>&lt;iframe></code>.</p>
-   <p>The name <code>credentialless</code> means something very different.</p>
+public resources are worthless to an attacker. Public data can enter a process
+safely without an explicit opt-in from the server. The attacker on the same
+process can read the data back using Spectre, but won’t get any benefits.</p>
+   <p>The comparison do not extend further than that. The two features implementations
+are very different. One is for simple subresources loaded into the document, the
+other is for loading different documents in <code>&lt;iframe></code>.</p>
+   <p>The name <code>credentialless</code> means something very different:</p>
    <ul>
     <li data-md>
      <p><code>COEP:credentialless</code>: it means loading <code>no-cors</code> request without
