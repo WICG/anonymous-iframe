@@ -423,14 +423,15 @@ Comparison with COEP:credentialless {#proposal-coep-credentialless}
 
 `COEP:credentialless` and `iframe credentialless` are two proposals sharing the
 same goal: helping developers to deploy COEP. Both are based on the idea
-public resources are worthless to an attacker. The public data can be stored in
-a process safely with an explicit opt-in from the server. The attacker do not
-gain additional knowledge by reading it back using the Spectre vulnerability.
+public resources are worthless to an attacker. Public data can enter a process
+safely without an explicit opt-in from the server. The attacker on the same
+process can read the data back using Spectre, but won't get any benefits.
 
-The comparison do not extend further than that. One is for simple subresources,
-the other for `<iframe>`.
+The comparison do not extend further than that. The two features implementations
+are very different. One is for simple subresources loaded into the document, the
+other is for loading different documents in `<iframe>`.
 
-The name `credentialless` means something very different.
+The name `credentialless` means something very different:
 - `COEP:credentialless`: it means loading `no-cors` request without
   credentials (e.g. Cookies).
 - `Iframe credentialless`: it means mainly associating the document with a
