@@ -1,12 +1,14 @@
-Anonymous iframe
+Iframe credentialless
 ================
 
-**Anonymous iframe** gives developers a way to load documents in third party
+**Iframe credentialless** gives developers a way to load documents in third party
 iframe using a new and ephemeral context. In return, the
 [Cross-Origin-Embedder-Policy](https://wicg.github.io/cross-origin-embedder-policy/)
 (COEP) embedding rules can be lifted.
 
 This way, developers using COEP can now embed third party iframes that do not.
+
+> :warning: This used to be `Anonymous iframe`, before addressing https://github.com/WICG/anonymous-iframe/issues/5
 
 Documents
 =========
