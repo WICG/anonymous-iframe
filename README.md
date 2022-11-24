@@ -8,7 +8,7 @@ iframe using a new and ephemeral context. In return, the
 
 This way, developers using COEP can now embed third party iframes that do not.
 
-> :warning: This used to be `Anonymous iframe`, before addressing https://github.com/WICG/anonymous-iframe/issues/5
+> :warning: This used to be named `Anonymous iframe`, before addressing https://github.com/WICG/anonymous-iframe/issues/5
 
 Documents
 =========
