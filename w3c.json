@@ -1,5 +1,5 @@
  {
-    "group":      ["XXX"]
-,   "contacts":   ["XXX"],
+    "group":      ["cg/wicg"]
+,   "contacts":   ["cwilso"],
     "repo-type":  "cg-report"
 }
