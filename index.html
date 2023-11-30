@@ -4,9 +4,9 @@
   <title>Iframe credentialless</title>
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
-  <meta content="Bikeshed version 63e66730b, updated Tue Oct 25 12:35:05 2022 -0700" name="generator">
+  <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://wicg.github.io/anonymous-iframe/" rel="canonical">
-  <meta content="ce34f26b72767fe714ec5353cbd750561879dffc" name="document-revision">
+  <meta content="f0166a1a47e08c988100fe86cc37631d300ebe04" name="document-revision">
 <style>
 .monkey-patch {
     padding: .5em;
@@ -30,8 +30,7 @@
 }
 
 </style>
-<style>/* style-autolinks */
-
+<style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
     font-size: inherit;
@@ -91,8 +90,17 @@ pre .property::before, pre .property::after {
 
 [data-link-type=biblio] {
     white-space: pre;
-}</style>
-<style>/* style-colors */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --selflink-text: black;
+        --selflink-bg: silver;
+        --selflink-hover-text: white;
+    }
+}
+</style>
+<style>/* Boilerplate: style-colors */
 
 /* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
 :root {
@@ -200,9 +208,121 @@ pre .property::before, pre .property::after {
     --outdated-shadow: red;
 
     --editedrec-bg: darkorange;
-}</style>
-<style>/* style-counters */
+}
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #ddd;
+        --bg: black;
+
+        --unofficial-watermark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cg fill='%23100808' transform='translate(200 200) rotate(-45) translate(-200 -200)' stroke='%23100808' stroke-width='3'%3E%3Ctext x='50%25' y='220' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EUNOFFICIAL%3C/text%3E%3Ctext x='50%25' y='305' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EDRAFT%3C/text%3E%3C/g%3E%3C/svg%3E");
+
+        --logo-bg: #1a5e9a;
+        --logo-active-bg: #c00;
+        --logo-text: white;
+
+        --tocnav-normal-text: #999;
+        --tocnav-normal-bg: var(--bg);
+        --tocnav-hover-text: var(--tocnav-normal-text);
+        --tocnav-hover-bg: #080808;
+        --tocnav-active-text: #f44;
+        --tocnav-active-bg: var(--tocnav-normal-bg);
+
+        --tocsidebar-text: var(--text);
+        --tocsidebar-bg: #080808;
+        --tocsidebar-shadow: rgba(255,255,255,.1);
+        --tocsidebar-heading-text: hsla(203,20%,40%,.7);
+
+        --toclink-text: var(--text);
+        --toclink-underline: #6af;
+        --toclink-visited-text: var(--toclink-text);
+        --toclink-visited-underline: #054572;
+
+        --heading-text: #8af;
+
+        --hr-text: var(--text);
+
+        --algo-border: #456;
+
+        --del-text: #f44;
+        --del-bg: transparent;
+        --ins-text: #4a4;
+        --ins-bg: transparent;
+
+        --a-normal-text: #6af;
+        --a-normal-underline: #555;
+        --a-visited-text: var(--a-normal-text);
+        --a-visited-underline: var(--a-normal-underline);
+        --a-hover-bg: rgba(25%, 25%, 25%, .2);
+        --a-active-text: #f44;
+        --a-active-underline: var(--a-active-text);
+
+        --borderedblock-bg: rgba(255, 255, 255, .05);
+
+        --blockquote-border: silver;
+        --blockquote-bg: var(--borderedblock-bg);
+        --blockquote-text: currentcolor;
+
+        --issue-border: #e05252;
+        --issue-bg: var(--borderedblock-bg);
+        --issue-text: var(--text);
+        --issueheading-text: hsl(0deg, 70%, 70%);
+
+        --example-border: hsl(50deg, 90%, 60%);
+        --example-bg: var(--borderedblock-bg);
+        --example-text: var(--text);
+        --exampleheading-text: hsl(50deg, 70%, 70%);
+
+        --note-border: hsl(120deg, 100%, 35%);
+        --note-bg: var(--borderedblock-bg);
+        --note-text: var(--text);
+        --noteheading-text: hsl(120, 70%, 70%);
+        --notesummary-underline: silver;
+
+        --assertion-border: #444;
+        --assertion-bg: var(--borderedblock-bg);
+        --assertion-text: var(--text);
+
+        --advisement-border: orange;
+        --advisement-bg: #222218;
+        --advisement-text: var(--text);
+        --advisementheading-text: #f84;
+
+        --warning-border: red;
+        --warning-bg: hsla(40,100%,20%,0.95);
+        --warning-text: var(--text);
+
+        --amendment-border: #330099;
+        --amendment-bg: #080010;
+        --amendment-text: var(--text);
+        --amendmentheading-text: #cc00ff;
+
+        --def-border: #8ccbf2;
+        --def-bg: #080818;
+        --def-text: var(--text);
+        --defrow-border: #136;
+
+        --datacell-border: silver;
+
+        --indexinfo-text: #aaa;
+
+        --indextable-hover-text: var(--text);
+        --indextable-hover-bg: #181818;
+
+        --outdatedspec-bg: rgba(255, 255, 255, .5);
+        --outdatedspec-text: black;
+        --outdated-bg: maroon;
+        --outdated-text: white;
+        --outdated-shadow: red;
+
+        --editedrec-bg: darkorange;
+    }
+    /* In case a transparent-bg image doesn't expect to be on a dark bg,
+       which is quite common in practice... */
+    img { background: white; }
+}
+</style>
+<style>/* Boilerplate: style-counters */
 body {
     counter-reset: example figure issue;
 }
@@ -229,20 +349,25 @@ figcaption {
 }
 figcaption:not(.no-marker)::before {
     content: "Figure " counter(figure) " ";
-}</style>
-<style>/* style-dfn-panel */
-
+}
+</style>
+<style>/* Boilerplate: style-dfn-panel */
 :root {
     --dfnpanel-bg: #ddd;
     --dfnpanel-text: var(--text);
 }
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dfnpanel-bg: #222;
+        --dfnpanel-text: var(--text);
+    }
+}
 .dfn-panel {
     position: absolute;
     z-index: 35;
+    width: 20em;
+    width: 300px;
     height: auto;
-    width: -webkit-fit-content;
-    width: fit-content;
-    max-width: 300px;
     max-height: 500px;
     overflow: auto;
     padding: 0.5em 0.75em;
@@ -250,6 +375,7 @@ figcaption:not(.no-marker)::before {
     background: var(--dfnpanel-bg);
     color: var(--dfnpanel-text);
     border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
 }
 .dfn-panel:not(.on) { display: none; }
 .dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
@@ -257,8 +383,15 @@ figcaption:not(.no-marker)::before {
 .dfn-panel a { color: var(--dfnpanel-text); }
 .dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
 .dfn-panel > b + b { margin-top: 0.25em; }
-.dfn-panel ul { padding: 0; }
-.dfn-panel li { list-style: inside; }
+.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
+.dfn-panel li a {
+    white-space: pre;
+    display: inline-block;
+    max-width: calc(300px - 1.5em - 1em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .dfn-panel.activated {
     display: inline-block;
     position: fixed;
@@ -269,10 +402,62 @@ figcaption:not(.no-marker)::before {
     max-height: 30vh;
 }
 
-.dfn-paneled { cursor: pointer; }
+.dfn-paneled[role="button"] { cursor: pointer; }
 </style>
-<style>/* style-issues */
+<style>/* Boilerplate: style-dfn-panel */
+:root {
+    --dfnpanel-bg: #ddd;
+    --dfnpanel-text: var(--text);
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dfnpanel-bg: #222;
+        --dfnpanel-text: var(--text);
+    }
+}
+.dfn-panel {
+    position: absolute;
+    z-index: 35;
+    width: 20em;
+    width: 300px;
+    height: auto;
+    max-height: 500px;
+    overflow: auto;
+    padding: 0.5em 0.75em;
+    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
+    background: var(--dfnpanel-bg);
+    color: var(--dfnpanel-text);
+    border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
+}
+.dfn-panel:not(.on) { display: none; }
+.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
+.dfn-panel > b { display: block; }
+.dfn-panel a { color: var(--dfnpanel-text); }
+.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
+.dfn-panel > b + b { margin-top: 0.25em; }
+.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
+.dfn-panel li a {
+    white-space: pre;
+    display: inline-block;
+    max-width: calc(300px - 1.5em - 1em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
+.dfn-panel.activated {
+    display: inline-block;
+    position: fixed;
+    left: .5em;
+    bottom: 2em;
+    margin: 0 auto;
+    max-width: calc(100vw - 1.5em - .4em - .5em);
+    max-height: 30vh;
+}
+
+.dfn-paneled[role="button"] { cursor: pointer; }
+</style>
+<style>/* Boilerplate: style-issues */
 a[href].issue-return {
     float: right;
     float: inline-end;
@@ -281,8 +466,7 @@ a[href].issue-return {
     text-decoration: none;
 }
 </style>
-<style>/* style-md-lists */
-
+<style>/* Boilerplate: style-md-lists */
 /* This is a weird hack for me not yet following the commonmark spec
    regarding paragraph and lists. */
 [data-md] > :first-child {
@@ -290,8 +474,9 @@ a[href].issue-return {
 }
 [data-md] > :last-child {
     margin-bottom: 0;
-}</style>
-<style>/* style-selflinks */
+}
+</style>
+<style>/* Boilerplate: style-selflinks */
 
 :root {
     --selflink-text: white;
@@ -351,12 +536,15 @@ a.self-link::before            { content: "¶"; }
 .heading > a.self-link::before { content: "§"; }
 dfn > a.self-link::before      { content: "#"; }
 </style>
-<style>/* style-syntax-highlighting */
+<style>/* Boilerplate: style-syntax-highlighting */
 
             pre.idl.highlight {
                 background: var(--borderedblock-bg, var(--def-bg));
             }
             
+</style>
+<style>/* Boilerplate: style-syntax-highlighting */
+
 code.highlight { padding: .1em; border-radius: .3em; }
 pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
 
@@ -413,9 +601,72 @@ c-[vc] { color: #0077aa } /* Name.Variable.Class */
 c-[vg] { color: #0077aa } /* Name.Variable.Global */
 c-[vi] { color: #0077aa } /* Name.Variable.Instance */
 c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
-</style>
-<style>/* style-wpt */
 
+
+@media (prefers-color-scheme: dark) {
+    .highlight:not(.idl) { background: rgba(255, 255, 255, .05); }
+
+    c-[a] { color: #d33682 } /* Keyword.Declaration */
+    c-[b] { color: #d33682 } /* Keyword.Type */
+    c-[c] { color: #2aa198 } /* Comment */
+    c-[d] { color: #2aa198 } /* Comment.Multiline */
+    c-[e] { color: #268bd2 } /* Name.Attribute */
+    c-[f] { color: #b58900 } /* Name.Tag */
+    c-[g] { color: #cb4b16 } /* Name.Variable */
+    c-[k] { color: #d33682 } /* Keyword */
+    c-[l] { color: #657b83 } /* Literal */
+    c-[m] { color: #657b83 } /* Literal.Number */
+    c-[n] { color: #268bd2 } /* Name */
+    c-[o] { color: #657b83 } /* Operator */
+    c-[p] { color: #657b83 } /* Punctuation */
+    c-[s] { color: #6c71c4 } /* Literal.String */
+    c-[t] { color: #6c71c4 } /* Literal.String.Single */
+    c-[u] { color: #6c71c4 } /* Literal.String.Double */
+    c-[ch] { color: #2aa198 } /* Comment.Hashbang */
+    c-[cp] { color: #2aa198 } /* Comment.Preproc */
+    c-[cpf] { color: #2aa198 } /* Comment.PreprocFile */
+    c-[c1] { color: #2aa198 } /* Comment.Single */
+    c-[cs] { color: #2aa198 } /* Comment.Special */
+    c-[kc] { color: #d33682 } /* Keyword.Constant */
+    c-[kn] { color: #d33682 } /* Keyword.Namespace */
+    c-[kp] { color: #d33682 } /* Keyword.Pseudo */
+    c-[kr] { color: #d33682 } /* Keyword.Reserved */
+    c-[ld] { color: #657b83 } /* Literal.Date */
+    c-[nc] { color: #268bd2 } /* Name.Class */
+    c-[no] { color: #268bd2 } /* Name.Constant */
+    c-[nd] { color: #268bd2 } /* Name.Decorator */
+    c-[ni] { color: #268bd2 } /* Name.Entity */
+    c-[ne] { color: #268bd2 } /* Name.Exception */
+    c-[nf] { color: #268bd2 } /* Name.Function */
+    c-[nl] { color: #268bd2 } /* Name.Label */
+    c-[nn] { color: #268bd2 } /* Name.Namespace */
+    c-[py] { color: #268bd2 } /* Name.Property */
+    c-[ow] { color: #657b83 } /* Operator.Word */
+    c-[mb] { color: #657b83 } /* Literal.Number.Bin */
+    c-[mf] { color: #657b83 } /* Literal.Number.Float */
+    c-[mh] { color: #657b83 } /* Literal.Number.Hex */
+    c-[mi] { color: #657b83 } /* Literal.Number.Integer */
+    c-[mo] { color: #657b83 } /* Literal.Number.Oct */
+    c-[sa] { color: #6c71c4 } /* Literal.String.Affix */
+    c-[sb] { color: #6c71c4 } /* Literal.String.Backtick */
+    c-[sc] { color: #6c71c4 } /* Literal.String.Char */
+    c-[dl] { color: #6c71c4 } /* Literal.String.Delimiter */
+    c-[sd] { color: #6c71c4 } /* Literal.String.Doc */
+    c-[se] { color: #6c71c4 } /* Literal.String.Escape */
+    c-[sh] { color: #6c71c4 } /* Literal.String.Heredoc */
+    c-[si] { color: #6c71c4 } /* Literal.String.Interpol */
+    c-[sx] { color: #6c71c4 } /* Literal.String.Other */
+    c-[sr] { color: #6c71c4 } /* Literal.String.Regex */
+    c-[ss] { color: #6c71c4 } /* Literal.String.Symbol */
+    c-[fm] { color: #268bd2 } /* Name.Function.Magic */
+    c-[vc] { color: #cb4b16 } /* Name.Variable.Class */
+    c-[vg] { color: #cb4b16 } /* Name.Variable.Global */
+    c-[vi] { color: #cb4b16 } /* Name.Variable.Instance */
+    c-[vm] { color: #cb4b16 } /* Name.Variable.Magic */
+    c-[il] { color: #657b83 } /* Literal.Number.Integer.Long */
+}
+</style>
+<style>/* Boilerplate: style-wpt */
 :root {
     --wpt-border: hsl(0, 0%, 60%);
     --wpt-bg: hsl(0, 0%, 95%);
@@ -552,201 +803,11 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
     position: relative;
 }
 </style>
-<style>/* style-darkmode */
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --text: #ddd;
-        --bg: black;
-
-        --unofficial-watermark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cg fill='%23100808' transform='translate(200 200) rotate(-45) translate(-200 -200)' stroke='%23100808' stroke-width='3'%3E%3Ctext x='50%25' y='220' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EUNOFFICIAL%3C/text%3E%3Ctext x='50%25' y='305' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EDRAFT%3C/text%3E%3C/g%3E%3C/svg%3E");
-
-        --logo-bg: #1a5e9a;
-        --logo-active-bg: #c00;
-        --logo-text: white;
-
-        --tocnav-normal-text: #999;
-        --tocnav-normal-bg: var(--bg);
-        --tocnav-hover-text: var(--tocnav-normal-text);
-        --tocnav-hover-bg: #080808;
-        --tocnav-active-text: #f44;
-        --tocnav-active-bg: var(--tocnav-normal-bg);
-
-        --tocsidebar-text: var(--text);
-        --tocsidebar-bg: #080808;
-        --tocsidebar-shadow: rgba(255,255,255,.1);
-        --tocsidebar-heading-text: hsla(203,20%,40%,.7);
-
-        --toclink-text: var(--text);
-        --toclink-underline: #6af;
-        --toclink-visited-text: var(--toclink-text);
-        --toclink-visited-underline: #054572;
-
-        --heading-text: #8af;
-
-        --hr-text: var(--text);
-
-        --algo-border: #456;
-
-        --del-text: #f44;
-        --del-bg: transparent;
-        --ins-text: #4a4;
-        --ins-bg: transparent;
-
-        --a-normal-text: #6af;
-        --a-normal-underline: #555;
-        --a-visited-text: var(--a-normal-text);
-        --a-visited-underline: var(--a-normal-underline);
-        --a-hover-bg: rgba(25%, 25%, 25%, .2);
-        --a-active-text: #f44;
-        --a-active-underline: var(--a-active-text);
-
-        --borderedblock-bg: rgba(255, 255, 255, .05);
-
-        --blockquote-border: silver;
-        --blockquote-bg: var(--borderedblock-bg);
-        --blockquote-text: currentcolor;
-
-        --issue-border: #e05252;
-        --issue-bg: var(--borderedblock-bg);
-        --issue-text: var(--text);
-        --issueheading-text: hsl(0deg, 70%, 70%);
-
-        --example-border: hsl(50deg, 90%, 60%);
-        --example-bg: var(--borderedblock-bg);
-        --example-text: var(--text);
-        --exampleheading-text: hsl(50deg, 70%, 70%);
-
-        --note-border: hsl(120deg, 100%, 35%);
-        --note-bg: var(--borderedblock-bg);
-        --note-text: var(--text);
-        --noteheading-text: hsl(120, 70%, 70%);
-        --notesummary-underline: silver;
-
-        --assertion-border: #444;
-        --assertion-bg: var(--borderedblock-bg);
-        --assertion-text: var(--text);
-
-        --advisement-border: orange;
-        --advisement-bg: #222218;
-        --advisement-text: var(--text);
-        --advisementheading-text: #f84;
-
-        --warning-border: red;
-        --warning-bg: hsla(40,100%,20%,0.95);
-        --warning-text: var(--text);
-
-        --amendment-border: #330099;
-        --amendment-bg: #080010;
-        --amendment-text: var(--text);
-        --amendmentheading-text: #cc00ff;
-
-        --def-border: #8ccbf2;
-        --def-bg: #080818;
-        --def-text: var(--text);
-        --defrow-border: #136;
-
-        --datacell-border: silver;
-
-        --indexinfo-text: #aaa;
-
-        --indextable-hover-text: var(--text);
-        --indextable-hover-bg: #181818;
-
-        --outdatedspec-bg: rgba(255, 255, 255, .5);
-        --outdatedspec-text: black;
-        --outdated-bg: maroon;
-        --outdated-text: white;
-        --outdated-shadow: red;
-
-        --editedrec-bg: darkorange;
-    }
-    /* In case a transparent-bg image doesn't expect to be on a dark bg,
-       which is quite common in practice... */
-    img { background: white; }
-}
-@media (prefers-color-scheme: dark) {
-    :root {
-        --selflink-text: black;
-        --selflink-bg: silver;
-        --selflink-hover-text: white;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --dfnpanel-bg: #222;
-        --dfnpanel-text: var(--text);
-    }
-}
-@media (prefers-color-scheme: dark) {
-    .highlight:not(.idl) { background: rgba(255, 255, 255, .05); }
-
-    c-[a] { color: #d33682 } /* Keyword.Declaration */
-    c-[b] { color: #d33682 } /* Keyword.Type */
-    c-[c] { color: #2aa198 } /* Comment */
-    c-[d] { color: #2aa198 } /* Comment.Multiline */
-    c-[e] { color: #268bd2 } /* Name.Attribute */
-    c-[f] { color: #b58900 } /* Name.Tag */
-    c-[g] { color: #cb4b16 } /* Name.Variable */
-    c-[k] { color: #d33682 } /* Keyword */
-    c-[l] { color: #657b83 } /* Literal */
-    c-[m] { color: #657b83 } /* Literal.Number */
-    c-[n] { color: #268bd2 } /* Name */
-    c-[o] { color: #657b83 } /* Operator */
-    c-[p] { color: #657b83 } /* Punctuation */
-    c-[s] { color: #6c71c4 } /* Literal.String */
-    c-[t] { color: #6c71c4 } /* Literal.String.Single */
-    c-[u] { color: #6c71c4 } /* Literal.String.Double */
-    c-[ch] { color: #2aa198 } /* Comment.Hashbang */
-    c-[cp] { color: #2aa198 } /* Comment.Preproc */
-    c-[cpf] { color: #2aa198 } /* Comment.PreprocFile */
-    c-[c1] { color: #2aa198 } /* Comment.Single */
-    c-[cs] { color: #2aa198 } /* Comment.Special */
-    c-[kc] { color: #d33682 } /* Keyword.Constant */
-    c-[kn] { color: #d33682 } /* Keyword.Namespace */
-    c-[kp] { color: #d33682 } /* Keyword.Pseudo */
-    c-[kr] { color: #d33682 } /* Keyword.Reserved */
-    c-[ld] { color: #657b83 } /* Literal.Date */
-    c-[nc] { color: #268bd2 } /* Name.Class */
-    c-[no] { color: #268bd2 } /* Name.Constant */
-    c-[nd] { color: #268bd2 } /* Name.Decorator */
-    c-[ni] { color: #268bd2 } /* Name.Entity */
-    c-[ne] { color: #268bd2 } /* Name.Exception */
-    c-[nf] { color: #268bd2 } /* Name.Function */
-    c-[nl] { color: #268bd2 } /* Name.Label */
-    c-[nn] { color: #268bd2 } /* Name.Namespace */
-    c-[py] { color: #268bd2 } /* Name.Property */
-    c-[ow] { color: #657b83 } /* Operator.Word */
-    c-[mb] { color: #657b83 } /* Literal.Number.Bin */
-    c-[mf] { color: #657b83 } /* Literal.Number.Float */
-    c-[mh] { color: #657b83 } /* Literal.Number.Hex */
-    c-[mi] { color: #657b83 } /* Literal.Number.Integer */
-    c-[mo] { color: #657b83 } /* Literal.Number.Oct */
-    c-[sa] { color: #6c71c4 } /* Literal.String.Affix */
-    c-[sb] { color: #6c71c4 } /* Literal.String.Backtick */
-    c-[sc] { color: #6c71c4 } /* Literal.String.Char */
-    c-[dl] { color: #6c71c4 } /* Literal.String.Delimiter */
-    c-[sd] { color: #6c71c4 } /* Literal.String.Doc */
-    c-[se] { color: #6c71c4 } /* Literal.String.Escape */
-    c-[sh] { color: #6c71c4 } /* Literal.String.Heredoc */
-    c-[si] { color: #6c71c4 } /* Literal.String.Interpol */
-    c-[sx] { color: #6c71c4 } /* Literal.String.Other */
-    c-[sr] { color: #6c71c4 } /* Literal.String.Regex */
-    c-[ss] { color: #6c71c4 } /* Literal.String.Symbol */
-    c-[fm] { color: #268bd2 } /* Name.Function.Magic */
-    c-[vc] { color: #cb4b16 } /* Name.Variable.Class */
-    c-[vg] { color: #cb4b16 } /* Name.Variable.Global */
-    c-[vi] { color: #cb4b16 } /* Name.Variable.Instance */
-    c-[vm] { color: #cb4b16 } /* Name.Variable.Magic */
-    c-[il] { color: #657b83 } /* Literal.Number.Integer.Long */
-}
-</style>
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Iframe credentialless</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2022-11-24">24 November 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2023-11-30">30 November 2023</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -898,11 +959,11 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
    <h3 class="heading settled" data-level="1.1" id="recommended-readings"><span class="secno">1.1. </span><span class="content">Recommended readings</span><a class="self-link" href="#recommended-readings"></a></h3>
    <ul>
     <li data-md>
-     <p>The <a data-link-type="biblio" href="#biblio-spectre">[Spectre]</a> vulnerability.</p>
+     <p>The <a data-link-type="biblio" href="#biblio-spectre" title="Spectre Attacks: Exploiting Speculative Execution">[Spectre]</a> vulnerability.</p>
     <li data-md>
-     <p>The <a data-link-type="biblio" href="#biblio-coep-require-corp">[COEP-require-corp]</a> and <a data-link-type="biblio" href="#biblio-coep-credentialless">[COEP-credentialless]</a> headers.</p>
+     <p>The <a data-link-type="biblio" href="#biblio-coep-require-corp" title="COEP">[COEP-require-corp]</a> and <a data-link-type="biblio" href="#biblio-coep-credentialless" title="COEP: credentialless">[COEP-credentialless]</a> headers.</p>
     <li data-md>
-     <p>How and why <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#cross-origin-opener-policies" id="ref-for-cross-origin-opener-policies">Cross-Origin-Opener-Policy</a> (<a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#cross-origin-opener-policies" id="ref-for-cross-origin-opener-policies①">COOP</a>) and <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#coep" id="ref-for-coep">Cross-Origin-Embedder-Policy</a> (<a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#coep" id="ref-for-coep①">COEP</a>) are granting the <a href="concept-settings-object-cross-origin-isolated-capability">crossOriginIsolated</a> capability. See <a data-link-type="biblio" href="#biblio-whycoopcoep">[WhyCoopCoep]</a>.</p>
+     <p>How and why <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#cross-origin-opener-policies" id="ref-for-cross-origin-opener-policies">Cross-Origin-Opener-Policy</a> (<a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#cross-origin-opener-policies" id="ref-for-cross-origin-opener-policies①">COOP</a>) and <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#coep" id="ref-for-coep">Cross-Origin-Embedder-Policy</a> (<a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#coep" id="ref-for-coep①">COEP</a>) are granting the <a href="concept-settings-object-cross-origin-isolated-capability">crossOriginIsolated</a> capability. See <a data-link-type="biblio" href="#biblio-whycoopcoep" title="Why you need &quot;cross-origin isolated&quot; for powerful features">[WhyCoopCoep]</a>.</p>
    </ul>
    <h2 class="heading settled" data-level="2" id="problem"><span class="secno">2. </span><span class="content">A problem</span><a class="self-link" href="#problem"></a></h2>
    <p><em>This section is not normative.</em></p>
@@ -915,7 +976,7 @@ iframes. Here is the typical scenario:</p>
      <p>Some developers get performant websites, by using
  multithreading/<code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/#sec-sharedarraybuffer-objects" id="ref-for-sec-sharedarraybuffer-objects">SharedArrayBuffer</a></code> in their top-level document.</p>
     <li data-md>
-     <p>To mitigate <a data-link-type="biblio" href="#biblio-spectre">[Spectre]</a> attacks, browsers vendors like Chrome, Firefox and
+     <p>To mitigate <a data-link-type="biblio" href="#biblio-spectre" title="Spectre Attacks: Exploiting Speculative Execution">[Spectre]</a> attacks, browsers vendors like Chrome, Firefox and
  Safari gate <code class="idl"><a data-link-type="idl" href="https://tc39.es/ecma262/#sec-sharedarraybuffer-objects" id="ref-for-sec-sharedarraybuffer-objects①">SharedArrayBuffer</a></code> usage behind the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-settings-object-cross-origin-isolated-capability" id="ref-for-concept-settings-object-cross-origin-isolated-capability">crossOriginIsolated</a> capability. This requires deploying both <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#coep" id="ref-for-coep③">COEP</a> and <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#cross-origin-opener-policies" id="ref-for-cross-origin-opener-policies②">COOP</a></p>
     <li data-md>
      <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#coep" id="ref-for-coep④">COEP</a> requirement is recursive: third party iframes are required to
@@ -931,21 +992,21 @@ it seems somewhat unlikely that they’ll be able to ensure that all the ads
 creators will do the work to opt-into being loadable.</p>
    <h2 class="heading settled" data-level="3" id="explainer"><span class="secno">3. </span><span class="content">Explainer</span><a class="self-link" href="#explainer"></a></h2>
    <p><em>This section is not normative.</em></p>
-   <p><a data-link-type="biblio" href="#biblio-coep-require-corp">[COEP-require-corp]</a> currently tackles data leak attacks by ensuring that
+   <p><a data-link-type="biblio" href="#biblio-coep-require-corp" title="COEP">[COEP-require-corp]</a> currently tackles data leak attacks by ensuring that
 cross-origin resources explicitly opt into being loaded in an environment with
 higher risks. This way, servers can protect vulnerable resources by not having
 them opt into being loaded in high risk environments.</p>
    <p>It would be ideal if we could find an approach that provided robust-enough
 protection against accidental cross-process leakage without requiring an
 explicit opt-in.</p>
-   <p><a data-link-type="biblio" href="#biblio-coep-credentialless">[COEP-credentialless]</a> fixed the problem for simple subresources: Instead of
+   <p><a data-link-type="biblio" href="#biblio-coep-credentialless" title="COEP: credentialless">[COEP-credentialless]</a> fixed the problem for simple subresources: Instead of
 requiring an opt-in from the response, the resource is requested without
 credentials. This way, only public resources are potentially leaked to the
 attacker. They don’t bring any additional value to the attacker.</p>
    <p><strong>Credentialless iframes</strong> are similar, but for <code>&lt;iframe></code>.
 Iframes are more difficult to tackle. They not only fetch a resource via a
 navigation request, but also create a new context. The new context is able to
-fetch data on its own. It can also access data from storage APIs: <a data-link-type="biblio" href="#biblio-webstorage">[WebStorage]</a>, <a data-link-type="biblio" href="#biblio-indexeddb">[IndexedDB]</a>, <a data-link-type="biblio" href="#biblio-web-sql">[web-sql]</a>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#broadcasting-to-other-browsing-contexts" id="ref-for-broadcasting-to-other-browsing-contexts">BroadcastChannel</a>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#sharedworer" id="ref-for-sharedworer">SharedWorker</a>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#service-worker-obj" id="ref-for-service-worker-obj">ServiceWorker</a>, etc</p>
+fetch data on its own. It can also access data from storage APIs: <a data-link-type="biblio" href="#biblio-webstorage" title="Web Storage (Second Edition)">[WebStorage]</a>, <a data-link-type="biblio" href="#biblio-indexeddb" title="Indexed Database API">[IndexedDB]</a>, <a data-link-type="biblio" href="#biblio-web-sql" title="Web SQL Database">[web-sql]</a>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#broadcasting-to-other-browsing-contexts" id="ref-for-broadcasting-to-other-browsing-contexts">BroadcastChannel</a>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#sharedworer" id="ref-for-sharedworer">SharedWorker</a>, <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#service-worker-obj" id="ref-for-service-worker-obj">ServiceWorker</a>, etc</p>
    <p>Credentialless iframes is a flag to load documents in iframes, using a new and
 ephemeral context. This ensures only a "public" version of the embedded website
 can be leaked to the attacker.</p>
@@ -953,18 +1014,18 @@ can be leaked to the attacker.</p>
    <p>Documents can create an iframe credentialless by adding an <code>credentialless</code> attribute to the iframe tag:</p>
 <pre class="language-html highlight"><c- p>&lt;</c-><c- f>iframe</c-> <c- e>credentialless</c-> <c- e>src</c-><c- o>=</c-><c- s>”https://example.com”</c-><c- p>>&lt;/</c-><c- f>iframe</c-><c- p>></c->
 </pre>
-   <p>This property is stored on the iframe. It is also stored and inherited to new <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window">Window</a> loaded inside e.g.:</p>
+   <p>This property is stored on the iframe. It is also stored and inherited to new <a data-link-type="dfn" href="https://drafts.csswg.org/css-color-3/#window" id="ref-for-window">Window</a> loaded inside e.g.:</p>
    <p><img alt="credentialless inheritance" height="637" src="./resources/inheritance.png" width="504"></p>
    <p><em>Credentialless flag inheritance.</em></p>
    <p>The attribute can be changed programmatically on the <code>&lt;iframe></code>. It will take
-effect on new <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window①">Window</a> loaded inside. It means the effect will only take place
+effect on new <a data-link-type="dfn" href="https://drafts.csswg.org/css-color-3/#window" id="ref-for-window①">Window</a> loaded inside. It means the effect will only take place
 after an additional navigation.</p>
-   <p>The state of the credentialless flag is exposed to the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window②">Window</a> through a read-only
+   <p>The state of the credentialless flag is exposed to the <a data-link-type="dfn" href="https://drafts.csswg.org/css-color-3/#window" id="ref-for-window②">Window</a> through a read-only
 constant attribute:</p>
 <pre class="language-js highlight">window<c- p>.</c->credentialless
 </pre>
-   It is true for <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window③">Window</a> loaded immediately inside an credentialless iframe, or
-deeper below it. 
+   <p>It is true for <a data-link-type="dfn" href="https://drafts.csswg.org/css-color-3/#window" id="ref-for-window③">Window</a> loaded immediately inside an credentialless iframe, or
+deeper below it.</p>
    <h3 class="heading settled" data-level="3.2" id="proposal-credentials"><span class="secno">3.2. </span><span class="content">Credentialless iframes and credentials</span><a class="self-link" href="#proposal-credentials"></a></h3>
    <p>Iframes credentialless cannot use existing credentials and shared storage for
 their origin. They are given a blank slate. Unlike sandboxed frames, they can
@@ -975,7 +1036,7 @@ has navigate toward a different top-level document. Essentially, credentialless
 iframes are given a temporary <a href="https://storage.spec.whatwg.org/#storage-shelf">storage
 shelf</a> partitioned to
 credentialless iframes in the current top-level document.</p>
-   <p>To achieve this, we rely on modifying the <a href="https://storage.spec.whatwg.org/#storage-key" id="termref-for-storage-key">storage
+   <p>To achieve this, we rely on modifying the <a href="https://storage.spec.whatwg.org/#storage-key" id="906679070">storage
 key</a> used to access shared storage
 by credentialless iframes. As part of the <a href="https://privacycg.github.io/storage-partitioning/">client-side storage partitioning
 effort</a> (declined across <a href="https://github.com/wanderview/quota-storage-partitioning/blob/main/explainer.md">storage
@@ -1120,7 +1181,7 @@ omit credentials.</p>
    <p>Status: <a href="https://wpt.fyi/results/html/credentialless-iframe/">https://wpt.fyi/results/html/credentialless-iframe/</a></p>
    <h2 class="heading settled" data-level="6" id="specification"><span class="secno">6. </span><span class="content">Specification</span><a class="self-link" href="#specification"></a></h2>
    <h3 class="heading settled" data-level="6.1" id="spec-html"><span class="secno">6.1. </span><span class="content">Integration with HTML</span><a class="self-link" href="#spec-html"></a></h3>
-   <p class="note" role="note"><span>Note:</span> This corresponds to the following HTML specification change: <a href="https://github.com/whatwg/html/pull/7695">whatwg/html/pull/7695</a>. <br> When merged this section will become obsolete.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> This corresponds to the following HTML specification change: <a href="https://github.com/whatwg/html/pull/7695">whatwg/html/pull/7695</a>. <br> When merged this section will become obsolete.</p>
    <h4 class="heading settled" data-level="6.1.1" id="spec-iframe-attribute"><span class="secno">6.1.1. </span><span class="content">The Iframe attribute</span><a class="self-link" href="#spec-iframe-attribute"></a></h4>
    <p>In the <a href="https://html.spec.whatwg.org/#the-iframe-element">the iframe element</a> section, define the HTML <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#the-iframe-element" id="ref-for-the-iframe-element">iframe</a> <a data-link-type="dfn" href="#attr-iframe-credentialless" id="ref-for-attr-iframe-credentialless">credentialless</a> attribute:</p>
    <div class="monkey-patch"> The <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="attr-iframe-credentialless" data-noexport id="attr-iframe-credentialless">credentialless</dfn> attribute, enables loading documents hosted by the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#the-iframe-element" id="ref-for-the-iframe-element①">iframe</a> with a
@@ -1136,14 +1197,14 @@ false. </div>
 };
 </pre>
     <p>The IDL attributes <dfn data-dfn-type="dfn" data-export data-lt="dom-iframe-credentialless" id="dom-iframe-credentialless">credentialless<a class="self-link" href="#dom-iframe-credentialless"></a></dfn>,
-must <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-reflect" id="ref-for-concept-reflect">reflect</a> the respective content attributes of the same name.</p>
+must <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/common-dom-interfaces.html#reflect" id="ref-for-reflect">reflect</a> the respective content attributes of the same name.</p>
    </div>
    <h4 class="heading settled" data-level="6.1.2" id="spec-window-attribute"><span class="secno">6.1.2. </span><span class="content">The Window attribute</span><a class="self-link" href="#spec-window-attribute"></a></h4>
    <p>Add a read-only constant <code class="idl"><a data-link-type="idl" href="#dom-window-credentialless" id="ref-for-dom-window-credentialless">credentialless</a></code> attribute
-to the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window④">Window</a> object.</p>
+to the <a data-link-type="dfn" href="https://drafts.csswg.org/css-color-3/#window" id="ref-for-window④">Window</a> object.</p>
    <div class="monkey-patch">
 <pre class="idl highlight def">[
-  <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Global" id="ref-for-Global"><c- g>Global</c-></a>=<a data-link-type="idl-name" href="#window" id="ref-for-window"><c- n>Window</c-></a>,
+  <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Global" id="ref-for-Global"><c- g>Global</c-></a>=<a data-link-type="idl-name" href="#window" id="ref-for-window⑤"><c- n>Window</c-></a>,
   <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=<c- n>Window</c->,
   <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#LegacyUnenumerableNamedProperties" id="ref-for-LegacyUnenumerableNamedProperties"><c- g>LegacyUnenumerableNamedProperties</c-></a>
 ]
@@ -1163,11 +1224,11 @@ Add step 5:</p>
       <p>Let <var>credentialless</var> be the result of determining the <a data-link-type="dfn" href="#initial-window-credentialless" id="ref-for-initial-window-credentialless">initial window credentialless</a> flag, given <var>browsingContext</var>.</p>
     </ol>
    </div>
-   <p>Then later, use it for creating a new <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window⑤">Window</a>.</p>
+   <p>Then later, use it for creating a new <a data-link-type="dfn" href="https://drafts.csswg.org/css-color-3/#window" id="ref-for-window⑥">Window</a>.</p>
    <div class="monkey-patch">
     <ul>
      <li data-md>
-      <p>For the global object, create a new <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window⑥">Window</a> object<span class="customHighlight">, with <code class="idl"><a data-link-type="idl" href="#dom-window-credentialless" id="ref-for-dom-window-credentialless①">credentialless</a></code> set to <var>credentialless</var>.</span></p>
+      <p>For the global object, create a new <a data-link-type="dfn" href="https://drafts.csswg.org/css-color-3/#window" id="ref-for-window⑦">Window</a> object<span class="customHighlight">, with <code class="idl"><a data-link-type="idl" href="#dom-window-credentialless" id="ref-for-dom-window-credentialless①">credentialless</a></code> set to <var>credentialless</var>.</span></p>
     </ul>
    </div>
    <h4 class="heading settled" data-level="6.1.4" id="spec-navigating-browsing-context"><span class="secno">6.1.4. </span><span class="content">Navigating a browsing context</span><a class="self-link" href="#spec-navigating-browsing-context"></a></h4>
@@ -1175,7 +1236,7 @@ Add step 5:</p>
    <div class="monkey-patch">
     <dl>
      <dt><dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="navigation-params-credentialless" data-noexport id="navigation-params-credentialless">credentialless</dfn>
-     <dd>The <code class="idl"><a data-link-type="idl" href="#dom-window-credentialless" id="ref-for-dom-window-credentialless②">credentialless</a></code> flag to impose on the new <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window⑦">Window</a>
+     <dd>The <code class="idl"><a data-link-type="idl" href="#dom-window-credentialless" id="ref-for-dom-window-credentialless②">credentialless</a></code> flag to impose on the new <a data-link-type="dfn" href="https://drafts.csswg.org/css-color-3/#window" id="ref-for-window⑧">Window</a>
     </dl>
    </div>
    <hr>
@@ -1192,15 +1253,15 @@ params</a>.</p>
    <p>It is also passed as a new argument to the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#process-a-navigate-fetch" id="ref-for-process-a-navigate-fetch">process a navigate fetch</a> algorithm, which is also used to create a new <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#navigation-params" id="ref-for-navigation-params②">navigation params</a>.</p>
    <hr>
    <p>Then, in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#initialise-the-document-object" id="ref-for-initialise-the-document-object">initialize the document object</a> algorithm:</p>
-   <p>When creating a new <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window⑧">Window</a> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window-bc" id="ref-for-window-bc">browsing context</a>, pass the <var>credentialless</var> value.</p>
+   <p>When creating a new <a data-link-type="dfn" href="https://drafts.csswg.org/css-color-3/#window" id="ref-for-window⑨">Window</a> in the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window-bc" id="ref-for-window-bc">browsing context</a>, pass the <var>credentialless</var> value.</p>
    <div class="monkey-patch">
     <ul>
      <li data-md>
-      <p>For the global object, create a new <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window⑨">Window</a> object<span class="customHighlight">, with <code class="idl"><a data-link-type="idl" href="#dom-window-credentialless" id="ref-for-dom-window-credentialless③">credentialless</a></code> set to <var>navigationParams</var>’s <a data-link-type="dfn" href="#navigation-params-credentialless" id="ref-for-navigation-params-credentialless">credentialless</a>.</span></p>
+      <p>For the global object, create a new <a data-link-type="dfn" href="https://drafts.csswg.org/css-color-3/#window" id="ref-for-window①⓪">Window</a> object<span class="customHighlight">, with <code class="idl"><a data-link-type="idl" href="#dom-window-credentialless" id="ref-for-dom-window-credentialless③">credentialless</a></code> set to <var>navigationParams</var>’s <a data-link-type="dfn" href="#navigation-params-credentialless" id="ref-for-navigation-params-credentialless">credentialless</a>.</span></p>
     </ul>
    </div>
    <hr>
-   <p>The <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window①⓪">Window</a> object must not be reused, when it would lead to keeping an
+   <p>The <a data-link-type="dfn" href="https://drafts.csswg.org/css-color-3/#window" id="ref-for-window①①">Window</a> object must not be reused, when it would lead to keeping an
 credentialless flag different from what is in the navigation params.</p>
    <p>Example: This is useful in this case:</p>
 <pre class="language-js highlight"><c- a>const</c-> iframe <c- o>=</c-> document<c- p>.</c->body<c- p>.</c->createElement<c- p>(</c-><c- u>"iframe"</c-><c- p>);</c->
@@ -1216,9 +1277,9 @@ iframe<c- p>.</c->src <c- o>=</c-> <c- u>"https://example.test"</c-><c- p>;</c->
       <p>If <var>browsingContext</var> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#still-on-its-initial-about:blank-document" id="ref-for-still-on-its-initial-about:blank-document">still on its initial about:blank Document</a>, and <var>navigationParams</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#navigation-params-hh" id="ref-for-navigation-params-hh">history handling</a> is "<a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#hh-replace" id="ref-for-hh-replace">replace</a>", and <var>browsingContext</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-document" id="ref-for-nav-document">active document</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-document-origin" id="ref-for-concept-document-origin">origin</a> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin-domain" id="ref-for-same-origin-domain">same origin-domain</a> with <var>navigationParams</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#navigation-params-origin" id="ref-for-navigation-params-origin">origin</a>, <span class="customHighlight">and <var>browsingContext</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#active-window" id="ref-for-active-window">active window</a>’s <code class="idl"><a data-link-type="idl" href="#dom-window-credentialless" id="ref-for-dom-window-credentialless④">credentialless</a></code> flag matches <var>navigationParams</var>’s <a data-link-type="dfn" href="#navigation-params-credentialless" id="ref-for-navigation-params-credentialless①">credentialless</a> flag</span>, then do
 nothing.</p>
       <p></p>
-      <p class="note" role="note"><span>Note:</span> This means that both the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#is-initial-about:blank" id="ref-for-is-initial-about:blank">initial
+      <p class="note" role="note"><span class="marker">Note:</span> This means that both the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#is-initial-about:blank" id="ref-for-is-initial-about:blank">initial
 about:blank</a> <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document" id="ref-for-concept-document">Document</a>, and the new <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document" id="ref-for-concept-document①">Document</a> that is
-about to be created, will share the same <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window①①">Window</a> object.</p>
+about to be created, will share the same <a data-link-type="dfn" href="https://drafts.csswg.org/css-color-3/#window" id="ref-for-window①②">Window</a> object.</p>
       <p></p>
     </ul>
    </div>
@@ -1235,13 +1296,13 @@ about to be created, will share the same <a data-link-type="dfn" href="https://f
    <p>Add an "Credentialless iframe" sub-section inside <a href="https://html.spec.whatwg.org/C/#browsers">Loading web
 pages</a> section, in between the <a href="https://html.spec.whatwg.org/C/#sandboxing">Sandboxing
 one</a> and the <a href="https://html.spec.whatwg.org/C/#sandboxing">Sandboxing
-one</a> and the <a href="https://html.spec.whatwg.org/C/#cross-origin-opener-policies" id="termref-for-cross-origin-opener-policies">Cross-origin opener
+one</a> and the <a href="https://html.spec.whatwg.org/C/#cross-origin-opener-policies" id="2a6986b80">Cross-origin opener
 policies</a> ones:</p>
    <div class="monkey-patch"> <strong>7.7 Credentialless iframe</strong> </div>
    <div class="monkey-patch"> Each <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#dom-requestdestination-iframe" id="ref-for-dom-requestdestination-iframe">iframe</a></code> element has a mutable <a data-link-type="dfn" href="#attr-iframe-credentialless" id="ref-for-attr-iframe-credentialless①">credentialless</a> flag attribute. </div>
    <div class="monkey-patch">
-     Each <code class="idl"><a data-link-type="idl" href="#window" id="ref-for-window①">Window</a></code> has a constant <code class="idl"><a data-link-type="idl" href="#dom-window-credentialless" id="ref-for-dom-window-credentialless⑥">credentialless</a></code> flag. 
-    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="credentialless-window">credentialless Window</dfn> is a <code class="idl"><a data-link-type="idl" href="#window" id="ref-for-window②">Window</a></code>, whose <code class="idl"><a data-link-type="idl" href="#dom-window-credentialless" id="ref-for-dom-window-credentialless⑦">credentialless</a></code> flag is true.</p>
+     Each <code class="idl"><a data-link-type="idl" href="#window" id="ref-for-window①③">Window</a></code> has a constant <code class="idl"><a data-link-type="idl" href="#dom-window-credentialless" id="ref-for-dom-window-credentialless⑥">credentialless</a></code> flag. 
+    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="credentialless-window">credentialless Window</dfn> is a <code class="idl"><a data-link-type="idl" href="#window" id="ref-for-window①④">Window</a></code>, whose <code class="idl"><a data-link-type="idl" href="#dom-window-credentialless" id="ref-for-dom-window-credentialless⑦">credentialless</a></code> flag is true.</p>
    </div>
    <div class="monkey-patch">
      To compute the <dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="initial-window-credentialless" id="initial-window-credentialless">initial window
@@ -1271,11 +1332,11 @@ context</var>, follows the same steps as in the <a data-link-type="dfn" href="#i
    <p>Add several notes in the general section, gathering changes spread elsewhere in
 the other algorithms.</p>
    <div class="monkey-patch">
-    <p class="note" role="note"><span>Note:</span> New <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-window" id="ref-for-concept-request-window①②">Window</a>'s <code class="idl"><a data-link-type="idl" href="#dom-window-credentialless" id="ref-for-dom-window-credentialless⑨">credentialless</a></code> flag is computed either from the <a data-link-type="dfn" href="#initial-window-credentialless" id="ref-for-initial-window-credentialless②">initial window credentialless flag</a> algorithm for
+    <p class="note" role="note"><span class="marker">Note:</span> New <a data-link-type="dfn" href="https://drafts.csswg.org/css-color-3/#window" id="ref-for-window①⑤">Window</a>'s <code class="idl"><a data-link-type="idl" href="#dom-window-credentialless" id="ref-for-dom-window-credentialless⑨">credentialless</a></code> flag is computed either from the <a data-link-type="dfn" href="#initial-window-credentialless" id="ref-for-initial-window-credentialless②">initial window credentialless flag</a> algorithm for
 new <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-document-bc" id="ref-for-concept-document-bc②">browsing context</a>, or from the <a data-link-type="dfn" href="#navigation-credentialless" id="ref-for-navigation-credentialless①">navigation’s credentialless flag</a> algorithm, executed
 when the navigation started, for navigations inside pre-existing <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-document-bc" id="ref-for-concept-document-bc③">browsing context</a>.</p>
-    <p class="note" role="note"><span>Note:</span> Popup opened from <a data-link-type="dfn" href="#credentialless-window" id="ref-for-credentialless-window">credentialless Window</a> are always with <code>noopener</code> set.</p>
-    <p class="note" role="note"><span>Note:</span> Top-level <a data-link-type="dfn" href="#credentialless-window" id="ref-for-credentialless-window①">credentialless Window</a> do not exist.</p>
+    <p class="note" role="note"><span class="marker">Note:</span> Popup opened from <a data-link-type="dfn" href="#credentialless-window" id="ref-for-credentialless-window">credentialless Window</a> are always with <code>noopener</code> set.</p>
+    <p class="note" role="note"><span class="marker">Note:</span> Top-level <a data-link-type="dfn" href="#credentialless-window" id="ref-for-credentialless-window①">credentialless Window</a> do not exist.</p>
    </div>
    <h4 class="heading settled" data-level="6.1.7" id="spec-coep-embedder-check"><span class="secno">6.1.7. </span><span class="content">COEP embedder checks</span><a class="self-link" href="#spec-coep-embedder-check"></a></h4>
    <p>The <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#coep" id="ref-for-coep⑨">COEP</a> embedding checks can be lifted.</p>
@@ -1317,7 +1378,7 @@ their autofilling features.</p>
    <h4 class="heading settled" data-level="6.1.9" id="spec-environment-partition-nonce"><span class="secno">6.1.9. </span><span class="content">Environment’s partition nonce</span><a class="self-link" href="#spec-environment-partition-nonce"></a></h4>
    <p>In the "Credentialless iframe" section. Defining the <a data-link-type="dfn" href="#page-credentialless-nonce" id="ref-for-page-credentialless-nonce">page credentialless nonce</a>.</p>
    <div class="monkey-patch">
-    <p>Each top-level <code class="idl"><a data-link-type="idl" href="#window" id="ref-for-window③">Window</a></code> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="page credentialless nonce" id="page-credentialless-nonce">page credentialless
+    <p>Each top-level <code class="idl"><a data-link-type="idl" href="#window" id="ref-for-window①⑥">Window</a></code> has an associated <dfn class="dfn-paneled" data-dfn-type="dfn" data-export data-lt="page credentialless nonce" id="page-credentialless-nonce">page credentialless
   nonce</dfn>. It is an immutable nonce ("number used once").</p>
    </div>
    <p>Add the <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce">partition nonce</a> attribute to the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment">environment</a> object.</p>
@@ -1391,9 +1452,9 @@ step 7:</p>
     </ol>
    </div>
    <h3 class="heading settled" data-level="6.2" id="spec-fetch"><span class="secno">6.2. </span><span class="content">Integration with Fetch</span><a class="self-link" href="#spec-fetch"></a></h3>
-   <p class="note" role="note"><span>Note:</span> This corresponds to the following HTML specification change: <a href="https://github.com/whatwg/fetch/pull/1416">whatwg/fetch/pull/1416</a>. <br> When merged this section will become obsolete.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> This corresponds to the following HTML specification change: <a href="https://github.com/whatwg/fetch/pull/1416">whatwg/fetch/pull/1416</a>. <br> When merged this section will become obsolete.</p>
    <h4 class="heading settled" data-level="6.2.1" id="spec-network-partition-key"><span class="secno">6.2.1. </span><span class="content">Plumb the partition-nonce</span><a class="self-link" href="#spec-network-partition-key"></a></h4>
-   <p>Add the <code>environment</code>'s <code>partition nonce</code> into the network partition key.
+   <p>Add the <code>environment</code>’s <code>partition nonce</code> into the network partition key.
 Proceed the following changes:</p>
    <div class="monkey-patch">
     <p>A <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#network-partition-key" id="ref-for-network-partition-key">network partition key</a> is a tuple consisting of:</p>
@@ -1431,8 +1492,8 @@ Proceed the following changes:</p>
     </ol>
    </div>
    <h3 class="heading settled" data-level="6.3" id="spec-chips"><span class="secno">6.3. </span><span class="content">Integration with CHIPS</span><a class="self-link" href="#spec-chips"></a></h3>
-   <p>This section defines a monkey-patch over: <a data-link-type="biblio" href="#biblio-chips">[CHIPS]</a>, which is itself a
-monkey-patch over <a data-link-type="biblio" href="#biblio-cookies">[COOKIES]</a>.</p>
+   <p>This section defines a monkey-patch over: <a data-link-type="biblio" href="#biblio-chips" title="CHIPS (Cookies Having Independent Partitioned State)">[CHIPS]</a>, which is itself a
+monkey-patch over <a data-link-type="biblio" href="#biblio-cookies" title="Cookies: HTTP State Management Mechanism">[COOKIES]</a>.</p>
    <div class="note" role="note">
      Note / Summary: <a href="https://github.com/WICG/CHIPS">Cookies Having Independent Partitioned
   State</a> (CHIPS) introduce the cookie’s partition
@@ -1448,7 +1509,7 @@ monkey-patch over <a data-link-type="biblio" href="#biblio-cookies">[COOKIES]</a
  defined.</p>
     </ol>
    </div>
-   <p>Modify the <a data-link-type="biblio" href="#biblio-chips">[CHIPS]</a> section: <a href="https://github.com/WICG/CHIPS/blob/main/README.md#algorithm">https://github.com/WICG/CHIPS/blob/main/README.md#algorithm</a></p>
+   <p>Modify the <a data-link-type="biblio" href="#biblio-chips" title="CHIPS (Cookies Having Independent Partitioned State)">[CHIPS]</a> section: <a href="https://github.com/WICG/CHIPS/blob/main/README.md#algorithm">https://github.com/WICG/CHIPS/blob/main/README.md#algorithm</a></p>
    <div class="monkey-patch">
     <p>Below is the algorithm that browsers can use to parse cookie lines. This
 algorithm could be added to <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-07#section-5.3">section 5.3 of
@@ -1525,7 +1586,7 @@ RFC6265bis</a> after the first step.</p>
     </ol>
    </div>
    <h3 class="heading settled" data-level="6.4" id="spec-storage-partitioning"><span class="secno">6.4. </span><span class="content">Integration with storage-partitioning</span><a class="self-link" href="#spec-storage-partitioning"></a></h3>
-   <p>In the <a data-link-type="biblio" href="#biblio-storagepartition">[StoragePartition]</a> (<a href="https://privacycg.github.io/storage-partitioning/">link</a>) Work Item. Most
+   <p>In the <a data-link-type="biblio" href="#biblio-storagepartition" title="Client-Side Storage Partitioning">[StoragePartition]</a> (<a href="https://privacycg.github.io/storage-partitioning/">link</a>) Work Item. Most
 storage APIs will be keyed by an additional key: the top-level site.</p>
    <p>To implement credentialless iframe, another key should be added and defined as the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment①④">environment</a>'s <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce①③">partition nonce</a>.</p>
    <div class="monkey-patch">
@@ -1535,7 +1596,7 @@ storage APIs will be keyed by an additional key: the top-level site.</p>
     </dl>
    </div>
    <h3 class="heading settled" data-level="6.5" id="spec-storage"><span class="secno">6.5. </span><span class="content">Integration with storage</span><a class="self-link" href="#spec-storage"></a></h3>
-   <p class="note" role="note"><span>Note:</span> This corresponds to the following <a data-link-type="biblio" href="#biblio-storage">[STORAGE]</a> specification change: <a href="https://github.com/whatwg/storage/pull/139">whatwg/storage/pull/139</a>. <br> When merged this section will become obsolete.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> This corresponds to the following <a data-link-type="biblio" href="#biblio-storage" title="Storage">[STORAGE]</a> specification change: <a href="https://github.com/whatwg/storage/pull/139">whatwg/storage/pull/139</a>. <br> When merged this section will become obsolete.</p>
    <h4 class="heading settled" data-level="6.5.1" id="spec-storage-key"><span class="secno">6.5.1. </span><span class="content">storage-key</span><a class="self-link" href="#spec-storage-key"></a></h4>
    <p>Add the <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#environment" id="ref-for-environment①⑥">environment</a>'s <a data-link-type="dfn" href="#environment-partition-nonce" id="ref-for-environment-partition-nonce①⑤">partition nonce</a> as an additional key
 in the <a data-link-type="dfn" href="https://storage.spec.whatwg.org/#storage-key" id="ref-for-storage-key">storage key</a>.</p>
@@ -1543,9 +1604,9 @@ in the <a data-link-type="dfn" href="https://storage.spec.whatwg.org/#storage-ke
     <p>A <a data-link-type="dfn" href="https://storage.spec.whatwg.org/#storage-key" id="ref-for-storage-key①">storage key</a> is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#tuple" id="ref-for-tuple②">tuple</a> consisting of:</p>
     <ul>
      <li data-md>
-      <p>An <dfn data-dfn-for="storage key" data-dfn-type="dfn" data-export data-lt="storage-key-origin" id="storage-key-storage-key-origin">origin<a class="self-link" href="#storage-key-storage-key-origin"></a></dfn> (an <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-origin" id="ref-for-concept-origin②">origin</a>). <a data-link-type="biblio" href="#biblio-html">[HTML]</a></p>
+      <p>An <dfn data-dfn-for="storage key" data-dfn-type="dfn" data-export data-lt="storage-key-origin" id="storage-key-storage-key-origin">origin<a class="self-link" href="#storage-key-storage-key-origin"></a></dfn> (an <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-origin" id="ref-for-concept-origin②">origin</a>). <a data-link-type="biblio" href="#biblio-html" title="HTML Standard">[HTML]</a></p>
      <li data-md>
-      <div class="customHighlight">A <dfn data-dfn-for="storage key" data-dfn-type="dfn" data-export data-lt="storage-key-nonce" id="storage-key-storage-key-nonce">nonce<a class="self-link" href="#storage-key-storage-key-nonce"></a></dfn> (an identifier or null). <a data-link-type="biblio" href="#biblio-html">[HTML]</a> </div>
+      <div class="customHighlight">A <dfn data-dfn-for="storage key" data-dfn-type="dfn" data-export data-lt="storage-key-nonce" id="storage-key-storage-key-nonce">nonce<a class="self-link" href="#storage-key-storage-key-nonce"></a></dfn> (an identifier or null). <a data-link-type="biblio" href="#biblio-html" title="HTML Standard">[HTML]</a> </div>
     </ul>
    </div>
    <div class="monkey-patch">
@@ -1564,7 +1625,7 @@ object</a>; otherwise <var>environment</var>’s <a data-link-type="dfn" href="h
    <h3 class="heading settled" data-level="7.1" id="threat-model"><span class="secno">7.1. </span><span class="content">Threat model</span><a class="self-link" href="#threat-model"></a></h3>
    <p>Because credentialless iframes can be embedded in <a data-link-type="dfn" href="https://html.spec.whatwg.org/C/#concept-settings-object-cross-origin-isolated-capability" id="ref-for-concept-settings-object-cross-origin-isolated-capability②">crossOriginIsolated</a> contexts,
 in browsers without Out-of-Process-Iframes, we have to consider that their
-embedder can perform a <a data-link-type="biblio" href="#biblio-spectre">[Spectre]</a> attack to read any of the credentialless iframes
+embedder can perform a <a data-link-type="biblio" href="#biblio-spectre" title="Spectre Attacks: Exploiting Speculative Execution">[Spectre]</a> attack to read any of the credentialless iframes
 resources, including the HTML. The victim is the document loaded inside the
 credentialless iframe and the other documents are the attackers.</p>
    <p>Our approach to this threat is not to prevent the attack from happening, but to
@@ -1662,9 +1723,9 @@ unpersonalized, making this equivalent to COEP:credentiallesss from a security
 perspective.</p>
    <h2 class="heading settled" data-level="8" id="privacy"><span class="secno">8. </span><span class="content">Privacy considerations</span><a class="self-link" href="#privacy"></a></h2>
    <p>The main privacy threat posed by this API is the risk of a data leak through a
-side channel attack like <a data-link-type="biblio" href="#biblio-spectre">[Spectre]</a>. As detailed in the <a data-link-type="dfn" href="/#threat-model" id="ref-for-threat-model④">threat model</a> above, we believe the API provides a meaningful defense against <a data-link-type="biblio" href="#biblio-spectre">[Spectre]</a> attacks, and thus does not pose a privacy risk.</p>
+side channel attack like <a data-link-type="biblio" href="#biblio-spectre" title="Spectre Attacks: Exploiting Speculative Execution">[Spectre]</a>. As detailed in the <a data-link-type="dfn" href="/#threat-model" id="ref-for-threat-model④">threat model</a> above, we believe the API provides a meaningful defense against <a data-link-type="biblio" href="#biblio-spectre" title="Spectre Attacks: Exploiting Speculative Execution">[Spectre]</a> attacks, and thus does not pose a privacy risk.</p>
    <h2 class="heading settled" data-level="9" id="questionnaire"><span class="secno">9. </span><span class="content">Self-Review Questionnaire</span><a class="self-link" href="#questionnaire"></a></h2>
-   <p>See <a data-link-type="biblio" href="#biblio-securityprivacyquestionnaire">[SecurityPrivacyQuestionnaire]</a> (<a href="https://www.w3.org/TR/security-privacy-questionnaire/">link</a>)</p>
+   <p>See <a data-link-type="biblio" href="#biblio-securityprivacyquestionnaire" title="Self-Review Questionnaire: Security and Privacy">[SecurityPrivacyQuestionnaire]</a> (<a href="https://www.w3.org/TR/security-privacy-questionnaire/">link</a>)</p>
    <h3 class="heading settled" data-level="9.1" id="questionnaire-purpose"><span class="secno">9.1. </span><span class="content">What information might this feature expose to Web sites or other parties, and for what purposes is that exposure necessary?</span><a class="self-link" href="#questionnaire-purpose"></a></h3>
    <p>The <code>window.credentialless</code> method exposes whether a document is loaded in an
 credentialless iframe or not, allowing a document to change its behavior depending on
@@ -1715,9 +1776,9 @@ allow to use features which are right now gated behind having COOP and COEP
 enabled. However, it imposes restrictions on documents to make this safe.</p>
    <h3 class="heading settled" data-level="9.17" id="questionnaire-non-fully-active"><span class="secno">9.17. </span><span class="content">How does your feature handle non-"fully active" documents?</span><a class="self-link" href="#questionnaire-non-fully-active"></a></h3>
    <p>Credentialless iframe only affect documents inside iframes. It is a general
-assumption <a data-link-type="dfn" href="https://web.dev/bfcache/" id="termref-for-">back/forward cache</a> features are implemented only for main frame
+assumption <a data-link-type="dfn" href="https://web.dev/bfcache/" id="ref-for-something">back/forward cache</a> features are implemented only for main frame
 navigations. With this assumption, there is nothing special to do.</p>
-   <p>Hypothetical web browsers implementing <a data-link-type="dfn" href="https://web.dev/bfcache/" id="termref-for-①">back/forward cache</a> at the
+   <p>Hypothetical web browsers implementing <a data-link-type="dfn" href="https://web.dev/bfcache/" id="ref-for-something①">back/forward cache</a> at the
 sub-frame level must definitively think about what happens when restoring a
 document inside an iframe whose "credentialless" attribute has changed. For instance,
 they could prevent the back/forward cache from restoring the document.</p>
@@ -1751,717 +1812,137 @@ they could prevent the back/forward cache from restoring the document.</p>
    <li><a href="#storage-key-storage-key-origin">storage-key-origin</a><span>, in § 6.5.1</span>
    <li><a href="#window">Window</a><span>, in § 6.1.2</span>
   </ul>
-  <aside class="dfn-panel" data-for="term-for-">
-   <a href="https://web.dev/bfcache/">https://web.dev/bfcache/</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#termref-for-">9.17. How does your feature handle non-"fully active" documents?</a> <a href="#termref-for-">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-response">
-   <a href="https://fetch.spec.whatwg.org/#concept-response">https://fetch.spec.whatwg.org/#concept-response</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-response">6.1.7. COEP embedder checks</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-/issues/1">
-   <a href="https://github.com/w3c/mediacapture-viewport#/issues/1">https://github.com/w3c/mediacapture-viewport#/issues/1</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-/issues/1">2. A problem</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-issuecomment-812">
-   <a href="https://www.w3.org/TR/hr-time//issues/1#issuecomment-812">https://www.w3.org/TR/hr-time//issues/1#issuecomment-812</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-issuecomment-812">2. A problem</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-sec-execution-contextssec-execution-contexts">
-   <a href="https://tc39.es/ecma262/#sec-execution-contextssec-execution-contexts">https://tc39.es/ecma262/#sec-execution-contextssec-execution-contexts</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-sec-execution-contextssec-execution-contexts">6.1.9.2. For Window</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-network-partition-key">
-   <a href="https://fetch.spec.whatwg.org/#network-partition-key">https://fetch.spec.whatwg.org/#network-partition-key</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-network-partition-key">6.2.1. Plumb the partition-nonce</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-storage-key">
-   <a href="https://storage.spec.whatwg.org/#storage-key">https://storage.spec.whatwg.org/#storage-key</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#termref-for-storage-key">3.2. Credentialless iframes and credentials</a>
-    <li><a href="#ref-for-storage-key">6.5.1. storage-key</a> <a href="#ref-for-storage-key①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-threat-model">
-   <a href="/#threat-model">/#threat-model</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-threat-model">3.2. Credentialless iframes and credentials</a>
-    <li><a href="#ref-for-threat-model①">3.4. Credentialless iframes and autofill/password managers</a> <a href="#ref-for-threat-model②">(2)</a>
-    <li><a href="#ref-for-threat-model③">4.1. Sandboxed iframe</a>
-    <li><a href="#ref-for-threat-model④">8. Privacy considerations</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-eventtarget">
-   <a href="https://dom.spec.whatwg.org/#eventtarget">https://dom.spec.whatwg.org/#eventtarget</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-eventtarget">6.1.2. The Window attribute</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-document">
-   <a href="https://dom.spec.whatwg.org/#concept-document">https://dom.spec.whatwg.org/#concept-document</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-document">6.1.4. Navigating a browsing context</a> <a href="#ref-for-concept-document①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-node-document">
-   <a href="https://dom.spec.whatwg.org/#concept-node-document">https://dom.spec.whatwg.org/#concept-node-document</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-node-document">6.1.6. General section</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-reflect">
-   <a href="https://dom.spec.whatwg.org/#concept-reflect">https://dom.spec.whatwg.org/#concept-reflect</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-reflect">6.1.1. The Iframe attribute</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-sec-sharedarraybuffer-objects">
-   <a href="https://tc39.es/ecma262/#sec-sharedarraybuffer-objects">https://tc39.es/ecma262/#sec-sharedarraybuffer-objects</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-sec-sharedarraybuffer-objects">2. A problem</a> <a href="#ref-for-sec-sharedarraybuffer-objects①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-dom-requestdestination-iframe">
-   <a href="https://fetch.spec.whatwg.org/#dom-requestdestination-iframe">https://fetch.spec.whatwg.org/#dom-requestdestination-iframe</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-requestdestination-iframe">6.1.6. General section</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-determine-the-network-partition-key">
-   <a href="https://fetch.spec.whatwg.org/#determine-the-network-partition-key">https://fetch.spec.whatwg.org/#determine-the-network-partition-key</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-determine-the-network-partition-key">6.2.1. Plumb the partition-nonce</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-request-window">
-   <a href="https://fetch.spec.whatwg.org/#concept-request-window">https://fetch.spec.whatwg.org/#concept-request-window</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-request-window">3.1. What are iframes credentialless?</a> <a href="#ref-for-concept-request-window①">(2)</a> <a href="#ref-for-concept-request-window②">(3)</a> <a href="#ref-for-concept-request-window③">(4)</a>
-    <li><a href="#ref-for-concept-request-window④">6.1.2. The Window attribute</a>
-    <li><a href="#ref-for-concept-request-window⑤">6.1.3. Creating new browsing context</a> <a href="#ref-for-concept-request-window⑥">(2)</a>
-    <li><a href="#ref-for-concept-request-window⑦">6.1.4. Navigating a browsing context</a> <a href="#ref-for-concept-request-window⑧">(2)</a> <a href="#ref-for-concept-request-window⑨">(3)</a> <a href="#ref-for-concept-request-window①⓪">(4)</a> <a href="#ref-for-concept-request-window①①">(5)</a>
-    <li><a href="#ref-for-concept-request-window①②">6.1.6. General section</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-htmlelement">
-   <a href="https://html.spec.whatwg.org/multipage/dom.html#htmlelement">https://html.spec.whatwg.org/multipage/dom.html#htmlelement</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-htmlelement">6.1.1. The Iframe attribute</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-nav-document">
-   <a href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-document">https://html.spec.whatwg.org/multipage/document-sequences.html#nav-document</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-nav-document">6.1.4. Navigating a browsing context</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-active-window">
-   <a href="https://html.spec.whatwg.org/C/#active-window">https://html.spec.whatwg.org/C/#active-window</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-active-window">6.1.4. Navigating a browsing context</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-bc-container">
-   <a href="https://html.spec.whatwg.org/C/#bc-container">https://html.spec.whatwg.org/C/#bc-container</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-bc-container">6.1.6. General section</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-bc-container-document">
-   <a href="https://html.spec.whatwg.org/C/#bc-container-document">https://html.spec.whatwg.org/C/#bc-container-document</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-bc-container-document">6.1.7. COEP embedder checks</a> <a href="#ref-for-bc-container-document①">(2)</a> <a href="#ref-for-bc-container-document②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-broadcasting-to-other-browsing-contexts">
-   <a href="https://html.spec.whatwg.org/C/#broadcasting-to-other-browsing-contexts">https://html.spec.whatwg.org/C/#broadcasting-to-other-browsing-contexts</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-broadcasting-to-other-browsing-contexts">3. Explainer</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-window-bc">
-   <a href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#window-bc">https://html.spec.whatwg.org/multipage/nav-history-apis.html#window-bc</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-window-bc">6.1.4. Navigating a browsing context</a>
-    <li><a href="#ref-for-window-bc①">6.1.7. COEP embedder checks</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-check-a-navigation-response&apos;s-adherence-to-its-embedder-policy">
-   <a href="https://html.spec.whatwg.org/C/#check-a-navigation-response&apos;s-adherence-to-its-embedder-policy">https://html.spec.whatwg.org/C/#check-a-navigation-response's-adherence-to-its-embedder-policy</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-check-a-navigation-response&apos;s-adherence-to-its-embedder-policy">6.1.7. COEP embedder checks</a> <a href="#ref-for-check-a-navigation-response&apos;s-adherence-to-its-embedder-policy①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-child-browsing-context">
-   <a href="https://html.spec.whatwg.org/C/#child-browsing-context">https://html.spec.whatwg.org/C/#child-browsing-context</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-child-browsing-context">6.1.7. COEP embedder checks</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-coep">
-   <a href="https://html.spec.whatwg.org/C/#coep">https://html.spec.whatwg.org/C/#coep</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-coep">1.1. Recommended readings</a> <a href="#ref-for-coep①">(2)</a>
-    <li><a href="#ref-for-coep②">2. A problem</a> <a href="#ref-for-coep③">(2)</a> <a href="#ref-for-coep④">(3)</a> <a href="#ref-for-coep⑤">(4)</a> <a href="#ref-for-coep⑥">(5)</a> <a href="#ref-for-coep⑦">(6)</a> <a href="#ref-for-coep⑧">(7)</a>
-    <li><a href="#ref-for-coep⑨">6.1.7. COEP embedder checks</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-compatible-with-cross-origin-isolation">
-   <a href="https://html.spec.whatwg.org/C/#compatible-with-cross-origin-isolation">https://html.spec.whatwg.org/C/#compatible-with-cross-origin-isolation</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-compatible-with-cross-origin-isolation">6.1.7. COEP embedder checks</a> <a href="#ref-for-compatible-with-cross-origin-isolation①">(2)</a> <a href="#ref-for-compatible-with-cross-origin-isolation②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-document-bc">
-   <a href="https://html.spec.whatwg.org/C/#concept-document-bc">https://html.spec.whatwg.org/C/#concept-document-bc</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-document-bc">6.1.6. General section</a> <a href="#ref-for-concept-document-bc①">(2)</a> <a href="#ref-for-concept-document-bc②">(3)</a> <a href="#ref-for-concept-document-bc③">(4)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-document-origin">
-   <a href="https://html.spec.whatwg.org/C/#concept-document-origin">https://html.spec.whatwg.org/C/#concept-document-origin</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-document-origin">6.1.4. Navigating a browsing context</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-document-policy-container">
-   <a href="https://html.spec.whatwg.org/C/#concept-document-policy-container">https://html.spec.whatwg.org/C/#concept-document-policy-container</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-document-policy-container">6.1.7. COEP embedder checks</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-environment-active-service-worker">
-   <a href="https://html.spec.whatwg.org/C/#concept-environment-active-service-worker">https://html.spec.whatwg.org/C/#concept-environment-active-service-worker</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-environment-active-service-worker">6.1.9.4. For Worklet</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-environment-creation-url">
-   <a href="https://html.spec.whatwg.org/C/#concept-environment-creation-url">https://html.spec.whatwg.org/C/#concept-environment-creation-url</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-environment-creation-url">6.1.9.1. For Navigation</a>
-    <li><a href="#ref-for-concept-environment-creation-url①">6.1.9.2. For Window</a>
-    <li><a href="#ref-for-concept-environment-creation-url②">6.1.9.4. For Worklet</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-environment-id">
-   <a href="https://html.spec.whatwg.org/C/#concept-environment-id">https://html.spec.whatwg.org/C/#concept-environment-id</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-environment-id">6.1.9.1. For Navigation</a>
-    <li><a href="#ref-for-concept-environment-id①">6.1.9.4. For Worklet</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-environment-target-browsing-context">
-   <a href="https://html.spec.whatwg.org/C/#concept-environment-target-browsing-context">https://html.spec.whatwg.org/C/#concept-environment-target-browsing-context</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-environment-target-browsing-context">6.1.9.1. For Navigation</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-request-reserved-client">
-   <a href="https://html.spec.whatwg.org/C/#concept-request-reserved-client">https://html.spec.whatwg.org/C/#concept-request-reserved-client</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-request-reserved-client">6.1.9.1. For Navigation</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-cross-origin-opener-policies">
-   <a href="https://html.spec.whatwg.org/C/#cross-origin-opener-policies">https://html.spec.whatwg.org/C/#cross-origin-opener-policies</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-cross-origin-opener-policies">1.1. Recommended readings</a> <a href="#ref-for-cross-origin-opener-policies①">(2)</a>
-    <li><a href="#ref-for-cross-origin-opener-policies②">2. A problem</a>
-    <li><a href="#termref-for-cross-origin-opener-policies">6.1.6. General section</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-creating-a-new-browsing-context">
-   <a href="https://html.spec.whatwg.org/C/#creating-a-new-browsing-context">https://html.spec.whatwg.org/C/#creating-a-new-browsing-context</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-creating-a-new-browsing-context">6.1.3. Creating new browsing context</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-environment-creation-url">
-   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-creation-url">https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-creation-url</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-environment-creation-url③">6.5.1. storage-key</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-coep">
-   <a href="https://html.spec.whatwg.org/C/#coep">https://html.spec.whatwg.org/C/#coep</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-coep">1.1. Recommended readings</a> <a href="#ref-for-coep①">(2)</a>
-    <li><a href="#ref-for-coep②">2. A problem</a> <a href="#ref-for-coep③">(2)</a> <a href="#ref-for-coep④">(3)</a> <a href="#ref-for-coep⑤">(4)</a> <a href="#ref-for-coep⑥">(5)</a> <a href="#ref-for-coep⑦">(6)</a> <a href="#ref-for-coep⑧">(7)</a>
-    <li><a href="#ref-for-coep⑨">6.1.7. COEP embedder checks</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-cross-origin-opener-policies">
-   <a href="https://html.spec.whatwg.org/C/#cross-origin-opener-policies">https://html.spec.whatwg.org/C/#cross-origin-opener-policies</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-cross-origin-opener-policies">1.1. Recommended readings</a> <a href="#ref-for-cross-origin-opener-policies①">(2)</a>
-    <li><a href="#ref-for-cross-origin-opener-policies②">2. A problem</a>
-    <li><a href="#termref-for-cross-origin-opener-policies">6.1.6. General section</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-settings-object-cross-origin-isolated-capability">
-   <a href="https://html.spec.whatwg.org/C/#concept-settings-object-cross-origin-isolated-capability">https://html.spec.whatwg.org/C/#concept-settings-object-cross-origin-isolated-capability</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-settings-object-cross-origin-isolated-capability">2. A problem</a> <a href="#ref-for-concept-settings-object-cross-origin-isolated-capability①">(2)</a>
-    <li><a href="#ref-for-concept-settings-object-cross-origin-isolated-capability②">7.1. Threat model</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-policy-container-embedder-policy">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#policy-container-embedder-policy">https://html.spec.whatwg.org/multipage/browsers.html#policy-container-embedder-policy</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-policy-container-embedder-policy">6.1.7. COEP embedder checks</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-embedder-policy-report-only-reporting-endpoint">
-   <a href="https://html.spec.whatwg.org/C/#embedder-policy-report-only-reporting-endpoint">https://html.spec.whatwg.org/C/#embedder-policy-report-only-reporting-endpoint</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-embedder-policy-report-only-reporting-endpoint">6.1.7. COEP embedder checks</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-embedder-policy-report-only-value">
-   <a href="https://html.spec.whatwg.org/C/#embedder-policy-report-only-value">https://html.spec.whatwg.org/C/#embedder-policy-report-only-value</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-embedder-policy-report-only-value">6.1.7. COEP embedder checks</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-embedder-policy-reporting-endpoint">
-   <a href="https://html.spec.whatwg.org/C/#embedder-policy-reporting-endpoint">https://html.spec.whatwg.org/C/#embedder-policy-reporting-endpoint</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-embedder-policy-reporting-endpoint">6.1.7. COEP embedder checks</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-embedder-policy-value">
-   <a href="https://html.spec.whatwg.org/C/#embedder-policy-value">https://html.spec.whatwg.org/C/#embedder-policy-value</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-embedder-policy-value">6.1.7. COEP embedder checks</a> <a href="#ref-for-embedder-policy-value①">(2)</a> <a href="#ref-for-embedder-policy-value②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-entry-global-object">
-   <a href="https://html.spec.whatwg.org/C/#entry-global-object">https://html.spec.whatwg.org/C/#entry-global-object</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-entry-global-object">6.1.5. Open popup with noopener</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-environment">
-   <a href="https://html.spec.whatwg.org/C/#environment">https://html.spec.whatwg.org/C/#environment</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-environment">6.1.9. Environment’s partition nonce</a>
-    <li><a href="#ref-for-environment①">6.1.9.1. For Navigation</a> <a href="#ref-for-environment②">(2)</a>
-    <li><a href="#ref-for-environment③">6.1.9.2. For Window</a> <a href="#ref-for-environment④">(2)</a>
-    <li><a href="#ref-for-environment⑤">6.2.1. Plumb the partition-nonce</a>
-    <li><a href="#ref-for-environment⑥">6.3. Integration with CHIPS</a> <a href="#ref-for-environment⑦">(2)</a> <a href="#ref-for-environment⑧">(3)</a> <a href="#ref-for-environment⑨">(4)</a> <a href="#ref-for-environment①⓪">(5)</a> <a href="#ref-for-environment①①">(6)</a> <a href="#ref-for-environment①②">(7)</a> <a href="#ref-for-environment①③">(8)</a>
-    <li><a href="#ref-for-environment①④">6.4. Integration with storage-partitioning</a> <a href="#ref-for-environment①⑤">(2)</a>
-    <li><a href="#ref-for-environment①⑥">6.5.1. storage-key</a> <a href="#ref-for-environment①⑦">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-environment-settings-object">
-   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object">https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-environment-settings-object">6.5.1. storage-key</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-hh-replace">
-   <a href="https://html.spec.whatwg.org/C/#hh-replace">https://html.spec.whatwg.org/C/#hh-replace</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-hh-replace">6.1.4. Navigating a browsing context</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-HTMLIframeElement">
-   <a href="https://html.spec.whatwg.org/C/#HTMLIframeElement">https://html.spec.whatwg.org/C/#HTMLIframeElement</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-HTMLIframeElement">6.1.1. The Iframe attribute</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-the-iframe-element">
-   <a href="https://html.spec.whatwg.org/C/#the-iframe-element">https://html.spec.whatwg.org/C/#the-iframe-element</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-the-iframe-element">6.1.1. The Iframe attribute</a> <a href="#ref-for-the-iframe-element①">(2)</a>
-    <li><a href="#ref-for-the-iframe-element②">6.1.6. General section</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-initialise-the-document-object">
-   <a href="https://html.spec.whatwg.org/C/#initialise-the-document-object">https://html.spec.whatwg.org/C/#initialise-the-document-object</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-initialise-the-document-object">6.1.4. Navigating a browsing context</a>
-    <li><a href="#ref-for-initialise-the-document-object①">6.1.9.2. For Window</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-is-initial-about:blank">
-   <a href="https://html.spec.whatwg.org/C/#is-initial-about:blank">https://html.spec.whatwg.org/C/#is-initial-about:blank</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-is-initial-about:blank">6.1.4. Navigating a browsing context</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-navigate">
-   <a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#navigate">https://html.spec.whatwg.org/multipage/browsing-the-web.html#navigate</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-navigate">6.1.4. Navigating a browsing context</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-navigation-params">
-   <a href="https://html.spec.whatwg.org/C/#navigation-params">https://html.spec.whatwg.org/C/#navigation-params</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-navigation-params">6.1.4. Navigating a browsing context</a> <a href="#ref-for-navigation-params①">(2)</a> <a href="#ref-for-navigation-params②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-navigation-params-hh">
-   <a href="https://html.spec.whatwg.org/C/#navigation-params-hh">https://html.spec.whatwg.org/C/#navigation-params-hh</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-navigation-params-hh">6.1.4. Navigating a browsing context</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-navigation-params-origin">
-   <a href="https://html.spec.whatwg.org/C/#navigation-params-origin">https://html.spec.whatwg.org/C/#navigation-params-origin</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-navigation-params-origin">6.1.4. Navigating a browsing context</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-navigation-params-reserved-environment">
-   <a href="https://html.spec.whatwg.org/C/#navigation-params-reserved-environment">https://html.spec.whatwg.org/C/#navigation-params-reserved-environment</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-navigation-params-reserved-environment">6.1.9.2. For Window</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-obtain-a-site">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#obtain-a-site">https://html.spec.whatwg.org/multipage/browsers.html#obtain-a-site</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-obtain-a-site">6.2.1. Plumb the partition-nonce</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-origin">
-   <a href="https://html.spec.whatwg.org/C/#concept-origin">https://html.spec.whatwg.org/C/#concept-origin</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-origin">6.1.9.2. For Window</a>
-    <li><a href="#ref-for-concept-origin①">6.2.1. Plumb the partition-nonce</a>
-    <li><a href="#ref-for-concept-origin②">6.5.1. storage-key</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-settings-object-origin">
-   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin">https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-settings-object-origin">6.5.1. storage-key</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-policy-container-embedder-policy">
-   <a href="https://html.spec.whatwg.org/C/#policy-container-embedder-policy">https://html.spec.whatwg.org/C/#policy-container-embedder-policy</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-policy-container-embedder-policy①">6.1.7. COEP embedder checks</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-process-a-navigate-fetch">
-   <a href="https://html.spec.whatwg.org/C/#process-a-navigate-fetch">https://html.spec.whatwg.org/C/#process-a-navigate-fetch</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-process-a-navigate-fetch">6.1.4. Navigating a browsing context</a>
-    <li><a href="#ref-for-process-a-navigate-fetch①">6.1.9.1. For Navigation</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-queue-a-cross-origin-embedder-policy-inheritance-violation">
-   <a href="https://html.spec.whatwg.org/C/#queue-a-cross-origin-embedder-policy-inheritance-violation">https://html.spec.whatwg.org/C/#queue-a-cross-origin-embedder-policy-inheritance-violation</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-queue-a-cross-origin-embedder-policy-inheritance-violation">6.1.7. COEP embedder checks</a> <a href="#ref-for-queue-a-cross-origin-embedder-policy-inheritance-violation①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-relevant-global">
-   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global">https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-relevant-global">6.1.6. General section</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-relevant-settings-object">
-   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object">https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-relevant-settings-object">6.1.7. COEP embedder checks</a> <a href="#ref-for-relevant-settings-object①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-same-origin-domain">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin-domain">https://html.spec.whatwg.org/multipage/browsers.html#same-origin-domain</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-same-origin-domain">6.1.4. Navigating a browsing context</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-script-:settings-for-workers">
-   <a href="https://html.spec.whatwg.org/C/#script-:settings-for-workers">https://html.spec.whatwg.org/C/#script-:settings-for-workers</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-script-:settings-for-workers">6.1.9.3. For Worker</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-service-worker-obj">
-   <a href="https://html.spec.whatwg.org/C/#service-worker-obj">https://html.spec.whatwg.org/C/#service-worker-obj</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-service-worker-obj">3. Explainer</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-set-up-a-window-environment-settings-object">
-   <a href="https://html.spec.whatwg.org/C/#set-up-a-window-environment-settings-object">https://html.spec.whatwg.org/C/#set-up-a-window-environment-settings-object</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-set-up-a-window-environment-settings-object">6.1.9.2. For Window</a> <a href="#ref-for-set-up-a-window-environment-settings-object①">(2)</a> <a href="#ref-for-set-up-a-window-environment-settings-object②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-set-up-a-worklet-environment-settings-object">
-   <a href="https://html.spec.whatwg.org/C/#set-up-a-worklet-environment-settings-object">https://html.spec.whatwg.org/C/#set-up-a-worklet-environment-settings-object</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-set-up-a-worklet-environment-settings-object">6.1.9.4. For Worklet</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-sharedworer">
-   <a href="https://html.spec.whatwg.org/C/#sharedworer">https://html.spec.whatwg.org/C/#sharedworer</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-sharedworer">3. Explainer</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-site">
-   <a href="https://html.spec.whatwg.org/multipage/browsers.html#site">https://html.spec.whatwg.org/multipage/browsers.html#site</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-site">6.2.1. Plumb the partition-nonce</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-still-on-its-initial-about:blank-document">
-   <a href="https://html.spec.whatwg.org/C/#still-on-its-initial-about:blank-document">https://html.spec.whatwg.org/C/#still-on-its-initial-about:blank-document</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-still-on-its-initial-about:blank-document">6.1.4. Navigating a browsing context</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-environment-target-browsing-context">
-   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-target-browsing-context">https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-target-browsing-context</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-environment-target-browsing-context①">6.1.9.4. For Worklet</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-top-level-browsing-context">
-   <a href="https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context">https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-top-level-browsing-context">6.1.9.1. For Navigation</a>
-    <li><a href="#ref-for-top-level-browsing-context①">6.1.9.2. For Window</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-environment-top-level-creation-url">
-   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-creation-url">https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-creation-url</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-environment-top-level-creation-url">6.1.9.1. For Navigation</a>
-    <li><a href="#ref-for-concept-environment-top-level-creation-url①">6.1.9.2. For Window</a>
-    <li><a href="#ref-for-concept-environment-top-level-creation-url②">6.1.9.4. For Worklet</a>
-    <li><a href="#ref-for-concept-environment-top-level-creation-url③">6.2.1. Plumb the partition-nonce</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-environment-top-level-origin">
-   <a href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-origin">https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-origin</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-environment-top-level-origin">6.1.9.1. For Navigation</a>
-    <li><a href="#ref-for-concept-environment-top-level-origin①">6.1.9.2. For Window</a>
-    <li><a href="#ref-for-concept-environment-top-level-origin②">6.1.9.4. For Worklet</a> <a href="#ref-for-concept-environment-top-level-origin③">(2)</a>
-    <li><a href="#ref-for-concept-environment-top-level-origin④">6.2.1. Plumb the partition-nonce</a>
-    <li><a href="#ref-for-concept-environment-top-level-origin⑤">6.3. Integration with CHIPS</a> <a href="#ref-for-concept-environment-top-level-origin⑥">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-window-open-steps">
-   <a href="https://html.spec.whatwg.org/C/#window-open-steps">https://html.spec.whatwg.org/C/#window-open-steps</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-window-open-steps">6.1.5. Open popup with noopener</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-implementation-defined">
-   <a href="https://infra.spec.whatwg.org/#implementation-defined">https://infra.spec.whatwg.org/#implementation-defined</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-implementation-defined">6.2.1. Plumb the partition-nonce</a> <a href="#ref-for-implementation-defined①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-struct">
-   <a href="https://infra.spec.whatwg.org/#struct">https://infra.spec.whatwg.org/#struct</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-struct">6.1.4. Navigating a browsing context</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-tuple">
-   <a href="https://infra.spec.whatwg.org/#tuple">https://infra.spec.whatwg.org/#tuple</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-tuple">6.3. Integration with CHIPS</a> <a href="#ref-for-tuple①">(2)</a>
-    <li><a href="#ref-for-tuple②">6.5.1. storage-key</a> <a href="#ref-for-tuple③">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-obtain-a-storage-key-for-non-storage-purposes">
-   <a href="https://storage.spec.whatwg.org/#obtain-a-storage-key-for-non-storage-purposes">https://storage.spec.whatwg.org/#obtain-a-storage-key-for-non-storage-purposes</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-obtain-a-storage-key-for-non-storage-purposes">6.5.1. storage-key</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-url-origin">
-   <a href="https://url.spec.whatwg.org/#concept-url-origin">https://url.spec.whatwg.org/#concept-url-origin</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-url-origin">6.2.1. Plumb the partition-nonce</a>
-    <li><a href="#ref-for-concept-url-origin①">6.5.1. storage-key</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-url">
-   <a href="https://url.spec.whatwg.org/#concept-url">https://url.spec.whatwg.org/#concept-url</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-url">6.1.9.2. For Window</a> <a href="#ref-for-concept-url①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-Exposed">
-   <a href="https://webidl.spec.whatwg.org/#Exposed">https://webidl.spec.whatwg.org/#Exposed</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-Exposed">6.1.1. The Iframe attribute</a>
-    <li><a href="#ref-for-Exposed①">6.1.2. The Window attribute</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-Global">
-   <a href="https://webidl.spec.whatwg.org/#Global">https://webidl.spec.whatwg.org/#Global</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-Global">6.1.2. The Window attribute</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-LegacyUnenumerableNamedProperties">
-   <a href="https://webidl.spec.whatwg.org/#LegacyUnenumerableNamedProperties">https://webidl.spec.whatwg.org/#LegacyUnenumerableNamedProperties</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-LegacyUnenumerableNamedProperties">6.1.2. The Window attribute</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-idl-boolean">
-   <a href="https://webidl.spec.whatwg.org/#idl-boolean">https://webidl.spec.whatwg.org/#idl-boolean</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-idl-boolean">6.1.1. The Iframe attribute</a>
-    <li><a href="#ref-for-idl-boolean①">6.1.2. The Window attribute</a>
-   </ul>
-  </aside>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
     <a data-link-type="biblio">[]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-">back/forward cache</span>
-     <li><span class="dfn-paneled" id="term-for-concept-response">concept-response</span>
-     <li><span class="dfn-paneled" id="term-for-/issues/1">getviewportmedia</span>
-     <li><span class="dfn-paneled" id="term-for-issuecomment-812">high resolution timers</span>
-     <li><span class="dfn-paneled" id="term-for-sec-execution-contextssec-execution-contexts">javascript execution context</span>
-     <li><span class="dfn-paneled" id="term-for-network-partition-key">network partition key</span>
-     <li><span class="dfn-paneled" id="term-for-storage-key">storage key</span>
-     <li><span class="dfn-paneled" id="term-for-threat-model">threat model</span>
+     <li><span class="dfn-paneled" id="c19190a2">back/forward cache</span>
+     <li><span class="dfn-paneled" id="e45047f8">concept-response</span>
+     <li><span class="dfn-paneled" id="fc510f96">getviewportmedia</span>
+     <li><span class="dfn-paneled" id="db04553d">high resolution timers</span>
+     <li><span class="dfn-paneled" id="830df20a">javascript execution context</span>
+     <li><span class="dfn-paneled" id="7cf440ca">network partition key</span>
+     <li><span class="dfn-paneled" id="7f6a70d1">storage key</span>
+     <li><span class="dfn-paneled" id="b3ad8adf">threat model</span>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[CSS-COLOR-3]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="95a8ae14">window</span>
     </ul>
    <li>
     <a data-link-type="biblio">[DOM]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-eventtarget">EventTarget</span>
-     <li><span class="dfn-paneled" id="term-for-concept-document">document</span>
-     <li><span class="dfn-paneled" id="term-for-concept-node-document">node document</span>
-     <li><span class="dfn-paneled" id="term-for-concept-reflect">reflect</span>
+     <li><span class="dfn-paneled" id="2bc0cdf4">EventTarget</span>
+     <li><span class="dfn-paneled" id="a973e0fe">document</span>
+     <li><span class="dfn-paneled" id="5216e1a0">node document</span>
     </ul>
    <li>
     <a data-link-type="biblio">[ECMASCRIPT]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-sec-sharedarraybuffer-objects">SharedArrayBuffer</span>
+     <li><span class="dfn-paneled" id="91890fa8">SharedArrayBuffer</span>
     </ul>
    <li>
     <a data-link-type="biblio">[FETCH]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-dom-requestdestination-iframe">"iframe"</span>
-     <li><span class="dfn-paneled" id="term-for-determine-the-network-partition-key">determine the network partition key</span>
-     <li><span class="dfn-paneled" id="term-for-concept-request-window">window</span>
+     <li><span class="dfn-paneled" id="7691dbb6">"iframe"</span>
+     <li><span class="dfn-paneled" id="86ba8c0f">determine the network partition key</span>
     </ul>
    <li>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-htmlelement">HTMLElement</span>
-     <li><span class="dfn-paneled" id="term-for-nav-document">active document</span>
-     <li><span class="dfn-paneled" id="term-for-active-window">active window</span>
-     <li><span class="dfn-paneled" id="term-for-bc-container">bc-container</span>
-     <li><span class="dfn-paneled" id="term-for-bc-container-document">bc-container-document</span>
-     <li><span class="dfn-paneled" id="term-for-broadcasting-to-other-browsing-contexts">broadcastchannel</span>
-     <li><span class="dfn-paneled" id="term-for-window-bc">browsing context</span>
-     <li><span class="dfn-paneled" id="term-for-check-a-navigation-response&apos;s-adherence-to-its-embedder-policy">check a navigation response's adherence to its embedder policy</span>
-     <li><span class="dfn-paneled" id="term-for-child-browsing-context">child browsing context</span>
-     <li><span class="dfn-paneled" id="term-for-coep">coep</span>
-     <li><span class="dfn-paneled" id="term-for-compatible-with-cross-origin-isolation">compatible with cross-origin isolation</span>
-     <li><span class="dfn-paneled" id="term-for-concept-document-bc">concept-document-bc</span>
-     <li><span class="dfn-paneled" id="term-for-concept-document-origin">concept-document-origin</span>
-     <li><span class="dfn-paneled" id="term-for-concept-document-policy-container">concept-document-policy-container</span>
-     <li><span class="dfn-paneled" id="term-for-concept-environment-active-service-worker">concept-environment-active-service-worker</span>
-     <li><span class="dfn-paneled" id="term-for-concept-environment-creation-url">concept-environment-creation-url</span>
-     <li><span class="dfn-paneled" id="term-for-concept-environment-id">concept-environment-id</span>
-     <li><span class="dfn-paneled" id="term-for-concept-environment-target-browsing-context">concept-environment-target-browsing-context</span>
-     <li><span class="dfn-paneled" id="term-for-concept-request-reserved-client">concept-request-reserved-client</span>
-     <li><span class="dfn-paneled" id="term-for-cross-origin-opener-policies">coop</span>
-     <li><span class="dfn-paneled" id="term-for-creating-a-new-browsing-context">creating a new browsing context</span>
-     <li><span class="dfn-paneled" id="term-for-concept-environment-creation-url①">creation url</span>
-     <li><span class="dfn-paneled" id="term-for-coep①">cross-origin-embedder-policy</span>
-     <li><span class="dfn-paneled" id="term-for-cross-origin-opener-policies①">cross-origin-opener-policy</span>
-     <li><span class="dfn-paneled" id="term-for-concept-settings-object-cross-origin-isolated-capability">crossoriginisolated</span>
-     <li><span class="dfn-paneled" id="term-for-policy-container-embedder-policy">embedder policy</span>
-     <li><span class="dfn-paneled" id="term-for-embedder-policy-report-only-reporting-endpoint">embedder-policy-report-only-reporting-endpoint</span>
-     <li><span class="dfn-paneled" id="term-for-embedder-policy-report-only-value">embedder-policy-report-only-value</span>
-     <li><span class="dfn-paneled" id="term-for-embedder-policy-reporting-endpoint">embedder-policy-reporting-endpoint</span>
-     <li><span class="dfn-paneled" id="term-for-embedder-policy-value">embedder-policy-value</span>
-     <li><span class="dfn-paneled" id="term-for-entry-global-object">entry global object</span>
-     <li><span class="dfn-paneled" id="term-for-environment">environment</span>
-     <li><span class="dfn-paneled" id="term-for-environment-settings-object">environment settings object</span>
-     <li><span class="dfn-paneled" id="term-for-hh-replace">hh-replace</span>
-     <li><span class="dfn-paneled" id="term-for-HTMLIframeElement">htmliframeelement</span>
-     <li><span class="dfn-paneled" id="term-for-the-iframe-element">iframe</span>
-     <li><span class="dfn-paneled" id="term-for-initialise-the-document-object">initialize the document object</span>
-     <li><span class="dfn-paneled" id="term-for-is-initial-about:blank">is initial about:blank</span>
-     <li><span class="dfn-paneled" id="term-for-navigate">navigate</span>
-     <li><span class="dfn-paneled" id="term-for-navigation-params">navigation params</span>
-     <li><span class="dfn-paneled" id="term-for-navigation-params-hh">navigation-params-hh</span>
-     <li><span class="dfn-paneled" id="term-for-navigation-params-origin">navigation-params-origin</span>
-     <li><span class="dfn-paneled" id="term-for-navigation-params-reserved-environment">navigation-params-reserved-environment</span>
-     <li><span class="dfn-paneled" id="term-for-obtain-a-site">obtain a site</span>
-     <li><span class="dfn-paneled" id="term-for-concept-origin">origin</span>
-     <li><span class="dfn-paneled" id="term-for-concept-settings-object-origin">origin <small>(for environment settings object)</small></span>
-     <li><span class="dfn-paneled" id="term-for-policy-container-embedder-policy①">policy-container-embedder-policy</span>
-     <li><span class="dfn-paneled" id="term-for-process-a-navigate-fetch">process a navigate fetch</span>
-     <li><span class="dfn-paneled" id="term-for-queue-a-cross-origin-embedder-policy-inheritance-violation">queue a cross-origin embedder policy inheritance violation</span>
-     <li><span class="dfn-paneled" id="term-for-concept-relevant-global">relevant global object</span>
-     <li><span class="dfn-paneled" id="term-for-relevant-settings-object">relevant settings object</span>
-     <li><span class="dfn-paneled" id="term-for-same-origin-domain">same origin-domain</span>
-     <li><span class="dfn-paneled" id="term-for-script-:settings-for-workers">script settings for workers</span>
-     <li><span class="dfn-paneled" id="term-for-service-worker-obj">serviceworker</span>
-     <li><span class="dfn-paneled" id="term-for-set-up-a-window-environment-settings-object">set up a window environment settings object</span>
-     <li><span class="dfn-paneled" id="term-for-set-up-a-worklet-environment-settings-object">set up a worklet environment settings object</span>
-     <li><span class="dfn-paneled" id="term-for-sharedworer">sharedworker</span>
-     <li><span class="dfn-paneled" id="term-for-site">site</span>
-     <li><span class="dfn-paneled" id="term-for-still-on-its-initial-about:blank-document">still on its initial about:blank document</span>
-     <li><span class="dfn-paneled" id="term-for-concept-environment-target-browsing-context①">target browsing context</span>
-     <li><span class="dfn-paneled" id="term-for-top-level-browsing-context">top-level browsing context</span>
-     <li><span class="dfn-paneled" id="term-for-concept-environment-top-level-creation-url">top-level creation url</span>
-     <li><span class="dfn-paneled" id="term-for-concept-environment-top-level-origin">top-level origin</span>
-     <li><span class="dfn-paneled" id="term-for-window-open-steps">window open steps</span>
+     <li><span class="dfn-paneled" id="b08d0bb2">HTMLElement</span>
+     <li><span class="dfn-paneled" id="35972864">active document</span>
+     <li><span class="dfn-paneled" id="8943aeb7">active window</span>
+     <li><span class="dfn-paneled" id="08798cb4">bc-container</span>
+     <li><span class="dfn-paneled" id="c4be4ca3">bc-container-document</span>
+     <li><span class="dfn-paneled" id="e17d8de3">broadcastchannel</span>
+     <li><span class="dfn-paneled" id="6d88ab2e">browsing context</span>
+     <li><span class="dfn-paneled" id="ff8cdb6c">check a navigation response's adherence to its embedder policy</span>
+     <li><span class="dfn-paneled" id="98a8cadb">child browsing context</span>
+     <li><span class="dfn-paneled" id="d8813cef">coep</span>
+     <li><span class="dfn-paneled" id="bee39f64">compatible with cross-origin isolation</span>
+     <li><span class="dfn-paneled" id="8d5a6324">concept-document-bc</span>
+     <li><span class="dfn-paneled" id="9935eba2">concept-document-origin</span>
+     <li><span class="dfn-paneled" id="f165b1b1">concept-document-policy-container</span>
+     <li><span class="dfn-paneled" id="7ab7862a">concept-environment-active-service-worker</span>
+     <li><span class="dfn-paneled" id="445f6849">concept-environment-creation-url</span>
+     <li><span class="dfn-paneled" id="8692a4e4">concept-environment-id</span>
+     <li><span class="dfn-paneled" id="70483c5d">concept-environment-target-browsing-context</span>
+     <li><span class="dfn-paneled" id="e452755c">concept-request-reserved-client</span>
+     <li><span class="dfn-paneled" id="e3892898">coop</span>
+     <li><span class="dfn-paneled" id="8a5cb8cf">creating a new browsing context</span>
+     <li><span class="dfn-paneled" id="fa5ee9c5">creation url</span>
+     <li><span class="dfn-paneled" id="047398fc">cross-origin-embedder-policy</span>
+     <li><span class="dfn-paneled" id="20d23287">cross-origin-opener-policy</span>
+     <li><span class="dfn-paneled" id="bda815a2">crossoriginisolated</span>
+     <li><span class="dfn-paneled" id="f149351d">embedder policy</span>
+     <li><span class="dfn-paneled" id="5edff1d1">embedder-policy-report-only-reporting-endpoint</span>
+     <li><span class="dfn-paneled" id="d5ce1200">embedder-policy-report-only-value</span>
+     <li><span class="dfn-paneled" id="51880f04">embedder-policy-reporting-endpoint</span>
+     <li><span class="dfn-paneled" id="8ffab3de">embedder-policy-value</span>
+     <li><span class="dfn-paneled" id="47d596bd">entry global object</span>
+     <li><span class="dfn-paneled" id="77a2dc1b">environment</span>
+     <li><span class="dfn-paneled" id="3e12e042">environment settings object</span>
+     <li><span class="dfn-paneled" id="fd8e14d6">hh-replace</span>
+     <li><span class="dfn-paneled" id="ca612a39">htmliframeelement</span>
+     <li><span class="dfn-paneled" id="a9ce3a0f">iframe</span>
+     <li><span class="dfn-paneled" id="1cfc85b3">initialize the document object</span>
+     <li><span class="dfn-paneled" id="62bf7250">is initial about:blank</span>
+     <li><span class="dfn-paneled" id="2594e562">navigate</span>
+     <li><span class="dfn-paneled" id="51216406">navigation params</span>
+     <li><span class="dfn-paneled" id="c21e027e">navigation-params-hh</span>
+     <li><span class="dfn-paneled" id="7f5423f9">navigation-params-origin</span>
+     <li><span class="dfn-paneled" id="0d1ed178">navigation-params-reserved-environment</span>
+     <li><span class="dfn-paneled" id="602b1a68">obtain a site</span>
+     <li><span class="dfn-paneled" id="3124aef9">origin</span>
+     <li><span class="dfn-paneled" id="43ac8374">origin <small>(for environment settings object)</small></span>
+     <li><span class="dfn-paneled" id="b9d1918c">policy-container-embedder-policy</span>
+     <li><span class="dfn-paneled" id="0cdf2e80">process a navigate fetch</span>
+     <li><span class="dfn-paneled" id="a71121e6">queue a cross-origin embedder policy inheritance violation</span>
+     <li><span class="dfn-paneled" id="5ab7b520">reflect</span>
+     <li><span class="dfn-paneled" id="e99bd18e">relevant global object</span>
+     <li><span class="dfn-paneled" id="9c4c1e66">relevant settings object</span>
+     <li><span class="dfn-paneled" id="521818b9">same origin-domain</span>
+     <li><span class="dfn-paneled" id="37098e9d">script settings for workers</span>
+     <li><span class="dfn-paneled" id="c01b42c6">serviceworker</span>
+     <li><span class="dfn-paneled" id="6f14449b">set up a window environment settings object</span>
+     <li><span class="dfn-paneled" id="a8befa72">set up a worklet environment settings object</span>
+     <li><span class="dfn-paneled" id="ad91ac84">sharedworker</span>
+     <li><span class="dfn-paneled" id="fb9bb722">site</span>
+     <li><span class="dfn-paneled" id="afc470d6">still on its initial about:blank document</span>
+     <li><span class="dfn-paneled" id="085ddd0a">target browsing context</span>
+     <li><span class="dfn-paneled" id="ae2a6342">top-level browsing context</span>
+     <li><span class="dfn-paneled" id="2c6fd92e">top-level creation url</span>
+     <li><span class="dfn-paneled" id="c63519ed">top-level origin</span>
+     <li><span class="dfn-paneled" id="abd7296a">window open steps</span>
     </ul>
    <li>
     <a data-link-type="biblio">[INFRA]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-implementation-defined">implementation-defined</span>
-     <li><span class="dfn-paneled" id="term-for-struct">struct</span>
-     <li><span class="dfn-paneled" id="term-for-tuple">tuple</span>
+     <li><span class="dfn-paneled" id="860300d4">implementation-defined</span>
+     <li><span class="dfn-paneled" id="984221ca">struct</span>
+     <li><span class="dfn-paneled" id="0e8de730">tuple</span>
     </ul>
    <li>
     <a data-link-type="biblio">[STORAGE]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-obtain-a-storage-key-for-non-storage-purposes">obtain a storage key for non-storage purposes</span>
+     <li><span class="dfn-paneled" id="76919410">obtain a storage key for non-storage purposes</span>
     </ul>
    <li>
     <a data-link-type="biblio">[URL]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-concept-url-origin">origin</span>
-     <li><span class="dfn-paneled" id="term-for-concept-url">url</span>
+     <li><span class="dfn-paneled" id="959ad97b">origin</span>
+     <li><span class="dfn-paneled" id="dcffbccd">url</span>
     </ul>
    <li>
     <a data-link-type="biblio">[WEBIDL]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-Exposed">Exposed</span>
-     <li><span class="dfn-paneled" id="term-for-Global">Global</span>
-     <li><span class="dfn-paneled" id="term-for-LegacyUnenumerableNamedProperties">LegacyUnenumerableNamedProperties</span>
-     <li><span class="dfn-paneled" id="term-for-idl-boolean">boolean</span>
+     <li><span class="dfn-paneled" id="889e932f">Exposed</span>
+     <li><span class="dfn-paneled" id="7fb6fbc6">Global</span>
+     <li><span class="dfn-paneled" id="88b4ba7f">LegacyUnenumerableNamedProperties</span>
+     <li><span class="dfn-paneled" id="5372cca8">boolean</span>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -2471,6 +1952,8 @@ they could prevent the back/forward cache from restoring the document.</p>
    <dd>Dylan Cutler; Kaustubha Govind. <a href="https://github.com/WICG/CHIPS"><cite>CHIPS (Cookies Having Independent Partitioned State)</cite></a>. URL: <a href="https://github.com/WICG/CHIPS">https://github.com/WICG/CHIPS</a>
    <dt id="biblio-cookies">[COOKIES]
    <dd>Mike West; John Wilander. <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-07"><cite>Cookies: HTTP State Management Mechanism</cite></a>. URL: <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-07">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis-07</a>
+   <dt id="biblio-css-color-3">[CSS-COLOR-3]
+   <dd>Tantek Çelik; Chris Lilley; David Baron. <a href="https://drafts.csswg.org/css-color-3/"><cite>CSS Color Module Level 3</cite></a>. URL: <a href="https://drafts.csswg.org/css-color-3/">https://drafts.csswg.org/css-color-3/</a>
    <dt id="biblio-dom">[DOM]
    <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/"><cite>DOM Standard</cite></a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
    <dt id="biblio-ecmascript">[ECMASCRIPT]
@@ -2529,135 +2012,607 @@ they could prevent the back/forward cache from restoring the document.</p>
 };
 
 </pre>
-  <aside class="dfn-panel" data-for="attr-iframe-credentialless">
-   <b><a href="#attr-iframe-credentialless">#attr-iframe-credentialless</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-attr-iframe-credentialless">6.1.1. The Iframe attribute</a>
-    <li><a href="#ref-for-attr-iframe-credentialless①">6.1.6. General section</a> <a href="#ref-for-attr-iframe-credentialless②">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="window">
-   <b><a href="#window">#window</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-window">6.1.2. The Window attribute</a>
-    <li><a href="#ref-for-window①">6.1.6. General section</a> <a href="#ref-for-window②">(2)</a>
-    <li><a href="#ref-for-window③">6.1.9. Environment’s partition nonce</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-window-credentialless">
-   <b><a href="#dom-window-credentialless">#dom-window-credentialless</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-window-credentialless">6.1.2. The Window attribute</a>
-    <li><a href="#ref-for-dom-window-credentialless①">6.1.3. Creating new browsing context</a>
-    <li><a href="#ref-for-dom-window-credentialless②">6.1.4. Navigating a browsing context</a> <a href="#ref-for-dom-window-credentialless③">(2)</a> <a href="#ref-for-dom-window-credentialless④">(3)</a>
-    <li><a href="#ref-for-dom-window-credentialless⑤">6.1.5. Open popup with noopener</a>
-    <li><a href="#ref-for-dom-window-credentialless⑥">6.1.6. General section</a> <a href="#ref-for-dom-window-credentialless⑦">(2)</a> <a href="#ref-for-dom-window-credentialless⑧">(3)</a> <a href="#ref-for-dom-window-credentialless⑨">(4)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="navigation-params-credentialless">
-   <b><a href="#navigation-params-credentialless">#navigation-params-credentialless</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-navigation-params-credentialless">6.1.4. Navigating a browsing context</a> <a href="#ref-for-navigation-params-credentialless①">(2)</a>
-    <li><a href="#ref-for-navigation-params-credentialless②">6.1.7. COEP embedder checks</a>
-    <li><a href="#ref-for-navigation-params-credentialless③">6.1.9.2. For Window</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="credentialless-window">
-   <b><a href="#credentialless-window">#credentialless-window</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-credentialless-window">6.1.6. General section</a> <a href="#ref-for-credentialless-window①">(2)</a>
-    <li><a href="#ref-for-credentialless-window②">6.1.9. Environment’s partition nonce</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="initial-window-credentialless">
-   <b><a href="#initial-window-credentialless">#initial-window-credentialless</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-initial-window-credentialless">6.1.3. Creating new browsing context</a>
-    <li><a href="#ref-for-initial-window-credentialless①">6.1.6. General section</a> <a href="#ref-for-initial-window-credentialless②">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="navigation-credentialless">
-   <b><a href="#navigation-credentialless">#navigation-credentialless</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-navigation-credentialless">6.1.4. Navigating a browsing context</a>
-    <li><a href="#ref-for-navigation-credentialless①">6.1.6. General section</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="page-credentialless-nonce">
-   <b><a href="#page-credentialless-nonce">#page-credentialless-nonce</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-page-credentialless-nonce">6.1.9. Environment’s partition nonce</a>
-    <li><a href="#ref-for-page-credentialless-nonce①">6.1.9.1. For Navigation</a>
-    <li><a href="#ref-for-page-credentialless-nonce②">6.1.9.2. For Window</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="environment-partition-nonce">
-   <b><a href="#environment-partition-nonce">#environment-partition-nonce</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-environment-partition-nonce">6.1.9. Environment’s partition nonce</a>
-    <li><a href="#ref-for-environment-partition-nonce①">6.1.9.1. For Navigation</a>
-    <li><a href="#ref-for-environment-partition-nonce②">6.1.9.2. For Window</a>
-    <li><a href="#ref-for-environment-partition-nonce③">6.1.9.3. For Worker</a> <a href="#ref-for-environment-partition-nonce④">(2)</a>
-    <li><a href="#ref-for-environment-partition-nonce⑤">6.1.9.4. For Worklet</a> <a href="#ref-for-environment-partition-nonce⑥">(2)</a>
-    <li><a href="#ref-for-environment-partition-nonce⑦">6.2.1. Plumb the partition-nonce</a>
-    <li><a href="#ref-for-environment-partition-nonce⑧">6.3. Integration with CHIPS</a> <a href="#ref-for-environment-partition-nonce⑨">(2)</a> <a href="#ref-for-environment-partition-nonce①⓪">(3)</a> <a href="#ref-for-environment-partition-nonce①①">(4)</a> <a href="#ref-for-environment-partition-nonce①②">(5)</a>
-    <li><a href="#ref-for-environment-partition-nonce①③">6.4. Integration with storage-partitioning</a> <a href="#ref-for-environment-partition-nonce①④">(2)</a>
-    <li><a href="#ref-for-environment-partition-nonce①⑤">6.5.1. storage-key</a> <a href="#ref-for-environment-partition-nonce①⑥">(2)</a>
-   </ul>
-  </aside>
-<script>/* script-dfn-panel */
+<script>/* Boilerplate: script-dfn-panel */
+"use strict";
+{
+    const dfnsJson = window.dfnsJson || {};
 
-document.body.addEventListener("click", function(e) {
-    var queryAll = function(sel) { return [].slice.call(document.querySelectorAll(sel)); }
-    // Find the dfn element or panel, if any, that was clicked on.
-    var el = e.target;
-    var target;
-    var hitALink = false;
-    while(el.parentElement) {
-        if(el.tagName == "A") {
-            // Clicking on a link in a <dfn> shouldn't summon the panel
-            hitALink = true;
-        }
-        if(el.classList.contains("dfn-paneled")) {
-            target = "dfn";
-            break;
-        }
-        if(el.classList.contains("dfn-panel")) {
-            target = "dfn-panel";
-            break;
-        }
-        el = el.parentElement;
+    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
+        return mk.aside({
+            class: "dfn-panel",
+            id: `infopanel-for-${dfnID}`,
+            "data-for": dfnID,
+            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+            },
+            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+                `Info about the '${dfnText}' ${external?"external":""} reference.`),
+            mk.a({href:url}, url),
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({
+                                    href: `#${ref.id}`
+                                    },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        );
     }
-    if(target != "dfn-panel") {
-        // Turn off any currently "on" or "activated" panels.
-        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(function(el){
-            el.classList.remove("on");
-            el.classList.remove("activated");
-        });
-    }
-    if(target == "dfn" && !hitALink) {
-        // open the panel
-        var dfnPanel = document.querySelector(".dfn-panel[data-for='" + el.id + "']");
-        if(dfnPanel) {
-            dfnPanel.classList.add("on");
-            var rect = el.getBoundingClientRect();
-            dfnPanel.style.left = window.scrollX + rect.right + 5 + "px";
-            dfnPanel.style.top = window.scrollY + rect.top + "px";
-            var panelRect = dfnPanel.getBoundingClientRect();
-            var panelWidth = panelRect.right - panelRect.left;
-            if(panelRect.right > document.body.scrollWidth && (rect.left - (panelWidth + 5)) > 0) {
-                // Reposition, because the panel is overflowing
-                dfnPanel.style.left = window.scrollX + rect.left - (panelWidth + 5) + "px";
+
+    function genAllDfnPanels() {
+        for(const panelData of Object.values(window.dfnpanelData)) {
+            const dfnID = panelData.dfnID;
+            const dfn = document.getElementById(dfnID);
+            if(!dfn) {
+                console.log(`Can't find dfn#${dfnID}.`, panelData);
+            } else {
+                const panel = genDfnPanel(panelData);
+                append(document.body, panel);
+                insertDfnPopupAction(dfn, panel)
             }
-        } else {
-            console.log("Couldn't find .dfn-panel[data-for='" + el.id + "']");
         }
-    } else if(target == "dfn-panel") {
-        // Switch it to "activated" state, which pins it.
-        el.classList.add("activated");
-        el.style.left = null;
-        el.style.top = null;
     }
 
+    document.addEventListener("DOMContentLoaded", ()=>{
+        genAllDfnPanels();
+
+        // Add popup behavior to all dfns to show the corresponding dfn-panel.
+        var dfns = queryAll('.dfn-paneled');
+        for(let dfn of dfns) { ; }
+
+        document.body.addEventListener("click", (e) => {
+            // If not handled already, just hide all dfn panels.
+            hideAllDfnPanels();
+        });
+    })
+
+
+    function hideAllDfnPanels() {
+        // Turn off any currently "on" or "activated" panels.
+        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>hideDfnPanel(el));
+    }
+
+    function showDfnPanel(dfnPanel, dfn) {
+        hideAllDfnPanels(); // Only display one at this time.
+        dfn.setAttribute("aria-expanded", "true");
+        dfnPanel.classList.add("on");
+        dfnPanel.style.left = "5px";
+        dfnPanel.style.top = "0px";
+        const panelRect = dfnPanel.getBoundingClientRect();
+        const panelWidth = panelRect.right - panelRect.left;
+        if (panelRect.right > document.body.scrollWidth) {
+            // Panel's overflowing the screen.
+            // Just drop it below the dfn and flip it rightward instead.
+            // This still wont' fix things if the screen is *really* wide,
+            // but fixing that's a lot harder without 'anchor()'.
+            dfnPanel.style.top = "1.5em";
+            dfnPanel.style.left = "auto";
+            dfnPanel.style.right = "0px";
+        }
+    }
+
+    function pinDfnPanel(dfnPanel) {
+        // Switch it to "activated" state, which pins it.
+        dfnPanel.classList.add("activated");
+        dfnPanel.style.left = null;
+        dfnPanel.style.top = null;
+    }
+
+    function hideDfnPanel(dfnPanel, dfn) {
+        if(!dfn) {
+            dfn = document.getElementById(dfnPanel.getAttribute("data-for"));
+        }
+        dfn.setAttribute("aria-expanded", "false")
+        dfnPanel.classList.remove("on");
+        dfnPanel.classList.remove("activated");
+    }
+
+    function toggleDfnPanel(dfnPanel, dfn) {
+        if(dfnPanel.classList.contains("on")) {
+            hideDfnPanel(dfnPanel, dfn);
+        } else {
+            showDfnPanel(dfnPanel, dfn);
+        }
+    }
+
+    function insertDfnPopupAction(dfn, dfnPanel) {
+        // Find dfn panel
+        const panelWrapper = document.createElement('span');
+        panelWrapper.appendChild(dfnPanel);
+        panelWrapper.style.position = "relative";
+        panelWrapper.style.height = "0px";
+        dfn.insertAdjacentElement("afterend", panelWrapper);
+        dfn.setAttribute('role', 'button');
+        dfn.setAttribute('aria-expanded', 'false')
+        dfn.tabIndex = 0;
+        dfn.classList.add('has-dfn-panel');
+        dfn.addEventListener('click', (event) => {
+            showDfnPanel(dfnPanel, dfn);
+            event.stopPropagation();
+        });
+        dfn.addEventListener('keypress', (event) => {
+            const kc = event.keyCode;
+            // 32->Space, 13->Enter
+            if(kc == 32 || kc == 13) {
+                toggleDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        });
+
+        dfnPanel.addEventListener('click', (event) => {
+            if (event.target.nodeName == 'A') {
+                pinDfnPanel(dfnPanel);
+            }
+            event.stopPropagation();
+        });
+
+        dfnPanel.addEventListener('keydown', (event) => {
+            if(event.keyCode == 27) { // Escape key
+                hideDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        })
+    }
+}
+</script>
+<script>/* Boilerplate: script-dfn-panel */
+"use strict";
+{
+    const dfnsJson = window.dfnsJson || {};
+
+    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
+        return mk.aside({
+            class: "dfn-panel",
+            id: `infopanel-for-${dfnID}`,
+            "data-for": dfnID,
+            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+            },
+            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+                `Info about the '${dfnText}' ${external?"external":""} reference.`),
+            mk.a({href:url}, url),
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({
+                                    href: `#${ref.id}`
+                                    },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    function genAllDfnPanels() {
+        for(const panelData of Object.values(window.dfnpanelData)) {
+            const dfnID = panelData.dfnID;
+            const dfn = document.getElementById(dfnID);
+            if(!dfn) {
+                console.log(`Can't find dfn#${dfnID}.`, panelData);
+            } else {
+                const panel = genDfnPanel(panelData);
+                append(document.body, panel);
+                insertDfnPopupAction(dfn, panel)
+            }
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", ()=>{
+        genAllDfnPanels();
+
+        // Add popup behavior to all dfns to show the corresponding dfn-panel.
+        var dfns = queryAll('.dfn-paneled');
+        for(let dfn of dfns) { ; }
+
+        document.body.addEventListener("click", (e) => {
+            // If not handled already, just hide all dfn panels.
+            hideAllDfnPanels();
+        });
+    })
+
+
+    function hideAllDfnPanels() {
+        // Turn off any currently "on" or "activated" panels.
+        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>hideDfnPanel(el));
+    }
+
+    function showDfnPanel(dfnPanel, dfn) {
+        hideAllDfnPanels(); // Only display one at this time.
+        dfn.setAttribute("aria-expanded", "true");
+        dfnPanel.classList.add("on");
+        dfnPanel.style.left = "5px";
+        dfnPanel.style.top = "0px";
+        const panelRect = dfnPanel.getBoundingClientRect();
+        const panelWidth = panelRect.right - panelRect.left;
+        if (panelRect.right > document.body.scrollWidth) {
+            // Panel's overflowing the screen.
+            // Just drop it below the dfn and flip it rightward instead.
+            // This still wont' fix things if the screen is *really* wide,
+            // but fixing that's a lot harder without 'anchor()'.
+            dfnPanel.style.top = "1.5em";
+            dfnPanel.style.left = "auto";
+            dfnPanel.style.right = "0px";
+        }
+    }
+
+    function pinDfnPanel(dfnPanel) {
+        // Switch it to "activated" state, which pins it.
+        dfnPanel.classList.add("activated");
+        dfnPanel.style.left = null;
+        dfnPanel.style.top = null;
+    }
+
+    function hideDfnPanel(dfnPanel, dfn) {
+        if(!dfn) {
+            dfn = document.getElementById(dfnPanel.getAttribute("data-for"));
+        }
+        dfn.setAttribute("aria-expanded", "false")
+        dfnPanel.classList.remove("on");
+        dfnPanel.classList.remove("activated");
+    }
+
+    function toggleDfnPanel(dfnPanel, dfn) {
+        if(dfnPanel.classList.contains("on")) {
+            hideDfnPanel(dfnPanel, dfn);
+        } else {
+            showDfnPanel(dfnPanel, dfn);
+        }
+    }
+
+    function insertDfnPopupAction(dfn, dfnPanel) {
+        // Find dfn panel
+        const panelWrapper = document.createElement('span');
+        panelWrapper.appendChild(dfnPanel);
+        panelWrapper.style.position = "relative";
+        panelWrapper.style.height = "0px";
+        dfn.insertAdjacentElement("afterend", panelWrapper);
+        dfn.setAttribute('role', 'button');
+        dfn.setAttribute('aria-expanded', 'false')
+        dfn.tabIndex = 0;
+        dfn.classList.add('has-dfn-panel');
+        dfn.addEventListener('click', (event) => {
+            showDfnPanel(dfnPanel, dfn);
+            event.stopPropagation();
+        });
+        dfn.addEventListener('keypress', (event) => {
+            const kc = event.keyCode;
+            // 32->Space, 13->Enter
+            if(kc == 32 || kc == 13) {
+                toggleDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        });
+
+        dfnPanel.addEventListener('click', (event) => {
+            if (event.target.nodeName == 'A') {
+                pinDfnPanel(dfnPanel);
+            }
+            event.stopPropagation();
+        });
+
+        dfnPanel.addEventListener('keydown', (event) => {
+            if(event.keyCode == 27) { // Escape key
+                hideDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        })
+    }
+}
+</script>
+<script>/* Boilerplate: script-dfn-panel-json */
+window.dfnpanelData = {};
+window.dfnpanelData['c19190a2'] = {"dfnID": "c19190a2", "url": "https://web.dev/bfcache/", "dfnText": "back/forward cache", "refSections": [{"refs": [{"id": "ref-for-something"}, {"id": "ref-for-something\u2460"}], "title": "9.17. How does your feature handle non-\"fully active\" documents?"}], "external": true};
+window.dfnpanelData['e45047f8'] = {"dfnID": "e45047f8", "url": "https://fetch.spec.whatwg.org/#concept-response", "dfnText": "concept-response", "refSections": [{"refs": [{"id": "ref-for-concept-response"}], "title": "6.1.7. COEP embedder checks"}], "external": true};
+window.dfnpanelData['fc510f96'] = {"dfnID": "fc510f96", "url": "https://github.com/w3c/mediacapture-viewport#/issues/1", "dfnText": "getviewportmedia", "refSections": [{"refs": [{"id": "ref-for-/issues/1"}], "title": "2. A problem"}], "external": true};
+window.dfnpanelData['db04553d'] = {"dfnID": "db04553d", "url": "https://www.w3.org/TR/hr-time//issues/1#issuecomment-812", "dfnText": "high resolution timers", "refSections": [{"refs": [{"id": "ref-for-issuecomment-812"}], "title": "2. A problem"}], "external": true};
+window.dfnpanelData['830df20a'] = {"dfnID": "830df20a", "url": "https://tc39.es/ecma262/#sec-execution-contextssec-execution-contexts", "dfnText": "javascript execution context", "refSections": [{"refs": [{"id": "ref-for-sec-execution-contextssec-execution-contexts"}], "title": "6.1.9.2. For Window"}], "external": true};
+window.dfnpanelData['7cf440ca'] = {"dfnID": "7cf440ca", "url": "https://fetch.spec.whatwg.org/#network-partition-key", "dfnText": "network partition key", "refSections": [{"refs": [{"id": "ref-for-network-partition-key"}], "title": "6.2.1. Plumb the partition-nonce"}], "external": true};
+window.dfnpanelData['7f6a70d1'] = {"dfnID": "7f6a70d1", "url": "https://storage.spec.whatwg.org/#storage-key", "dfnText": "storage key", "refSections": [{"refs": [{"id": "906679070"}], "title": "3.2. Credentialless iframes and credentials"}, {"refs": [{"id": "ref-for-storage-key"}, {"id": "ref-for-storage-key\u2460"}], "title": "6.5.1. storage-key"}], "external": true};
+window.dfnpanelData['b3ad8adf'] = {"dfnID": "b3ad8adf", "url": "/#threat-model", "dfnText": "threat model", "refSections": [{"refs": [{"id": "ref-for-threat-model"}], "title": "3.2. Credentialless iframes and credentials"}, {"refs": [{"id": "ref-for-threat-model\u2460"}, {"id": "ref-for-threat-model\u2461"}], "title": "3.4. Credentialless iframes and autofill/password managers"}, {"refs": [{"id": "ref-for-threat-model\u2462"}], "title": "4.1. Sandboxed iframe"}, {"refs": [{"id": "ref-for-threat-model\u2463"}], "title": "8. Privacy considerations"}], "external": true};
+window.dfnpanelData['95a8ae14'] = {"dfnID": "95a8ae14", "url": "https://drafts.csswg.org/css-color-3/#window", "dfnText": "window", "refSections": [{"refs": [{"id": "ref-for-window"}, {"id": "ref-for-window\u2460"}, {"id": "ref-for-window\u2461"}, {"id": "ref-for-window\u2462"}], "title": "3.1. What are iframes credentialless?"}, {"refs": [{"id": "ref-for-window\u2463"}], "title": "6.1.2. The Window attribute"}, {"refs": [{"id": "ref-for-window\u2465"}, {"id": "ref-for-window\u2466"}], "title": "6.1.3. Creating new browsing context"}, {"refs": [{"id": "ref-for-window\u2467"}, {"id": "ref-for-window\u2468"}, {"id": "ref-for-window\u2460\u24ea"}, {"id": "ref-for-window\u2460\u2460"}, {"id": "ref-for-window\u2460\u2461"}], "title": "6.1.4. Navigating a browsing context"}, {"refs": [{"id": "ref-for-window\u2460\u2464"}], "title": "6.1.6. General section"}], "external": true};
+window.dfnpanelData['2bc0cdf4'] = {"dfnID": "2bc0cdf4", "url": "https://dom.spec.whatwg.org/#eventtarget", "dfnText": "EventTarget", "refSections": [{"refs": [{"id": "ref-for-eventtarget"}], "title": "6.1.2. The Window attribute"}], "external": true};
+window.dfnpanelData['a973e0fe'] = {"dfnID": "a973e0fe", "url": "https://dom.spec.whatwg.org/#concept-document", "dfnText": "document", "refSections": [{"refs": [{"id": "ref-for-concept-document"}, {"id": "ref-for-concept-document\u2460"}], "title": "6.1.4. Navigating a browsing context"}], "external": true};
+window.dfnpanelData['5216e1a0'] = {"dfnID": "5216e1a0", "url": "https://dom.spec.whatwg.org/#concept-node-document", "dfnText": "node document", "refSections": [{"refs": [{"id": "ref-for-concept-node-document"}], "title": "6.1.6. General section"}], "external": true};
+window.dfnpanelData['91890fa8'] = {"dfnID": "91890fa8", "url": "https://tc39.es/ecma262/#sec-sharedarraybuffer-objects", "dfnText": "SharedArrayBuffer", "refSections": [{"refs": [{"id": "ref-for-sec-sharedarraybuffer-objects"}, {"id": "ref-for-sec-sharedarraybuffer-objects\u2460"}], "title": "2. A problem"}], "external": true};
+window.dfnpanelData['7691dbb6'] = {"dfnID": "7691dbb6", "url": "https://fetch.spec.whatwg.org/#dom-requestdestination-iframe", "dfnText": "\"iframe\"", "refSections": [{"refs": [{"id": "ref-for-dom-requestdestination-iframe"}], "title": "6.1.6. General section"}], "external": true};
+window.dfnpanelData['86ba8c0f'] = {"dfnID": "86ba8c0f", "url": "https://fetch.spec.whatwg.org/#determine-the-network-partition-key", "dfnText": "determine the network partition key", "refSections": [{"refs": [{"id": "ref-for-determine-the-network-partition-key"}], "title": "6.2.1. Plumb the partition-nonce"}], "external": true};
+window.dfnpanelData['b08d0bb2'] = {"dfnID": "b08d0bb2", "url": "https://html.spec.whatwg.org/multipage/dom.html#htmlelement", "dfnText": "HTMLElement", "refSections": [{"refs": [{"id": "ref-for-htmlelement"}], "title": "6.1.1. The Iframe attribute"}], "external": true};
+window.dfnpanelData['35972864'] = {"dfnID": "35972864", "url": "https://html.spec.whatwg.org/multipage/document-sequences.html#nav-document", "dfnText": "active document", "refSections": [{"refs": [{"id": "ref-for-nav-document"}], "title": "6.1.4. Navigating a browsing context"}], "external": true};
+window.dfnpanelData['8943aeb7'] = {"dfnID": "8943aeb7", "url": "https://html.spec.whatwg.org/C/#active-window", "dfnText": "active window", "refSections": [{"refs": [{"id": "ref-for-active-window"}], "title": "6.1.4. Navigating a browsing context"}], "external": true};
+window.dfnpanelData['08798cb4'] = {"dfnID": "08798cb4", "url": "https://html.spec.whatwg.org/C/#bc-container", "dfnText": "bc-container", "refSections": [{"refs": [{"id": "ref-for-bc-container"}], "title": "6.1.6. General section"}], "external": true};
+window.dfnpanelData['c4be4ca3'] = {"dfnID": "c4be4ca3", "url": "https://html.spec.whatwg.org/C/#bc-container-document", "dfnText": "bc-container-document", "refSections": [{"refs": [{"id": "ref-for-bc-container-document"}, {"id": "ref-for-bc-container-document\u2460"}, {"id": "ref-for-bc-container-document\u2461"}], "title": "6.1.7. COEP embedder checks"}], "external": true};
+window.dfnpanelData['e17d8de3'] = {"dfnID": "e17d8de3", "url": "https://html.spec.whatwg.org/C/#broadcasting-to-other-browsing-contexts", "dfnText": "broadcastchannel", "refSections": [{"refs": [{"id": "ref-for-broadcasting-to-other-browsing-contexts"}], "title": "3. Explainer"}], "external": true};
+window.dfnpanelData['6d88ab2e'] = {"dfnID": "6d88ab2e", "url": "https://html.spec.whatwg.org/multipage/nav-history-apis.html#window-bc", "dfnText": "browsing context", "refSections": [{"refs": [{"id": "ref-for-window-bc"}], "title": "6.1.4. Navigating a browsing context"}, {"refs": [{"id": "ref-for-window-bc\u2460"}], "title": "6.1.7. COEP embedder checks"}], "external": true};
+window.dfnpanelData['ff8cdb6c'] = {"dfnID": "ff8cdb6c", "url": "https://html.spec.whatwg.org/C/#check-a-navigation-response's-adherence-to-its-embedder-policy", "dfnText": "check a navigation response's adherence to its embedder policy", "refSections": [{"refs": [{"id": "ref-for-check-a-navigation-response's-adherence-to-its-embedder-policy"}, {"id": "ref-for-check-a-navigation-response's-adherence-to-its-embedder-policy\u2460"}], "title": "6.1.7. COEP embedder checks"}], "external": true};
+window.dfnpanelData['98a8cadb'] = {"dfnID": "98a8cadb", "url": "https://html.spec.whatwg.org/C/#child-browsing-context", "dfnText": "child browsing context", "refSections": [{"refs": [{"id": "ref-for-child-browsing-context"}], "title": "6.1.7. COEP embedder checks"}], "external": true};
+window.dfnpanelData['d8813cef'] = {"dfnID": "d8813cef", "url": "https://html.spec.whatwg.org/C/#coep", "dfnText": "coep", "refSections": [{"refs": [{"id": "ref-for-coep"}, {"id": "ref-for-coep\u2460"}], "title": "1.1. Recommended readings"}, {"refs": [{"id": "ref-for-coep\u2461"}, {"id": "ref-for-coep\u2462"}, {"id": "ref-for-coep\u2463"}, {"id": "ref-for-coep\u2464"}, {"id": "ref-for-coep\u2465"}, {"id": "ref-for-coep\u2466"}, {"id": "ref-for-coep\u2467"}], "title": "2. A problem"}, {"refs": [{"id": "ref-for-coep\u2468"}], "title": "6.1.7. COEP embedder checks"}], "external": true};
+window.dfnpanelData['bee39f64'] = {"dfnID": "bee39f64", "url": "https://html.spec.whatwg.org/C/#compatible-with-cross-origin-isolation", "dfnText": "compatible with cross-origin isolation", "refSections": [{"refs": [{"id": "ref-for-compatible-with-cross-origin-isolation"}, {"id": "ref-for-compatible-with-cross-origin-isolation\u2460"}, {"id": "ref-for-compatible-with-cross-origin-isolation\u2461"}], "title": "6.1.7. COEP embedder checks"}], "external": true};
+window.dfnpanelData['8d5a6324'] = {"dfnID": "8d5a6324", "url": "https://html.spec.whatwg.org/C/#concept-document-bc", "dfnText": "concept-document-bc", "refSections": [{"refs": [{"id": "ref-for-concept-document-bc"}, {"id": "ref-for-concept-document-bc\u2460"}, {"id": "ref-for-concept-document-bc\u2461"}, {"id": "ref-for-concept-document-bc\u2462"}], "title": "6.1.6. General section"}], "external": true};
+window.dfnpanelData['9935eba2'] = {"dfnID": "9935eba2", "url": "https://html.spec.whatwg.org/C/#concept-document-origin", "dfnText": "concept-document-origin", "refSections": [{"refs": [{"id": "ref-for-concept-document-origin"}], "title": "6.1.4. Navigating a browsing context"}], "external": true};
+window.dfnpanelData['f165b1b1'] = {"dfnID": "f165b1b1", "url": "https://html.spec.whatwg.org/C/#concept-document-policy-container", "dfnText": "concept-document-policy-container", "refSections": [{"refs": [{"id": "ref-for-concept-document-policy-container"}], "title": "6.1.7. COEP embedder checks"}], "external": true};
+window.dfnpanelData['7ab7862a'] = {"dfnID": "7ab7862a", "url": "https://html.spec.whatwg.org/C/#concept-environment-active-service-worker", "dfnText": "concept-environment-active-service-worker", "refSections": [{"refs": [{"id": "ref-for-concept-environment-active-service-worker"}], "title": "6.1.9.4. For Worklet"}], "external": true};
+window.dfnpanelData['445f6849'] = {"dfnID": "445f6849", "url": "https://html.spec.whatwg.org/C/#concept-environment-creation-url", "dfnText": "concept-environment-creation-url", "refSections": [{"refs": [{"id": "ref-for-concept-environment-creation-url"}], "title": "6.1.9.1. For Navigation"}, {"refs": [{"id": "ref-for-concept-environment-creation-url\u2460"}], "title": "6.1.9.2. For Window"}, {"refs": [{"id": "ref-for-concept-environment-creation-url\u2461"}], "title": "6.1.9.4. For Worklet"}], "external": true};
+window.dfnpanelData['8692a4e4'] = {"dfnID": "8692a4e4", "url": "https://html.spec.whatwg.org/C/#concept-environment-id", "dfnText": "concept-environment-id", "refSections": [{"refs": [{"id": "ref-for-concept-environment-id"}], "title": "6.1.9.1. For Navigation"}, {"refs": [{"id": "ref-for-concept-environment-id\u2460"}], "title": "6.1.9.4. For Worklet"}], "external": true};
+window.dfnpanelData['70483c5d'] = {"dfnID": "70483c5d", "url": "https://html.spec.whatwg.org/C/#concept-environment-target-browsing-context", "dfnText": "concept-environment-target-browsing-context", "refSections": [{"refs": [{"id": "ref-for-concept-environment-target-browsing-context"}], "title": "6.1.9.1. For Navigation"}], "external": true};
+window.dfnpanelData['e452755c'] = {"dfnID": "e452755c", "url": "https://html.spec.whatwg.org/C/#concept-request-reserved-client", "dfnText": "concept-request-reserved-client", "refSections": [{"refs": [{"id": "ref-for-concept-request-reserved-client"}], "title": "6.1.9.1. For Navigation"}], "external": true};
+window.dfnpanelData['e3892898'] = {"dfnID": "e3892898", "url": "https://html.spec.whatwg.org/C/#cross-origin-opener-policies", "dfnText": "coop", "refSections": [{"refs": [{"id": "ref-for-cross-origin-opener-policies"}, {"id": "ref-for-cross-origin-opener-policies\u2460"}], "title": "1.1. Recommended readings"}, {"refs": [{"id": "ref-for-cross-origin-opener-policies\u2461"}], "title": "2. A problem"}, {"refs": [{"id": "2a6986b80"}], "title": "6.1.6. General section"}], "external": true};
+window.dfnpanelData['8a5cb8cf'] = {"dfnID": "8a5cb8cf", "url": "https://html.spec.whatwg.org/C/#creating-a-new-browsing-context", "dfnText": "creating a new browsing context", "refSections": [{"refs": [{"id": "ref-for-creating-a-new-browsing-context"}], "title": "6.1.3. Creating new browsing context"}], "external": true};
+window.dfnpanelData['fa5ee9c5'] = {"dfnID": "fa5ee9c5", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-creation-url", "dfnText": "creation url", "refSections": [{"refs": [{"id": "ref-for-concept-environment-creation-url\u2462"}], "title": "6.5.1. storage-key"}], "external": true};
+window.dfnpanelData['047398fc'] = {"dfnID": "047398fc", "url": "https://html.spec.whatwg.org/C/#coep", "dfnText": "cross-origin-embedder-policy", "refSections": [{"refs": [{"id": "ref-for-coep"}, {"id": "ref-for-coep\u2460"}], "title": "1.1. Recommended readings"}, {"refs": [{"id": "ref-for-coep\u2461"}, {"id": "ref-for-coep\u2462"}, {"id": "ref-for-coep\u2463"}, {"id": "ref-for-coep\u2464"}, {"id": "ref-for-coep\u2465"}, {"id": "ref-for-coep\u2466"}, {"id": "ref-for-coep\u2467"}], "title": "2. A problem"}, {"refs": [{"id": "ref-for-coep\u2468"}], "title": "6.1.7. COEP embedder checks"}], "external": true};
+window.dfnpanelData['20d23287'] = {"dfnID": "20d23287", "url": "https://html.spec.whatwg.org/C/#cross-origin-opener-policies", "dfnText": "cross-origin-opener-policy", "refSections": [{"refs": [{"id": "ref-for-cross-origin-opener-policies"}, {"id": "ref-for-cross-origin-opener-policies\u2460"}], "title": "1.1. Recommended readings"}, {"refs": [{"id": "ref-for-cross-origin-opener-policies\u2461"}], "title": "2. A problem"}, {"refs": [{"id": "2a6986b80"}], "title": "6.1.6. General section"}], "external": true};
+window.dfnpanelData['bda815a2'] = {"dfnID": "bda815a2", "url": "https://html.spec.whatwg.org/C/#concept-settings-object-cross-origin-isolated-capability", "dfnText": "crossoriginisolated", "refSections": [{"refs": [{"id": "ref-for-concept-settings-object-cross-origin-isolated-capability"}, {"id": "ref-for-concept-settings-object-cross-origin-isolated-capability\u2460"}], "title": "2. A problem"}, {"refs": [{"id": "ref-for-concept-settings-object-cross-origin-isolated-capability\u2461"}], "title": "7.1. Threat model"}], "external": true};
+window.dfnpanelData['f149351d'] = {"dfnID": "f149351d", "url": "https://html.spec.whatwg.org/multipage/browsers.html#policy-container-embedder-policy", "dfnText": "embedder policy", "refSections": [{"refs": [{"id": "ref-for-policy-container-embedder-policy"}], "title": "6.1.7. COEP embedder checks"}], "external": true};
+window.dfnpanelData['5edff1d1'] = {"dfnID": "5edff1d1", "url": "https://html.spec.whatwg.org/C/#embedder-policy-report-only-reporting-endpoint", "dfnText": "embedder-policy-report-only-reporting-endpoint", "refSections": [{"refs": [{"id": "ref-for-embedder-policy-report-only-reporting-endpoint"}], "title": "6.1.7. COEP embedder checks"}], "external": true};
+window.dfnpanelData['d5ce1200'] = {"dfnID": "d5ce1200", "url": "https://html.spec.whatwg.org/C/#embedder-policy-report-only-value", "dfnText": "embedder-policy-report-only-value", "refSections": [{"refs": [{"id": "ref-for-embedder-policy-report-only-value"}], "title": "6.1.7. COEP embedder checks"}], "external": true};
+window.dfnpanelData['51880f04'] = {"dfnID": "51880f04", "url": "https://html.spec.whatwg.org/C/#embedder-policy-reporting-endpoint", "dfnText": "embedder-policy-reporting-endpoint", "refSections": [{"refs": [{"id": "ref-for-embedder-policy-reporting-endpoint"}], "title": "6.1.7. COEP embedder checks"}], "external": true};
+window.dfnpanelData['8ffab3de'] = {"dfnID": "8ffab3de", "url": "https://html.spec.whatwg.org/C/#embedder-policy-value", "dfnText": "embedder-policy-value", "refSections": [{"refs": [{"id": "ref-for-embedder-policy-value"}, {"id": "ref-for-embedder-policy-value\u2460"}, {"id": "ref-for-embedder-policy-value\u2461"}], "title": "6.1.7. COEP embedder checks"}], "external": true};
+window.dfnpanelData['47d596bd'] = {"dfnID": "47d596bd", "url": "https://html.spec.whatwg.org/C/#entry-global-object", "dfnText": "entry global object", "refSections": [{"refs": [{"id": "ref-for-entry-global-object"}], "title": "6.1.5. Open popup with noopener"}], "external": true};
+window.dfnpanelData['77a2dc1b'] = {"dfnID": "77a2dc1b", "url": "https://html.spec.whatwg.org/C/#environment", "dfnText": "environment", "refSections": [{"refs": [{"id": "ref-for-environment"}], "title": "6.1.9. Environment\u2019s partition nonce"}, {"refs": [{"id": "ref-for-environment\u2460"}, {"id": "ref-for-environment\u2461"}], "title": "6.1.9.1. For Navigation"}, {"refs": [{"id": "ref-for-environment\u2462"}, {"id": "ref-for-environment\u2463"}], "title": "6.1.9.2. For Window"}, {"refs": [{"id": "ref-for-environment\u2464"}], "title": "6.2.1. Plumb the partition-nonce"}, {"refs": [{"id": "ref-for-environment\u2465"}, {"id": "ref-for-environment\u2466"}, {"id": "ref-for-environment\u2467"}, {"id": "ref-for-environment\u2468"}, {"id": "ref-for-environment\u2460\u24ea"}, {"id": "ref-for-environment\u2460\u2460"}, {"id": "ref-for-environment\u2460\u2461"}, {"id": "ref-for-environment\u2460\u2462"}], "title": "6.3. Integration with CHIPS"}, {"refs": [{"id": "ref-for-environment\u2460\u2463"}, {"id": "ref-for-environment\u2460\u2464"}], "title": "6.4. Integration with storage-partitioning"}, {"refs": [{"id": "ref-for-environment\u2460\u2465"}, {"id": "ref-for-environment\u2460\u2466"}], "title": "6.5.1. storage-key"}], "external": true};
+window.dfnpanelData['3e12e042'] = {"dfnID": "3e12e042", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object", "dfnText": "environment settings object", "refSections": [{"refs": [{"id": "ref-for-environment-settings-object"}], "title": "6.5.1. storage-key"}], "external": true};
+window.dfnpanelData['fd8e14d6'] = {"dfnID": "fd8e14d6", "url": "https://html.spec.whatwg.org/C/#hh-replace", "dfnText": "hh-replace", "refSections": [{"refs": [{"id": "ref-for-hh-replace"}], "title": "6.1.4. Navigating a browsing context"}], "external": true};
+window.dfnpanelData['ca612a39'] = {"dfnID": "ca612a39", "url": "https://html.spec.whatwg.org/C/#HTMLIframeElement", "dfnText": "htmliframeelement", "refSections": [{"refs": [{"id": "ref-for-HTMLIframeElement"}], "title": "6.1.1. The Iframe attribute"}], "external": true};
+window.dfnpanelData['a9ce3a0f'] = {"dfnID": "a9ce3a0f", "url": "https://html.spec.whatwg.org/C/#the-iframe-element", "dfnText": "iframe", "refSections": [{"refs": [{"id": "ref-for-the-iframe-element"}, {"id": "ref-for-the-iframe-element\u2460"}], "title": "6.1.1. The Iframe attribute"}, {"refs": [{"id": "ref-for-the-iframe-element\u2461"}], "title": "6.1.6. General section"}], "external": true};
+window.dfnpanelData['1cfc85b3'] = {"dfnID": "1cfc85b3", "url": "https://html.spec.whatwg.org/C/#initialise-the-document-object", "dfnText": "initialize the document object", "refSections": [{"refs": [{"id": "ref-for-initialise-the-document-object"}], "title": "6.1.4. Navigating a browsing context"}, {"refs": [{"id": "ref-for-initialise-the-document-object\u2460"}], "title": "6.1.9.2. For Window"}], "external": true};
+window.dfnpanelData['62bf7250'] = {"dfnID": "62bf7250", "url": "https://html.spec.whatwg.org/C/#is-initial-about:blank", "dfnText": "is initial about:blank", "refSections": [{"refs": [{"id": "ref-for-is-initial-about:blank"}], "title": "6.1.4. Navigating a browsing context"}], "external": true};
+window.dfnpanelData['2594e562'] = {"dfnID": "2594e562", "url": "https://html.spec.whatwg.org/multipage/browsing-the-web.html#navigate", "dfnText": "navigate", "refSections": [{"refs": [{"id": "ref-for-navigate"}], "title": "6.1.4. Navigating a browsing context"}], "external": true};
+window.dfnpanelData['51216406'] = {"dfnID": "51216406", "url": "https://html.spec.whatwg.org/C/#navigation-params", "dfnText": "navigation params", "refSections": [{"refs": [{"id": "ref-for-navigation-params"}, {"id": "ref-for-navigation-params\u2460"}, {"id": "ref-for-navigation-params\u2461"}], "title": "6.1.4. Navigating a browsing context"}], "external": true};
+window.dfnpanelData['c21e027e'] = {"dfnID": "c21e027e", "url": "https://html.spec.whatwg.org/C/#navigation-params-hh", "dfnText": "navigation-params-hh", "refSections": [{"refs": [{"id": "ref-for-navigation-params-hh"}], "title": "6.1.4. Navigating a browsing context"}], "external": true};
+window.dfnpanelData['7f5423f9'] = {"dfnID": "7f5423f9", "url": "https://html.spec.whatwg.org/C/#navigation-params-origin", "dfnText": "navigation-params-origin", "refSections": [{"refs": [{"id": "ref-for-navigation-params-origin"}], "title": "6.1.4. Navigating a browsing context"}], "external": true};
+window.dfnpanelData['0d1ed178'] = {"dfnID": "0d1ed178", "url": "https://html.spec.whatwg.org/C/#navigation-params-reserved-environment", "dfnText": "navigation-params-reserved-environment", "refSections": [{"refs": [{"id": "ref-for-navigation-params-reserved-environment"}], "title": "6.1.9.2. For Window"}], "external": true};
+window.dfnpanelData['602b1a68'] = {"dfnID": "602b1a68", "url": "https://html.spec.whatwg.org/multipage/browsers.html#obtain-a-site", "dfnText": "obtain a site", "refSections": [{"refs": [{"id": "ref-for-obtain-a-site"}], "title": "6.2.1. Plumb the partition-nonce"}], "external": true};
+window.dfnpanelData['3124aef9'] = {"dfnID": "3124aef9", "url": "https://html.spec.whatwg.org/C/#concept-origin", "dfnText": "origin", "refSections": [{"refs": [{"id": "ref-for-concept-origin"}], "title": "6.1.9.2. For Window"}, {"refs": [{"id": "ref-for-concept-origin\u2460"}], "title": "6.2.1. Plumb the partition-nonce"}, {"refs": [{"id": "ref-for-concept-origin\u2461"}], "title": "6.5.1. storage-key"}], "external": true};
+window.dfnpanelData['43ac8374'] = {"dfnID": "43ac8374", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-origin", "dfnText": "origin (for environment settings object)", "refSections": [{"refs": [{"id": "ref-for-concept-settings-object-origin"}], "title": "6.5.1. storage-key"}], "external": true};
+window.dfnpanelData['b9d1918c'] = {"dfnID": "b9d1918c", "url": "https://html.spec.whatwg.org/C/#policy-container-embedder-policy", "dfnText": "policy-container-embedder-policy", "refSections": [{"refs": [{"id": "ref-for-policy-container-embedder-policy\u2460"}], "title": "6.1.7. COEP embedder checks"}], "external": true};
+window.dfnpanelData['0cdf2e80'] = {"dfnID": "0cdf2e80", "url": "https://html.spec.whatwg.org/C/#process-a-navigate-fetch", "dfnText": "process a navigate fetch", "refSections": [{"refs": [{"id": "ref-for-process-a-navigate-fetch"}], "title": "6.1.4. Navigating a browsing context"}, {"refs": [{"id": "ref-for-process-a-navigate-fetch\u2460"}], "title": "6.1.9.1. For Navigation"}], "external": true};
+window.dfnpanelData['a71121e6'] = {"dfnID": "a71121e6", "url": "https://html.spec.whatwg.org/C/#queue-a-cross-origin-embedder-policy-inheritance-violation", "dfnText": "queue a cross-origin embedder policy inheritance violation", "refSections": [{"refs": [{"id": "ref-for-queue-a-cross-origin-embedder-policy-inheritance-violation"}, {"id": "ref-for-queue-a-cross-origin-embedder-policy-inheritance-violation\u2460"}], "title": "6.1.7. COEP embedder checks"}], "external": true};
+window.dfnpanelData['5ab7b520'] = {"dfnID": "5ab7b520", "url": "https://html.spec.whatwg.org/multipage/common-dom-interfaces.html#reflect", "dfnText": "reflect", "refSections": [{"refs": [{"id": "ref-for-reflect"}], "title": "6.1.1. The Iframe attribute"}], "external": true};
+window.dfnpanelData['e99bd18e'] = {"dfnID": "e99bd18e", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global", "dfnText": "relevant global object", "refSections": [{"refs": [{"id": "ref-for-concept-relevant-global"}], "title": "6.1.6. General section"}], "external": true};
+window.dfnpanelData['9c4c1e66'] = {"dfnID": "9c4c1e66", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object", "dfnText": "relevant settings object", "refSections": [{"refs": [{"id": "ref-for-relevant-settings-object"}, {"id": "ref-for-relevant-settings-object\u2460"}], "title": "6.1.7. COEP embedder checks"}], "external": true};
+window.dfnpanelData['521818b9'] = {"dfnID": "521818b9", "url": "https://html.spec.whatwg.org/multipage/browsers.html#same-origin-domain", "dfnText": "same origin-domain", "refSections": [{"refs": [{"id": "ref-for-same-origin-domain"}], "title": "6.1.4. Navigating a browsing context"}], "external": true};
+window.dfnpanelData['37098e9d'] = {"dfnID": "37098e9d", "url": "https://html.spec.whatwg.org/C/#script-:settings-for-workers", "dfnText": "script settings for workers", "refSections": [{"refs": [{"id": "ref-for-script-:settings-for-workers"}], "title": "6.1.9.3. For Worker"}], "external": true};
+window.dfnpanelData['c01b42c6'] = {"dfnID": "c01b42c6", "url": "https://html.spec.whatwg.org/C/#service-worker-obj", "dfnText": "serviceworker", "refSections": [{"refs": [{"id": "ref-for-service-worker-obj"}], "title": "3. Explainer"}], "external": true};
+window.dfnpanelData['6f14449b'] = {"dfnID": "6f14449b", "url": "https://html.spec.whatwg.org/C/#set-up-a-window-environment-settings-object", "dfnText": "set up a window environment settings object", "refSections": [{"refs": [{"id": "ref-for-set-up-a-window-environment-settings-object"}, {"id": "ref-for-set-up-a-window-environment-settings-object\u2460"}, {"id": "ref-for-set-up-a-window-environment-settings-object\u2461"}], "title": "6.1.9.2. For Window"}], "external": true};
+window.dfnpanelData['a8befa72'] = {"dfnID": "a8befa72", "url": "https://html.spec.whatwg.org/C/#set-up-a-worklet-environment-settings-object", "dfnText": "set up a worklet environment settings object", "refSections": [{"refs": [{"id": "ref-for-set-up-a-worklet-environment-settings-object"}], "title": "6.1.9.4. For Worklet"}], "external": true};
+window.dfnpanelData['ad91ac84'] = {"dfnID": "ad91ac84", "url": "https://html.spec.whatwg.org/C/#sharedworer", "dfnText": "sharedworker", "refSections": [{"refs": [{"id": "ref-for-sharedworer"}], "title": "3. Explainer"}], "external": true};
+window.dfnpanelData['fb9bb722'] = {"dfnID": "fb9bb722", "url": "https://html.spec.whatwg.org/multipage/browsers.html#site", "dfnText": "site", "refSections": [{"refs": [{"id": "ref-for-site"}], "title": "6.2.1. Plumb the partition-nonce"}], "external": true};
+window.dfnpanelData['afc470d6'] = {"dfnID": "afc470d6", "url": "https://html.spec.whatwg.org/C/#still-on-its-initial-about:blank-document", "dfnText": "still on its initial about:blank document", "refSections": [{"refs": [{"id": "ref-for-still-on-its-initial-about:blank-document"}], "title": "6.1.4. Navigating a browsing context"}], "external": true};
+window.dfnpanelData['085ddd0a'] = {"dfnID": "085ddd0a", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-target-browsing-context", "dfnText": "target browsing context", "refSections": [{"refs": [{"id": "ref-for-concept-environment-target-browsing-context\u2460"}], "title": "6.1.9.4. For Worklet"}], "external": true};
+window.dfnpanelData['ae2a6342'] = {"dfnID": "ae2a6342", "url": "https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-browsing-context", "dfnText": "top-level browsing context", "refSections": [{"refs": [{"id": "ref-for-top-level-browsing-context"}], "title": "6.1.9.1. For Navigation"}, {"refs": [{"id": "ref-for-top-level-browsing-context\u2460"}], "title": "6.1.9.2. For Window"}], "external": true};
+window.dfnpanelData['2c6fd92e'] = {"dfnID": "2c6fd92e", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-creation-url", "dfnText": "top-level creation url", "refSections": [{"refs": [{"id": "ref-for-concept-environment-top-level-creation-url"}], "title": "6.1.9.1. For Navigation"}, {"refs": [{"id": "ref-for-concept-environment-top-level-creation-url\u2460"}], "title": "6.1.9.2. For Window"}, {"refs": [{"id": "ref-for-concept-environment-top-level-creation-url\u2461"}], "title": "6.1.9.4. For Worklet"}, {"refs": [{"id": "ref-for-concept-environment-top-level-creation-url\u2462"}], "title": "6.2.1. Plumb the partition-nonce"}], "external": true};
+window.dfnpanelData['c63519ed'] = {"dfnID": "c63519ed", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#concept-environment-top-level-origin", "dfnText": "top-level origin", "refSections": [{"refs": [{"id": "ref-for-concept-environment-top-level-origin"}], "title": "6.1.9.1. For Navigation"}, {"refs": [{"id": "ref-for-concept-environment-top-level-origin\u2460"}], "title": "6.1.9.2. For Window"}, {"refs": [{"id": "ref-for-concept-environment-top-level-origin\u2461"}, {"id": "ref-for-concept-environment-top-level-origin\u2462"}], "title": "6.1.9.4. For Worklet"}, {"refs": [{"id": "ref-for-concept-environment-top-level-origin\u2463"}], "title": "6.2.1. Plumb the partition-nonce"}, {"refs": [{"id": "ref-for-concept-environment-top-level-origin\u2464"}, {"id": "ref-for-concept-environment-top-level-origin\u2465"}], "title": "6.3. Integration with CHIPS"}], "external": true};
+window.dfnpanelData['abd7296a'] = {"dfnID": "abd7296a", "url": "https://html.spec.whatwg.org/C/#window-open-steps", "dfnText": "window open steps", "refSections": [{"refs": [{"id": "ref-for-window-open-steps"}], "title": "6.1.5. Open popup with noopener"}], "external": true};
+window.dfnpanelData['860300d4'] = {"dfnID": "860300d4", "url": "https://infra.spec.whatwg.org/#implementation-defined", "dfnText": "implementation-defined", "refSections": [{"refs": [{"id": "ref-for-implementation-defined"}, {"id": "ref-for-implementation-defined\u2460"}], "title": "6.2.1. Plumb the partition-nonce"}], "external": true};
+window.dfnpanelData['984221ca'] = {"dfnID": "984221ca", "url": "https://infra.spec.whatwg.org/#struct", "dfnText": "struct", "refSections": [{"refs": [{"id": "ref-for-struct"}], "title": "6.1.4. Navigating a browsing context"}], "external": true};
+window.dfnpanelData['0e8de730'] = {"dfnID": "0e8de730", "url": "https://infra.spec.whatwg.org/#tuple", "dfnText": "tuple", "refSections": [{"refs": [{"id": "ref-for-tuple"}, {"id": "ref-for-tuple\u2460"}], "title": "6.3. Integration with CHIPS"}, {"refs": [{"id": "ref-for-tuple\u2461"}, {"id": "ref-for-tuple\u2462"}], "title": "6.5.1. storage-key"}], "external": true};
+window.dfnpanelData['76919410'] = {"dfnID": "76919410", "url": "https://storage.spec.whatwg.org/#obtain-a-storage-key-for-non-storage-purposes", "dfnText": "obtain a storage key for non-storage purposes", "refSections": [{"refs": [{"id": "ref-for-obtain-a-storage-key-for-non-storage-purposes"}], "title": "6.5.1. storage-key"}], "external": true};
+window.dfnpanelData['959ad97b'] = {"dfnID": "959ad97b", "url": "https://url.spec.whatwg.org/#concept-url-origin", "dfnText": "origin", "refSections": [{"refs": [{"id": "ref-for-concept-url-origin"}], "title": "6.2.1. Plumb the partition-nonce"}, {"refs": [{"id": "ref-for-concept-url-origin\u2460"}], "title": "6.5.1. storage-key"}], "external": true};
+window.dfnpanelData['dcffbccd'] = {"dfnID": "dcffbccd", "url": "https://url.spec.whatwg.org/#concept-url", "dfnText": "url", "refSections": [{"refs": [{"id": "ref-for-concept-url"}, {"id": "ref-for-concept-url\u2460"}], "title": "6.1.9.2. For Window"}], "external": true};
+window.dfnpanelData['889e932f'] = {"dfnID": "889e932f", "url": "https://webidl.spec.whatwg.org/#Exposed", "dfnText": "Exposed", "refSections": [{"refs": [{"id": "ref-for-Exposed"}], "title": "6.1.1. The Iframe attribute"}, {"refs": [{"id": "ref-for-Exposed\u2460"}], "title": "6.1.2. The Window attribute"}], "external": true};
+window.dfnpanelData['7fb6fbc6'] = {"dfnID": "7fb6fbc6", "url": "https://webidl.spec.whatwg.org/#Global", "dfnText": "Global", "refSections": [{"refs": [{"id": "ref-for-Global"}], "title": "6.1.2. The Window attribute"}], "external": true};
+window.dfnpanelData['88b4ba7f'] = {"dfnID": "88b4ba7f", "url": "https://webidl.spec.whatwg.org/#LegacyUnenumerableNamedProperties", "dfnText": "LegacyUnenumerableNamedProperties", "refSections": [{"refs": [{"id": "ref-for-LegacyUnenumerableNamedProperties"}], "title": "6.1.2. The Window attribute"}], "external": true};
+window.dfnpanelData['5372cca8'] = {"dfnID": "5372cca8", "url": "https://webidl.spec.whatwg.org/#idl-boolean", "dfnText": "boolean", "refSections": [{"refs": [{"id": "ref-for-idl-boolean"}], "title": "6.1.1. The Iframe attribute"}, {"refs": [{"id": "ref-for-idl-boolean\u2460"}], "title": "6.1.2. The Window attribute"}], "external": true};
+window.dfnpanelData['attr-iframe-credentialless'] = {"dfnID": "attr-iframe-credentialless", "url": "#attr-iframe-credentialless", "dfnText": "credentialless", "refSections": [{"refs": [{"id": "ref-for-attr-iframe-credentialless"}], "title": "6.1.1. The Iframe attribute"}, {"refs": [{"id": "ref-for-attr-iframe-credentialless\u2460"}, {"id": "ref-for-attr-iframe-credentialless\u2461"}], "title": "6.1.6. General section"}], "external": false};
+window.dfnpanelData['window'] = {"dfnID": "window", "url": "#window", "dfnText": "Window", "refSections": [{"refs": [{"id": "ref-for-window\u2464"}], "title": "6.1.2. The Window attribute"}, {"refs": [{"id": "ref-for-window\u2460\u2462"}, {"id": "ref-for-window\u2460\u2463"}], "title": "6.1.6. General section"}, {"refs": [{"id": "ref-for-window\u2460\u2465"}], "title": "6.1.9. Environment\u2019s partition nonce"}], "external": false};
+window.dfnpanelData['dom-window-credentialless'] = {"dfnID": "dom-window-credentialless", "url": "#dom-window-credentialless", "dfnText": "credentialless", "refSections": [{"refs": [{"id": "ref-for-dom-window-credentialless"}], "title": "6.1.2. The Window attribute"}, {"refs": [{"id": "ref-for-dom-window-credentialless\u2460"}], "title": "6.1.3. Creating new browsing context"}, {"refs": [{"id": "ref-for-dom-window-credentialless\u2461"}, {"id": "ref-for-dom-window-credentialless\u2462"}, {"id": "ref-for-dom-window-credentialless\u2463"}], "title": "6.1.4. Navigating a browsing context"}, {"refs": [{"id": "ref-for-dom-window-credentialless\u2464"}], "title": "6.1.5. Open popup with noopener"}, {"refs": [{"id": "ref-for-dom-window-credentialless\u2465"}, {"id": "ref-for-dom-window-credentialless\u2466"}, {"id": "ref-for-dom-window-credentialless\u2467"}, {"id": "ref-for-dom-window-credentialless\u2468"}], "title": "6.1.6. General section"}], "external": false};
+window.dfnpanelData['navigation-params-credentialless'] = {"dfnID": "navigation-params-credentialless", "url": "#navigation-params-credentialless", "dfnText": "credentialless", "refSections": [{"refs": [{"id": "ref-for-navigation-params-credentialless"}, {"id": "ref-for-navigation-params-credentialless\u2460"}], "title": "6.1.4. Navigating a browsing context"}, {"refs": [{"id": "ref-for-navigation-params-credentialless\u2461"}], "title": "6.1.7. COEP embedder checks"}, {"refs": [{"id": "ref-for-navigation-params-credentialless\u2462"}], "title": "6.1.9.2. For Window"}], "external": false};
+window.dfnpanelData['credentialless-window'] = {"dfnID": "credentialless-window", "url": "#credentialless-window", "dfnText": "credentialless Window", "refSections": [{"refs": [{"id": "ref-for-credentialless-window"}, {"id": "ref-for-credentialless-window\u2460"}], "title": "6.1.6. General section"}, {"refs": [{"id": "ref-for-credentialless-window\u2461"}], "title": "6.1.9. Environment\u2019s partition nonce"}], "external": false};
+window.dfnpanelData['initial-window-credentialless'] = {"dfnID": "initial-window-credentialless", "url": "#initial-window-credentialless", "dfnText": "initial window\n  credentialless flag", "refSections": [{"refs": [{"id": "ref-for-initial-window-credentialless"}], "title": "6.1.3. Creating new browsing context"}, {"refs": [{"id": "ref-for-initial-window-credentialless\u2460"}, {"id": "ref-for-initial-window-credentialless\u2461"}], "title": "6.1.6. General section"}], "external": false};
+window.dfnpanelData['navigation-credentialless'] = {"dfnID": "navigation-credentialless", "url": "#navigation-credentialless", "dfnText": "navigation\u2019s credentialless flag", "refSections": [{"refs": [{"id": "ref-for-navigation-credentialless"}], "title": "6.1.4. Navigating a browsing context"}, {"refs": [{"id": "ref-for-navigation-credentialless\u2460"}], "title": "6.1.6. General section"}], "external": false};
+window.dfnpanelData['page-credentialless-nonce'] = {"dfnID": "page-credentialless-nonce", "url": "#page-credentialless-nonce", "dfnText": "page credentialless\n  nonce", "refSections": [{"refs": [{"id": "ref-for-page-credentialless-nonce"}], "title": "6.1.9. Environment\u2019s partition nonce"}, {"refs": [{"id": "ref-for-page-credentialless-nonce\u2460"}], "title": "6.1.9.1. For Navigation"}, {"refs": [{"id": "ref-for-page-credentialless-nonce\u2461"}], "title": "6.1.9.2. For Window"}], "external": false};
+window.dfnpanelData['environment-partition-nonce'] = {"dfnID": "environment-partition-nonce", "url": "#environment-partition-nonce", "dfnText": "partition nonce", "refSections": [{"refs": [{"id": "ref-for-environment-partition-nonce"}], "title": "6.1.9. Environment\u2019s partition nonce"}, {"refs": [{"id": "ref-for-environment-partition-nonce\u2460"}], "title": "6.1.9.1. For Navigation"}, {"refs": [{"id": "ref-for-environment-partition-nonce\u2461"}], "title": "6.1.9.2. For Window"}, {"refs": [{"id": "ref-for-environment-partition-nonce\u2462"}, {"id": "ref-for-environment-partition-nonce\u2463"}], "title": "6.1.9.3. For Worker"}, {"refs": [{"id": "ref-for-environment-partition-nonce\u2464"}, {"id": "ref-for-environment-partition-nonce\u2465"}], "title": "6.1.9.4. For Worklet"}, {"refs": [{"id": "ref-for-environment-partition-nonce\u2466"}], "title": "6.2.1. Plumb the partition-nonce"}, {"refs": [{"id": "ref-for-environment-partition-nonce\u2467"}, {"id": "ref-for-environment-partition-nonce\u2468"}, {"id": "ref-for-environment-partition-nonce\u2460\u24ea"}, {"id": "ref-for-environment-partition-nonce\u2460\u2460"}, {"id": "ref-for-environment-partition-nonce\u2460\u2461"}], "title": "6.3. Integration with CHIPS"}, {"refs": [{"id": "ref-for-environment-partition-nonce\u2460\u2462"}, {"id": "ref-for-environment-partition-nonce\u2460\u2463"}], "title": "6.4. Integration with storage-partitioning"}, {"refs": [{"id": "ref-for-environment-partition-nonce\u2460\u2464"}, {"id": "ref-for-environment-partition-nonce\u2460\u2465"}], "title": "6.5.1. storage-key"}], "external": false};
+</script>
+<script>/* Boilerplate: script-dom-helper */
+function query(sel) { return document.querySelector(sel); }
+
+function queryAll(sel) { return [...document.querySelectorAll(sel)]; }
+
+function iter(obj) {
+	if(!obj) return [];
+	var it = obj[Symbol.iterator];
+	if(it) return it;
+	return Object.entries(obj);
+}
+
+function mk(tagname, attrs, ...children) {
+	const el = document.createElement(tagname);
+	for(const [k,v] of iter(attrs)) {
+		if(k.slice(0,3) == "_on") {
+			const eventName = k.slice(3);
+			el.addEventListener(eventName, v);
+		} else if(k[0] == "_") {
+			// property, not attribute
+			el[k.slice(1)] = v;
+		} else {
+			if(v === false || v == null) {
+        continue;
+      } else if(v === true) {
+        el.setAttribute(k, "");
+        continue;
+      } else {
+  			el.setAttribute(k, v);
+      }
+		}
+	}
+	append(el, children);
+	return el;
+}
+
+/* Create shortcuts for every known HTML element */
+[
+  "a",
+  "abbr",
+  "acronym",
+  "address",
+  "applet",
+  "area",
+  "article",
+  "aside",
+  "audio",
+  "b",
+  "base",
+  "basefont",
+  "bdo",
+  "big",
+  "blockquote",
+  "body",
+  "br",
+  "button",
+  "canvas",
+  "caption",
+  "center",
+  "cite",
+  "code",
+  "col",
+  "colgroup",
+  "datalist",
+  "dd",
+  "del",
+  "details",
+  "dfn",
+  "dialog",
+  "div",
+  "dl",
+  "dt",
+  "em",
+  "embed",
+  "fieldset",
+  "figcaption",
+  "figure",
+  "font",
+  "footer",
+  "form",
+  "frame",
+  "frameset",
+  "head",
+  "header",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "hr",
+  "html",
+  "i",
+  "iframe",
+  "img",
+  "input",
+  "ins",
+  "kbd",
+  "label",
+  "legend",
+  "li",
+  "link",
+  "main",
+  "map",
+  "mark",
+  "meta",
+  "meter",
+  "nav",
+  "nobr",
+  "noscript",
+  "object",
+  "ol",
+  "optgroup",
+  "option",
+  "output",
+  "p",
+  "param",
+  "pre",
+  "progress",
+  "q",
+  "s",
+  "samp",
+  "script",
+  "section",
+  "select",
+  "small",
+  "source",
+  "span",
+  "strike",
+  "strong",
+  "style",
+  "sub",
+  "summary",
+  "sup",
+  "table",
+  "tbody",
+  "td",
+  "template",
+  "textarea",
+  "tfoot",
+  "th",
+  "thead",
+  "time",
+  "title",
+  "tr",
+  "u",
+  "ul",
+  "var",
+  "video",
+  "wbr",
+  "xmp",
+].forEach(tagname=>{
+	mk[tagname] = (...args) => mk(tagname, ...args);
 });
+
+function* nodesFromChildList(children) {
+	for(const child of children.flat(Infinity)) {
+		if(child instanceof Node) {
+			yield child;
+		} else {
+			yield new Text(child);
+		}
+	}
+}
+function append(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		if(el instanceof Node) el.appendChild(child);
+		else el.push(child);
+	}
+	return el;
+}
+
+function insertAfter(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		el.parentNode.insertBefore(child, el.nextSibling);
+	}
+	return el;
+}
+
+function clearContents(el) {
+	el.innerHTML = "";
+	return el;
+}
+
+function parseHTML(markup) {
+	if(markup.toLowerCase().trim().indexOf('<!doctype') === 0) {
+		const doc = document.implementation.createHTMLDocument("");
+		doc.documentElement.innerHTML = markup;
+		return doc;
+	} else {
+		const el = mk.template({});
+		el.innerHTML = markup;
+		return el.content;
+	}
+}
 </script>
