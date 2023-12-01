@@ -576,35 +576,25 @@ It is exposed to the Javascript [=HTMLIFrameElement=] interface:
 
 <div class="monkey-patch">
 <pre class="idl" highlight="idl">
-[Exposed=Window]
-interface <a>HTMLIFrameElement</a> : <a>HTMLElement</a> {
-  // [...]
-  attribute boolean <a lt="dom-iframe-credentialless">credentialless</a>;
-  // [...]
+partial interface HTMLIFrameElement {
+  attribute boolean credentialless;
 };
 </pre>
 
-<p>The IDL attributes <dfn export lt="dom-iframe-credentialless">credentialless</dfn>,
+<p>The IDL attributes <dfn attribute for="HTMLIFrameElement">credentialless</dfn>,
 must <a>reflect</a> the respective content attributes of the same name.</p>
 
 </div>
 
 ### The Window attribute ### {#spec-window-attribute}
 
-Add a read-only constant {{Window/credentialless}} attribute
+Add a read-only constant <dfn attribute for="Window">credentialless</dfn> attribute
 to the [=Window=] object.
 
 <div class="monkey-patch">
 <pre class="idl" highlight="idl">
-[
-  Global=<a>Window</a>,
-  Exposed=<a>Window</a>,
-  <a>LegacyUnenumerableNamedProperties</a>
-]
-interface <a>Window</a> : <a>EventTarget</a> {
-  // ...
-  readonly attribute boolean <a>credentialless</a>;
-  // ...
+partial interface Window {
+  readonly attribute boolean credentialless;
 };
 </pre>
 </div>
