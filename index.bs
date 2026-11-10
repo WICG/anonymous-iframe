@@ -251,7 +251,7 @@ Recommended readings {#recommended-readings}
 - The [[COEP-require-corp]] and [[COEP-credentialless]] headers.
 - How and why [=Cross-Origin-Opener-Policy=] ([=COOP=]) and
   [=Cross-Origin-Embedder-Policy=] ([=COEP=]) are granting the
-  [crossOriginIsolated](concept-settings-object-cross-origin-isolated-capability)
+  [crossOriginIsolated](https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-cross-origin-isolated-capability)
   capability. See [[WhyCoopCoep]].
 
 A problem {#problem}
